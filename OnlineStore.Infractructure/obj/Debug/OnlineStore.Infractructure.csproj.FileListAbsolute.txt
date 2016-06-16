@@ -1,0 +1,8 @@
+c:\users\trung\documents\visual studio 2013\Projects\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.dll
+c:\users\trung\documents\visual studio 2013\Projects\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.pdb
+c:\users\trung\documents\visual studio 2013\Projects\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.dll
+c:\users\trung\documents\visual studio 2013\Projects\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.pdb
+E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.dll
+E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.pdb
+E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.dll
+E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.pdb
