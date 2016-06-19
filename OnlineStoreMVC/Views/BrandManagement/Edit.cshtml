@@ -1,0 +1,59 @@
+﻿@model OnlineStore.Model.Context.Brand
+
+@{
+    ViewBag.CurrentPageName = OnlineStore.Infractructure.Utility.AdminNavigateEnum.Manufacturer;
+    ViewBag.Title = "Cập nhật thông tin nhà cung cấp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên nhà cung cấp</label> 
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new {disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Ẩn</label>
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.Status)
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Ưu tiên sắp xếp</label>
+            <div class="col-md-10">
+                @Html.DropDownList("SortOrder", "Chọn mức ưu tiên sắp xếp" )
+                @Html.ValidationMessageFor(model => model.SortOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thông tin nhà cung cấp</label>
+            <div class="col-md-10">
+                @Html.TextArea("Description", Model.Description,4,1, new{@class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="CẬP NHẬT" class="btn btn-primary"/>
+                @Html.ActionLink("TRỞ VỀ DANH SÁCH", "Index",null, new {@class="btn btn-default"})
+            </div>
+        </div>
+    </div>
+}
+
