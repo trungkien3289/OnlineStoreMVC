@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineStore.Infractructure
+namespace OnlineStore.Model.MessageModel
 {
-    public class Class1
-    {
-    }
 }

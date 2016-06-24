@@ -26,6 +26,26 @@ namespace OnlineStoreMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // Admin page 
+            bundles.Add(new ScriptBundle("~/bundles/adminScript").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js",
+                       "~/Scripts/Utility/common.js"
+                      ));
+
+            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/TemplateAmin/assets/css/animate.min.css",
+                      "~/Content/TemplateAmin/assets/css/light-bootstrap-dashboard.css",
+                      "~/Content/TemplateAmin/assets/css/pe-icon-7-stroke.css",
+                      "~/Content/common.css",
+                      "~/Content/TemplateAmin/product-management.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/brandManagement").Include(
+                       "~/Scripts/Admin/brand-management.js"
+                      ));
         }
     }
 }

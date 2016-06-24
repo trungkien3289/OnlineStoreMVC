@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -61,7 +61,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="200" />
           <Property Name="GUID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
           <Property Name="SortOrder" Type="int" />
@@ -74,11 +74,12 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="GUID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ParentID" Type="uniqueidentifier" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="Url" Type="nvarchar" MaxLength="200" />
           <Property Name="SortOrder" Type="int" />
           <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="AdvertisementHtml" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Categories_Brands">
           <Key>
@@ -104,6 +105,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Advertisement" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="cms_News">
           <Key>
@@ -519,8 +521,7 @@
             <End Role="ProductTitles" EntitySet="ProductTitles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineStoreMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -579,7 +580,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="GUID" Type="Guid" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="SortOrder" Type="Int32" />
@@ -594,13 +595,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="GUID" Type="Guid" Nullable="false" />
-          <Property Name="ParentID" Type="Guid" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="SortOrder" Type="Int32" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProductTitles" Relationship="Self.FK_ProductTitles_Categories" FromRole="Categories" ToRole="ProductTitles" />
           <NavigationProperty Name="Brands" Relationship="Self.Categories_Brands" FromRole="Categories" ToRole="Brands" />
+          <Property Name="AdvertisementHtml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="cms_Categories">
           <Key>
@@ -618,6 +620,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Advertisement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="cms_News" Relationship="Self.FK_cms_News_cms_Categories" FromRole="cms_Categories" ToRole="cms_News" />
         </EntityType>
         <EntityType Name="cms_News">
@@ -1031,14 +1034,15 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.Category">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="AdvertisementHtml" ColumnName="AdvertisementHtml" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1057,6 +1061,7 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Advertisement" ColumnName="Advertisement" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

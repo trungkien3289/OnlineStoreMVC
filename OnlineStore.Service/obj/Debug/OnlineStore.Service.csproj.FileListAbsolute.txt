@@ -20,3 +20,17 @@ E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Mod
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Service\bin\Debug\EntityFramework.xml
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Service\obj\Debug\OnlineStore.Service.dll
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Service\obj\Debug\OnlineStore.Service.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Service.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Service.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Infractructure.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Model.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\EntityFramework.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Infractructure.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Model.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\EntityFramework.xml
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\obj\Debug\OnlineStore.Service.csprojResolveAssemblyReference.cache
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\obj\Debug\OnlineStore.Service.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\obj\Debug\OnlineStore.Service.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\OnlineStore.Service.dll.config
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\EntityFramework.SqlServer.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Service\bin\Debug\EntityFramework.SqlServer.xml

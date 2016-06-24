@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="01ca00fdd1ee44918b46ff46e98f680a" Name="Diagram1">
+      <Diagram DiagramId="8cd870f93eec4c68b4f68c20980c1bde" Name="Diagram1">
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetRole" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUserClaim" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUserLogin" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUser" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.Brand" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.Category" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_Categories" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_Categories" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_News" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.Color" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.product_OrderDetails" Width="1.5" PointX="9.75" PointY="4.125" IsExpanded="true" />

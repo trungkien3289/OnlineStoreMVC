@@ -56,9 +56,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="200" />
     <Property Name="GUID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="bit" />
     <Property Name="SortOrder" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
   </EntityType>

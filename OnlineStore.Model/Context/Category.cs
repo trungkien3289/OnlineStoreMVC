@@ -24,11 +24,12 @@ namespace OnlineStore.Model.Context
         public int Id { get; set; }
         public string Name { get; set; }
         public System.Guid GUID { get; set; }
-        public Nullable<System.Guid> ParentID { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
         public Nullable<int> SortOrder { get; set; }
         public bool Status { get; set; }
+        public Nullable<int> ParentID { get; set; }
+        public string AdvertisementHtml { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTitle> ProductTitles { get; set; }

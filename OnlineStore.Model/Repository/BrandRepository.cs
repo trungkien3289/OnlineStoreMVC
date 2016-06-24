@@ -11,7 +11,11 @@ namespace OnlineStore.Model.Repository
     {
         public BrandRepository(OnlineStoreMVCEntities context):base(context)
         {
-
+            
+        }
+        public IList<Brand> GetAllBrands()
+        {
+            return dbSet.ToList();
         }
     }
 }

@@ -13,17 +13,19 @@ namespace OnlineStore.Infractructure.Utility
         Product,
         Manufacturer,
         News,
-        Order
+        Order,
+        Category
     }
     public static class AdminNavigateHelper
     {
         private static Dictionary<int, string> dict = new Dictionary<int, string>(){
-            {(int)AdminNavigateEnum.DashBoard,"QUAN TRI"},
-            {(int)AdminNavigateEnum.Member,"THANH VIEN"},
-            {(int)AdminNavigateEnum.Product,"SAN PHAM"},
-            {(int)AdminNavigateEnum.Manufacturer,"NHA CUNG CAP"},
-            {(int)AdminNavigateEnum.News,"TIN TUC"},
-            {(int)AdminNavigateEnum.Order,"DON DAT HANG"}
+            {(int)AdminNavigateEnum.DashBoard,"QUẢN TRỊ"},
+            {(int)AdminNavigateEnum.Member,"THÀNH VIÊN"},
+            {(int)AdminNavigateEnum.Product,"SẢN PHẨM"},
+            {(int)AdminNavigateEnum.Manufacturer,"NHÀ CUNG CẤP"},
+            {(int)AdminNavigateEnum.News,"TIN TỨC"},
+            {(int)AdminNavigateEnum.Order,"ĐƠN ĐẶT HÀNG"},
+            {(int)AdminNavigateEnum.Category,"DANH MỤC SẢN PHẨM"}
         }; 
         public static string getNavigateItemName(AdminNavigateEnum item)
         {

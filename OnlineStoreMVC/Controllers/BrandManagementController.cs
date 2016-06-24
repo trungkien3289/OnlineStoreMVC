@@ -16,13 +16,12 @@ namespace OnlineStoreMVC.Controllers
 {
     public class BrandManagementController : Controller
     {
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
         private IBrandManagementService service = new BrandManagementService();
 
         // GET: BrandManagement
         public ActionResult Index()
         {
-            return View(db.Brands.ToList());
+            return View(service.GetAllBrands());
         }
 
         // GET: BrandManagement/Details/5
@@ -32,7 +31,6 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Brand brand = db.Brands.Find(id);
             DetailsBrandManagementView viewModel = service.GetDetailBrand((int)id);
 
             return View(viewModel);
@@ -54,9 +52,15 @@ namespace OnlineStoreMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Brands.Add(brand);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool isSuccess = service.AddBrand(brand);
+                if (isSuccess)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("ServerError", "Add new brand fail!");
+                }
             }
 
             return View(brand);
@@ -69,7 +73,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
+            Brand brand = service.GetBrandById((int)id);
             if (brand == null)
             {
                 return HttpNotFound();
@@ -87,13 +91,15 @@ namespace OnlineStoreMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                Brand selectedBrand = db.Brands.Find(brand.Id);
-                selectedBrand.Status = brand.Status;
-                selectedBrand.SortOrder = brand.SortOrder;
-                selectedBrand.Description = brand.Description;
-                db.Entry(selectedBrand).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool isSuccess = service.UpdateBrand(brand);
+                if (isSuccess)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("ServerError", "Update brand fail!");
+                }
             }
             return View(brand);
         }
@@ -105,7 +111,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = db.Brands.Find(id);
+            Brand brand = service.GetBrandById((int)id);
             if (brand == null)
             {
                 return HttpNotFound();
@@ -118,19 +124,12 @@ namespace OnlineStoreMVC.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Brand brand = db.Brands.Find(id);
-            db.Brands.Remove(brand);
-            db.SaveChanges();
-            return Redirect("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            bool isSuccess = service.DeleteBrand(id);
+            if (!isSuccess)
             {
-                db.Dispose();
+                ModelState.AddModelError("ServerError", "Delete brand fail!");
             }
-            base.Dispose(disposing);
+            return Redirect("Index");
         }
 
         private void PopulateOrderDropDownList(int? selectedOrder)

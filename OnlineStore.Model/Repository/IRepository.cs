@@ -18,5 +18,8 @@ namespace OnlineStore.Model.Repository
         void Delete(object id);
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
+        void Save();
+        void Dispose(bool disposing);
+        void Dispose();
     }
 }

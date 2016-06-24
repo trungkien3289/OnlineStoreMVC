@@ -6,3 +6,8 @@ E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineSt
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.pdb
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.dll
 E:\FreelanceProject\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Infractructure\bin\Debug\OnlineStore.Infractructure.pdb
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.csprojResolveAssemblyReference.cache
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.dll
+E:\FreelanceProject\OnlineStoreMVCGit\OnlineStoreMVC\OnlineStore.Infractructure\obj\Debug\OnlineStore.Infractructure.pdb
