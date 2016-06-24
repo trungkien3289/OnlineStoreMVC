@@ -12,25 +12,24 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductTitle
+    public partial class ecom_Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductTitle()
+        public ecom_Products()
         {
-            this.Products = new HashSet<Product>();
+            this.ecom_OrderDetails = new HashSet<ecom_OrderDetails>();
+            this.ecom_Categories = new HashSet<ecom_Categories>();
             this.share_Images = new HashSet<share_Images>();
         }
     
         public int Id { get; set; }
-        public System.Guid GUID { get; set; }
         public string ProductCode { get; set; }
         public string Name { get; set; }
-        public int BrandId { get; set; }
-        public int CategoryId { get; set; }
         public decimal Price { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<int> Unit { get; set; }
-        public Nullable<int> CoverImageID { get; set; }
+        public Nullable<int> BrandId { get; set; }
+        public Nullable<int> CoverImageId { get; set; }
         public string Description { get; set; }
         public string Description2 { get; set; }
         public Nullable<int> TotalView { get; set; }
@@ -40,15 +39,16 @@ namespace OnlineStore.Model.Context
         public bool IsBestSellProduct { get; set; }
         public Nullable<int> SortOrder { get; set; }
         public Nullable<int> Status { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.Guid> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual Brand Brand { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual ecom_Brands ecom_Brands { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ecom_OrderDetails> ecom_OrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ecom_Categories> ecom_Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<share_Images> share_Images { get; set; }
     }

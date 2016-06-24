@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Model.Repository
 {
-    public class CategoryRepository:Repository<Category>
+    public class CategoryRepository : Repository<ecom_Categories>
     {
         public CategoryRepository(OnlineStoreMVCEntities context)
             : base(context)
         {
 
         }
-        public IEnumerable<Category> GetAllCategories()
+        public IEnumerable<ecom_Categories> GetAllCategories()
         {
             return dbSet.ToList();
         }
 
-        public IEnumerable<Category> GetRootCategoryList()
+        public IEnumerable<ecom_Categories> GetRootCategoryList()
         {
-            return dbSet.Where(c => c.ParentID == null).ToList();
+            return dbSet.Where(c => c.ParentId == null).ToList();
         }
     }
 }

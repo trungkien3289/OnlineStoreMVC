@@ -28,7 +28,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = service.GetCategoryById((int)id);
+            ecom_Categories category = service.GetCategoryById((int)id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -48,7 +48,7 @@ namespace OnlineStoreMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,GUID,ParentID,Description,Url,SortOrder,Status")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Name,GUID,ParentID,Description,Url,SortOrder,Status")] ecom_Categories category)
         {
             if (ModelState.IsValid)
             {
@@ -73,13 +73,13 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = service.GetCategoryById((int)id);
+            ecom_Categories category = service.GetCategoryById((int)id);
 
             if (category == null)
             {
                 return HttpNotFound();
             }
-            PopulateParentCategoryDropDownList(category.ParentID);
+            PopulateParentCategoryDropDownList(category.ParentId);
             return View(category);
         }
 
@@ -88,7 +88,7 @@ namespace OnlineStoreMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ParentID,Description,Url,SortOrder,Status")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Name,ParentID,Description,Url,SortOrder,Status")] ecom_Categories category)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = service.GetCategoryById((int)id);
+            ecom_Categories category = service.GetCategoryById((int)id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -135,7 +135,7 @@ namespace OnlineStoreMVC.Controllers
 
         private void PopulateParentCategoryDropDownList(int? parentId)
         {
-            IEnumerable<Category> rootCategoryList = service.GetRootCategoryList();
+            IEnumerable<ecom_Categories> rootCategoryList = service.GetRootCategoryList();
             ViewBag.ParentID = new SelectList(rootCategoryList, "Id", "Name", parentId);
         } 
     }

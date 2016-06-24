@@ -12,18 +12,17 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class product_Orders
+    public partial class ecom_Orders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public product_Orders()
+        public ecom_Orders()
         {
-            this.product_OrderDetails = new HashSet<product_OrderDetails>();
+            this.ecom_OrderDetails = new HashSet<ecom_OrderDetails>();
         }
     
         public int Id { get; set; }
-        public System.Guid GUID { get; set; }
-        public string UserID { get; set; }
         public string OrderCode { get; set; }
+        public Nullable<System.Guid> UserId { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal FeeShip { get; set; }
         public decimal TotalOrder { get; set; }
@@ -33,13 +32,12 @@ namespace OnlineStore.Model.Context
         public string PhoneOfRecipient { get; set; }
         public string AddressOfRecipient { get; set; }
         public Nullable<int> Status { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.Guid> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product_OrderDetails> product_OrderDetails { get; set; }
+        public virtual ICollection<ecom_OrderDetails> ecom_OrderDetails { get; set; }
     }
 }

@@ -17,17 +17,17 @@ namespace OnlineStore.Service.Implements
 
         #region Public functions
 
-        public IEnumerable<Category> GetAllCategories()
+        public IEnumerable<ecom_Categories> GetAllCategories()
         {
             return db.GetAllCategories();
         }
 
-        public Category GetCategoryById(int id)
+        public ecom_Categories GetCategoryById(int id)
         {
             return db.GetByID(id);
         }
 
-        public bool AddCategory(Category category)
+        public bool AddCategory(ecom_Categories category)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace OnlineStore.Service.Implements
             }
         }
 
-        public bool UpdateCategory(Category category)
+        public bool UpdateCategory(ecom_Categories category)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace OnlineStore.Service.Implements
         {
             try
             {
-                Category category = db.GetByID(id);
+                ecom_Categories category = db.GetByID(id);
                 db.Delete(category);
                 db.Save();
                 return true;
@@ -70,7 +70,7 @@ namespace OnlineStore.Service.Implements
             }
         }
 
-        public IEnumerable<Category> GetRootCategoryList()
+        public IEnumerable<ecom_Categories> GetRootCategoryList()
         {
             return db.GetRootCategoryList();
         }

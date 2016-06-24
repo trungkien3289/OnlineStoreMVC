@@ -9,11 +9,11 @@ namespace OnlineStore.Service.Interfaces
 {
     public interface ICategoryManagementService
     {
-        IEnumerable<Category> GetAllCategories();
-        Category GetCategoryById(int id);
-        bool AddCategory(Category category);
-        bool UpdateCategory(Category category);
+        IEnumerable<ecom_Categories> GetAllCategories();
+        ecom_Categories GetCategoryById(int id);
+        bool AddCategory(ecom_Categories category);
+        bool UpdateCategory(ecom_Categories category);
         bool DeleteCategory(int id);
-        IEnumerable<Category> GetRootCategoryList();
+        IEnumerable<ecom_Categories> GetRootCategoryList();
     }
 }

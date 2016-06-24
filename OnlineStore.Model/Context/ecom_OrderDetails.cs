@@ -12,27 +12,22 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class cms_Categories
+    public partial class ecom_OrderDetails
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cms_Categories()
-        {
-            this.cms_News = new HashSet<cms_News>();
-        }
-    
         public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Url { get; set; }
-        public Nullable<int> SortOrder { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public decimal PriceOfUnit { get; set; }
+        public Nullable<decimal> TotalDiscount { get; set; }
+        public decimal TotalOrder { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.Guid> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cms_News> cms_News { get; set; }
+        public virtual ecom_Products ecom_Products { get; set; }
+        public virtual ecom_Orders ecom_Orders { get; set; }
     }
 }

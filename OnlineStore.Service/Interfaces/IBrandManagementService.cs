@@ -11,10 +11,10 @@ namespace OnlineStore.Service.Interfaces
     public interface IBrandManagementService
     {
         DetailsBrandManagementView GetDetailBrand(int id);
-        bool AddBrand(Brand brand);
-        Brand GetBrandById(int id);
-        IEnumerable<Brand> GetAllBrands();
-        bool UpdateBrand(Brand request);
+        bool AddBrand(ecom_Brands brand);
+        ecom_Brands GetBrandById(int id);
+        IEnumerable<ecom_Brands> GetAllBrands();
+        bool UpdateBrand(ecom_Brands request);
         bool DeleteBrand(int id);
     }
 }

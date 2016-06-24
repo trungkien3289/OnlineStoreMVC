@@ -29,16 +29,18 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<cms_Categories> cms_Categories { get; set; }
         public virtual DbSet<cms_News> cms_News { get; set; }
-        public virtual DbSet<Color> Colors { get; set; }
-        public virtual DbSet<product_OrderDetails> product_OrderDetails { get; set; }
-        public virtual DbSet<product_Orders> product_Orders { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductTitle> ProductTitles { get; set; }
+        public virtual DbSet<ecom_Brands> ecom_Brands { get; set; }
+        public virtual DbSet<ecom_Categories> ecom_Categories { get; set; }
+        public virtual DbSet<ecom_OrderDetails> ecom_OrderDetails { get; set; }
+        public virtual DbSet<ecom_Orders> ecom_Orders { get; set; }
+        public virtual DbSet<ecom_Products> ecom_Products { get; set; }
+        public virtual DbSet<share_Categories> share_Categories { get; set; }
         public virtual DbSet<share_Images> share_Images { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<system_Config> system_Config { get; set; }
+        public virtual DbSet<system_Menu> system_Menu { get; set; }
+        public virtual DbSet<system_Profiles> system_Profiles { get; set; }
     }
 }

@@ -12,18 +12,13 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Color
+    public partial class system_Profiles
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Color()
-        {
-            this.Products = new HashSet<Product>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public System.Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string Emaill { get; set; }
+        public string Password { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
     }
 }

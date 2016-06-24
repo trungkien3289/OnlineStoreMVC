@@ -15,8 +15,7 @@ namespace OnlineStore.Model.Context
     public partial class cms_News
     {
         public int Id { get; set; }
-        public System.Guid GUID { get; set; }
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string ContentNews { get; set; }
@@ -24,9 +23,9 @@ namespace OnlineStore.Model.Context
         public string Tags { get; set; }
         public Nullable<int> TotalView { get; set; }
         public Nullable<int> Status { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.Guid> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         public virtual cms_Categories cms_Categories { get; set; }

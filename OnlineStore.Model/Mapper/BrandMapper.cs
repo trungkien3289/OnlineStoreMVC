@@ -11,14 +11,13 @@ namespace OnlineStore.Model.Mapper
 {
     public static class BrandMapper
     {
-        public static DetailsBrandManagementView ConvertToDetailsBrandView(this Brand brand)
+        public static DetailsBrandManagementView ConvertToDetailsBrandView(this ecom_Brands brand)
         {
             DetailsBrandManagementView returnView = new DetailsBrandManagementView()
             {
                 Id = brand.Id,
                 Name = brand.Name,
-                SortOrder = OrderPriorityHelper.GetOrderPriorityName(brand.SortOrder),
-                Status = brand.Status,
+                Status = Enum.IsDefined(typeof(Status), brand.Status)?((Status)brand.Status).ToString():"",
                 Description = brand.Description
             };
 

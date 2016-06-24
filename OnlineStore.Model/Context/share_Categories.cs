@@ -12,13 +12,17 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaim
+    public partial class share_Categories
     {
         public int Id { get; set; }
-        public System.Guid UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> ParentId { get; set; }
+        public Nullable<int> SortOrder { get; set; }
+        public Nullable<int> Type { get; set; }
+        public Nullable<int> Status { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.Guid> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     }
 }

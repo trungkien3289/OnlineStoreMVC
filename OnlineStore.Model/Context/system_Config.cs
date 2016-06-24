@@ -12,13 +12,11 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaim
+    public partial class system_Config
     {
         public int Id { get; set; }
-        public System.Guid UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

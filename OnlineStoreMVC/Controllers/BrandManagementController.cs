@@ -39,7 +39,7 @@ namespace OnlineStoreMVC.Controllers
         // GET: BrandManagement/Create
         public ActionResult Create()
         {
-            PopulateOrderDropDownList(null);
+            //PopulateOrderDropDownList(null);
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace OnlineStoreMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,GUID,Status,SortOrder,Description")] Brand brand)
+        public ActionResult Create([Bind(Include = "Id,Name,Status,Description")] ecom_Brands brand)
         {
             if (ModelState.IsValid)
             {
@@ -73,12 +73,12 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = service.GetBrandById((int)id);
+            ecom_Brands brand = service.GetBrandById((int)id);
             if (brand == null)
             {
                 return HttpNotFound();
             }
-            PopulateOrderDropDownList(brand.SortOrder);
+            //PopulateOrderDropDownList(brand.SortOrder);
             return View(brand);
         }
 
@@ -87,7 +87,7 @@ namespace OnlineStoreMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Status,SortOrder,Description")] Brand brand)
+        public ActionResult Edit([Bind(Include = "Id,Status,Description")] ecom_Brands brand)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = service.GetBrandById((int)id);
+            ecom_Brands brand = service.GetBrandById((int)id);
             if (brand == null)
             {
                 return HttpNotFound();
@@ -132,9 +132,9 @@ namespace OnlineStoreMVC.Controllers
             return Redirect("Index");
         }
 
-        private void PopulateOrderDropDownList(int? selectedOrder)
-        {
-            ViewBag.SortOrder = new SelectList(OrderPriorityHelper.getListOrderPriority(), "Value", "Name", selectedOrder);
-        } 
+        //private void PopulateOrderDropDownList(int? selectedOrder)
+        //{
+        //    ViewBag.SortOrder = new SelectList(OrderPriorityHelper.getListOrderPriority(), "Value", "Name", selectedOrder);
+        //} 
     }
 }

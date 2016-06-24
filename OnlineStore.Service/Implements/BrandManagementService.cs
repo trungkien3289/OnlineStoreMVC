@@ -22,13 +22,13 @@ namespace OnlineStore.Service.Implements
         #region Public functions
         public Model.ViewModel.DetailsBrandManagementView GetDetailBrand(int id)
         {
-            Brand brand = db.GetByID(id);
+            ecom_Brands brand = db.GetByID(id);
             if (brand == null) { throw new ArgumentNullException(); }
 
             return brand.ConvertToDetailsBrandView();
         }
 
-        public bool AddBrand(Brand brand)
+        public bool AddBrand(ecom_Brands brand)
         {
             try
             {
@@ -42,25 +42,24 @@ namespace OnlineStore.Service.Implements
             }
         }
 
-        public Brand GetBrandById(int id)
+        public ecom_Brands GetBrandById(int id)
         {
-            Brand brand = db.GetByID(id);
+            ecom_Brands brand = db.GetByID(id);
             return brand;
         }
 
-        public IEnumerable<Brand> GetAllBrands()
+        public IEnumerable<ecom_Brands> GetAllBrands()
         {
-            IEnumerable<Brand> brands = db.GetAllBrands();
+            IEnumerable<ecom_Brands> brands = db.GetAllBrands();
             return brands;
         }
 
-        public bool UpdateBrand(Brand request)
+        public bool UpdateBrand(ecom_Brands request)
         {
             try
             {
-                Brand brand = db.GetByID(request.Id);
+                ecom_Brands brand = db.GetByID(request.Id);
                 brand.Status = request.Status;
-                brand.SortOrder = request.SortOrder;
                 brand.Description = request.Description;
                 db.Update(brand);
                 db.Save();
@@ -77,7 +76,7 @@ namespace OnlineStore.Service.Implements
         {
             try
             {
-                Brand brand = db.GetByID(id);
+                ecom_Brands brand = db.GetByID(id);
                 db.Delete(brand);
                 db.Save();
                 return true;

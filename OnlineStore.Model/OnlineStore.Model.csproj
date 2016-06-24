@@ -51,64 +51,70 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\AspNetRole.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\AspNetUser.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\AspNetUserClaim.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\AspNetUserLogin.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\Brand.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\Category.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\cms_Categories.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\cms_News.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\Color.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+    <Compile Include="Context\ecom_Brands.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\OnlineStoreEntities.Context.cs">
+    <Compile Include="Context\ecom_Categories.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ecom_OrderDetails.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ecom_Orders.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ecom_Products.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\OnlineStoreMVCEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineStoreEntities.Context.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\OnlineStoreEntities.cs">
+    <Compile Include="Context\OnlineStoreMVCEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\OnlineStoreEntities.Designer.cs">
+    <Compile Include="Context\OnlineStoreMVCEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OnlineStoreEntities.edmx</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Context\Product.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ProductTitle.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\product_OrderDetails.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\product_Orders.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+    <Compile Include="Context\share_Categories.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\share_Images.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\sysdiagram.cs">
-      <DependentUpon>OnlineStoreEntities.tt</DependentUpon>
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\system_Config.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\system_Menu.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\system_Profiles.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Mapper\BrandMapper.cs" />
     <Compile Include="MessageModel\BrandManagement.cs" />
@@ -130,22 +136,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Context\OnlineStoreEntities.edmx">
+    <EntityDeploy Include="Context\OnlineStoreMVCEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OnlineStoreEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>OnlineStoreMVCEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Context\OnlineStoreEntities.Context.tt">
+    <None Include="Context\OnlineStoreMVCEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineStoreEntities.edmx</DependentUpon>
-      <LastGenOutput>OnlineStoreEntities.Context.cs</LastGenOutput>
+      <DependentUpon>OnlineStoreMVCEntities.edmx</DependentUpon>
+      <LastGenOutput>OnlineStoreMVCEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="Context\OnlineStoreEntities.edmx.diagram">
-      <DependentUpon>OnlineStoreEntities.edmx</DependentUpon>
+    <None Include="Context\OnlineStoreMVCEntities.edmx.diagram">
+      <DependentUpon>OnlineStoreMVCEntities.edmx</DependentUpon>
     </None>
-    <None Include="Context\OnlineStoreEntities.tt">
+    <None Include="Context\OnlineStoreMVCEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OnlineStoreEntities.edmx</DependentUpon>
-      <LastGenOutput>OnlineStoreEntities.cs</LastGenOutput>
+      <DependentUpon>OnlineStoreMVCEntities.edmx</DependentUpon>
+      <LastGenOutput>OnlineStoreMVCEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

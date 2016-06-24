@@ -12,21 +12,27 @@ namespace OnlineStore.Model.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class ecom_Categories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public ecom_Categories()
         {
-            this.product_OrderDetails = new HashSet<product_OrderDetails>();
+            this.ecom_Products = new HashSet<ecom_Products>();
         }
     
         public int Id { get; set; }
-        public int ColorId { get; set; }
-        public int ProductTitleId { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> ParentId { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+        public Nullable<int> SortOrder { get; set; }
+        public int Status { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.Guid> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual Color Color { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product_OrderDetails> product_OrderDetails { get; set; }
-        public virtual ProductTitle ProductTitle { get; set; }
+        public virtual ICollection<ecom_Products> ecom_Products { get; set; }
     }
 }
