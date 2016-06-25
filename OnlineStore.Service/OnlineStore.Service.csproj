@@ -48,11 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implements\CMSCategoryService.cs" />
     <Compile Include="Implements\MenuService.cs" />
     <Compile Include="Implements\BrandManagementService.cs" />
     <Compile Include="Implements\CategoryManagementService.cs" />
     <Compile Include="Implements\DisplayProductService.cs" />
     <Compile Include="Implements\ManageProductService.cs" />
+    <Compile Include="Interfaces\ICMSCategoryService.cs" />
     <Compile Include="Interfaces\IMenuService.cs" />
     <Compile Include="Interfaces\IBrandManagementService.cs" />
     <Compile Include="Interfaces\ICategoryManagementService.cs" />
