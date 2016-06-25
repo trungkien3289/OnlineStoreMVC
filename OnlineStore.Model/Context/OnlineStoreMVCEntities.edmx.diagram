@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="OnlineStoreMVCModel.share_Images" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.sysdiagram" Width="1.5" PointX="7.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Config" Width="1.5" PointX="9.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Menu" Width="1.5" PointX="11.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Profiles" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -31,6 +30,7 @@
         <AssociationConnector Association="OnlineStoreMVCModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Images" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Menu" Width="1.5" PointX="12.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,8 +14,6 @@ namespace OnlineStoreMVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -27,21 +25,22 @@ namespace OnlineStoreMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            // Admin page 
             bundles.Add(new ScriptBundle("~/bundles/adminScript").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
                        "~/Scripts/Utility/common.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/bundles/others").Include(
+                      "~/Content/dist/js/app.min.js",
+                      "~/Content/respond/1.4.2/respond.min.js",
+                      "~/Content/html5shiv/3.7.2/html5shiv.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/adminCss").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/TemplateAmin/assets/css/animate.min.css",
-                      "~/Content/TemplateAmin/assets/css/light-bootstrap-dashboard.css",
-                      "~/Content/TemplateAmin/assets/css/pe-icon-7-stroke.css",
-                      "~/Content/common.css",
-                      "~/Content/TemplateAmin/product-management.css"
-                      ));
+                      "~/Content/bootstrap.css",  
+                      "~/Content/font-awesome/4.3.0/css/font-awesome.min.css",
+                      "~/Content/ionicons/2.0.1/css/ionicons.min.css",
+                      "~/Content/dist/css/AdminLTE.min.css",
+                      "~/Content/dist/css/AdminLTE.addon.css",
+                      "~/Content/dist/css/skins/skin-green.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/brandManagement").Include(
                        "~/Scripts/Admin/brand-management.js"

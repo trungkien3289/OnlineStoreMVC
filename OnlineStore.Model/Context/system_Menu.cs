@@ -20,6 +20,7 @@ namespace OnlineStore.Model.Context
         public Nullable<int> SortOrder { get; set; }
         public string Target { get; set; }
         public Nullable<int> Type { get; set; }
+        public string Icon { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

@@ -1,4 +1,5 @@
-﻿using OnlineStore.Infractructure.Utility;
+﻿using OnlineStore.Infractructure.Helper;
+using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.Context;
 using OnlineStore.Model.ViewModel;
 using System;
@@ -17,7 +18,7 @@ namespace OnlineStore.Model.Mapper
             {
                 Id = brand.Id,
                 Name = brand.Name,
-                Status = Enum.IsDefined(typeof(Status), brand.Status)?((Status)brand.Status).ToString():"",
+                Status = EnumHelper.GetDescriptionFromEnum((Define.Status)brand.Status),
                 Description = brand.Description
             };
 

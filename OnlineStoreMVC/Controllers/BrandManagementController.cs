@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineStore.Model.Context;
-using OnlineStore.Infractructure.Utility;
+using OnlineStore.Infractructure.Helper;
 using OnlineStore.Service.Interfaces;
 using OnlineStore.Model.ViewModel;
 using OnlineStore.Service.Implements;
