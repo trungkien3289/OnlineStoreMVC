@@ -123,6 +123,7 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="ViewModel\CMSCategoryView.cs" />
     <Compile Include="ViewModel\MenuView.cs" />
     <Compile Include="ViewModel\BrandManagementView.cs" />
   </ItemGroup>
