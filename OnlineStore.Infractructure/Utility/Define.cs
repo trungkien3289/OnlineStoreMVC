@@ -18,7 +18,7 @@ namespace OnlineStore.Infractructure.Utility
             Active = 1,
 
             [Description("Xóa")]
-            Delete = 1
+            Delete = 2
         }
 
         public enum MenuEnum

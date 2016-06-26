@@ -9,13 +9,19 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/others")
+    @Scripts.Render("~/bundles/adminScript")
+    <script>
+        $(document).ready(function () {
+            $("#Panel_MessageBox").initMessageBox()
+        })
+    </script>
 
     <script>
         $(document).ready(function () {
             @*var navItems = $("#Panel_NavigateBar_AdminPage li").removeClass("active");
             var activeItem = $("#Panel_NavigateBar_AdminPage li[data-navigateType = @ViewBag.CurrentPageName]").first();
             $(activeItem).addClass("active");*@
-        });
+        })
     </script>
 
 </head>
