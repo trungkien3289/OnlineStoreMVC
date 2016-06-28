@@ -17,9 +17,9 @@ namespace OnlineStore.Service.Implements
         {
             using (var db = new OnlineStoreMVCEntities())
             {
-                totalItems = db.cms_Categories.Count(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
+                totalItems = db.cms_Categories.Count(x => x.Status != (int)OnlineStore.Infractructure.Utility.Define.Status.Delete);
 
-                return db.cms_Categories.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active)
+                return db.cms_Categories.Where(x => x.Status != (int)OnlineStore.Infractructure.Utility.Define.Status.Delete)
                     .OrderBy(x => x.ParentId).ThenBy(x => x.SortOrder)
                     .Skip(pageSize * (pageNumber - 1)).Take(pageSize)
                     .Select(x => new CMSCategoryView
@@ -63,6 +63,30 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        public bool EditCMSCategory(CMSCategoryView categoryView)
+        {
+            try
+            {
+                using (var db = new OnlineStoreMVCEntities())
+                {
+                    var category = db.cms_Categories.Find(categoryView.Id);
+                    category.ParentId = categoryView.ParentId;
+                    category.Title = categoryView.Title;
+                    category.Description = categoryView.Description;
+                    category.Url = categoryView.Url;
+                    category.SortOrder = categoryView.SortOrder;
+                    category.ModifiedDate = DateTime.Now;
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public CMSCategoryView GetCategoryById(int? categoryId)
         {
             if (categoryId == null)
@@ -78,8 +102,28 @@ namespace OnlineStore.Service.Implements
                     Title = category.Title,
                     Url = category.Url,
                     Description = category.Description,
-                    Status = category.Status
+                    Status = category.Status,
+                    SortOrder = category.SortOrder
                 };
+            }
+        }
+
+        public bool DeleteCMSCategory(int id)
+        {
+            try
+            {
+                using (var db = new OnlineStoreMVCEntities())
+                {
+                    var category = db.cms_Categories.Find(id);
+                    category.Status = (int)OnlineStore.Infractructure.Utility.Define.Status.Delete;
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

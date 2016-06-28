@@ -13,9 +13,7 @@ namespace OnlineStore.Service.Implements
 {
     public class CMSCategoryExtensions
     {
-        public static string GetFormattedBreadCrumb(CMSCategoryView category,
-            IList<CMSCategoryView> allCategories,
-            string separator = ">>", int languageId = 0)
+        public static string GetFormattedBreadCrumb(CMSCategoryView category, IList<CMSCategoryView> allCategories, string separator = ">>")
         {
             string result = string.Empty;
 
@@ -31,8 +29,7 @@ namespace OnlineStore.Service.Implements
             return result;
         }
 
-        public static IList<CMSCategoryView> GetCategoryBreadCrumb(CMSCategoryView category,
-            IList<CMSCategoryView> allCategories)
+        public static IList<CMSCategoryView> GetCategoryBreadCrumb(CMSCategoryView category, IList<CMSCategoryView> allCategories)
         {
             if (category == null)
                 throw new ArgumentNullException("category");
@@ -57,9 +54,7 @@ namespace OnlineStore.Service.Implements
             return result;
         }
 
-        public static string GetFormattedBreadCrumb(CMSCategoryView category,
-            ICMSCategoryService categoryService,
-            string separator = ">>", int languageId = 0)
+        public static string GetFormattedBreadCrumb(CMSCategoryView category, ICMSCategoryService categoryService, string separator = ">>")
         {
             string result = string.Empty;
 
