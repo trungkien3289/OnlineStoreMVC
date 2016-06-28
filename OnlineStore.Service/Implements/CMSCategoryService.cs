@@ -19,7 +19,8 @@ namespace OnlineStore.Service.Implements
             {
                 totalItems = db.cms_Categories.Count(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
 
-                return db.cms_Categories.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active).OrderBy(x => x.SortOrder)
+                return db.cms_Categories.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active)
+                    .OrderBy(x => x.ParentId).ThenBy(x => x.SortOrder)
                     .Skip(pageSize * (pageNumber - 1)).Take(pageSize)
                     .Select(x => new CMSCategoryView
                     {
@@ -59,6 +60,26 @@ namespace OnlineStore.Service.Implements
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public CMSCategoryView GetCategoryById(int? categoryId)
+        {
+            if (categoryId == null)
+                return null;
+
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                var category = db.cms_Categories.Find(categoryId.Value);
+                return new CMSCategoryView
+                {
+                    Id = category.Id,
+                    ParentId = category.ParentId,
+                    Title = category.Title,
+                    Url = category.Url,
+                    Description = category.Description,
+                    Status = category.Status
+                };
             }
         }
     }

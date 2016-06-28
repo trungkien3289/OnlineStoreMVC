@@ -20,12 +20,38 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
         private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
 
+        [NonAction]
+        protected virtual List<SelectListItem> PrepareAllCategoriesModel()
+        {
+            var availableCategories = new List<SelectListItem>();
+            int totalItems = 0;
+            var categories = _cmsCategoryService.GetCMSCategories(1, int.MaxValue, out totalItems);
+            foreach (var c in categories)
+            {
+                availableCategories.Add(new SelectListItem
+                {
+                    Text = CMSCategoryExtensions.GetFormattedBreadCrumb(c, categories),
+                    Value = c.Id.ToString()
+                });
+            }
+
+            return availableCategories;
+        }
+
         // GET: /Admin/CMS_Category/
         public ActionResult Index(string keyword, int page = 1)
         {
             int totalItems = 0;
             var categories = _cmsCategoryService.GetCMSCategories(page, 10, out totalItems);
-            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(categories, page, 10, totalItems);
+
+            var availableCategories = new List<CMSCategoryView>();
+            foreach (var item in categories)
+            {
+                item.Title = CMSCategoryExtensions.GetFormattedBreadCrumb(item, _cmsCategoryService);
+                availableCategories.Add(item);
+            }
+
+            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(availableCategories, page, 10, totalItems);
             return View(pageCategories);
         }
 
@@ -47,6 +73,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // GET: /Admin/CMS_Category/Create
         public ActionResult Create()
         {
+            ViewBag.ParentId = PrepareAllCategoriesModel();
             return View();
         }
 

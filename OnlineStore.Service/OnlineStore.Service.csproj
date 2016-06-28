@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implements\CMSCategoryExtensions.cs" />
     <Compile Include="Implements\CMSCategoryService.cs" />
     <Compile Include="Implements\MenuService.cs" />
     <Compile Include="Implements\BrandManagementService.cs" />

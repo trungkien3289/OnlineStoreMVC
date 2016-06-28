@@ -12,5 +12,6 @@ namespace OnlineStore.Service.Interfaces
     {
         IList<CMSCategoryView> GetCMSCategories(int pageNumber, int pageSize, out int totalItems);
         bool AddCMSCategory(CMSCategoryView categoryView);
+        CMSCategoryView GetCategoryById(int? categoryId);
     }
 }
