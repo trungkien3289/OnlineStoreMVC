@@ -10,6 +10,7 @@ using OnlineStore.Model.Context;
 using OnlineStore.Service.Implements;
 using OnlineStore.Service.Interfaces;
 using PagedList;
+using OnlineStore.Model.ViewModel;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -22,8 +23,10 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // GET: /Admin/CMS_Category/
         public ActionResult Index(string keyword, int page = 1)
         {
-            var categories = _cmsCategoryService.GetCMSCategories();
-            return View(categories.ToList().ToPagedList(page, 10));
+            int totalItems = 0;
+            var categories = _cmsCategoryService.GetCMSCategories(page, 10, out totalItems);
+            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(categories, page, 10, totalItems);
+            return View(pageCategories);
         }
 
         // GET: /Admin/CMS_Category/Details/5
@@ -48,20 +51,25 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         }
 
         // POST: /Admin/CMS_Category/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,ParentId,Title,Description,Url,SortOrder,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] cms_Categories cms_categories)
+        public ActionResult Create(CMSCategoryView model)
         {
             if (ModelState.IsValid)
             {
-                db.cms_Categories.Add(cms_categories);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    _cmsCategoryService.AddCMSCategory(model);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
 
-            return View(cms_categories);
+            return View(model);
         }
 
         // GET: /Admin/CMS_Category/Edit/5
@@ -84,7 +92,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,ParentId,Title,Description,Url,SortOrder,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] cms_Categories cms_categories)
+        public ActionResult Edit([Bind(Include = "Id,ParentId,Title,Description,Url,SortOrder,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] cms_Categories cms_categories)
         {
             if (ModelState.IsValid)
             {

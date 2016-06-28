@@ -13,11 +13,14 @@ namespace OnlineStore.Service.Implements
 {
     public class CMSCategoryService : ICMSCategoryService
     {
-        public IList<CMSCategoryView> GetCMSCategories()
+        public IList<CMSCategoryView> GetCMSCategories(int pageNumber, int pageSize, out int totalItems)
         {
             using (var db = new OnlineStoreMVCEntities())
             {
+                totalItems = db.cms_Categories.Count(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
+
                 return db.cms_Categories.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active).OrderBy(x => x.SortOrder)
+                    .Skip(pageSize * (pageNumber - 1)).Take(pageSize)
                     .Select(x => new CMSCategoryView
                     {
                         Id = x.Id,
@@ -27,6 +30,35 @@ namespace OnlineStore.Service.Implements
                         Description = x.Description,
                         Status = x.Status
                     }).ToList();
+            }
+        }
+
+        public bool AddCMSCategory(CMSCategoryView categoryView)
+        {
+            try
+            {
+                using (var db = new OnlineStoreMVCEntities())
+                {
+                    var category = new cms_Categories
+                    {
+                        ParentId = categoryView.ParentId,
+                        Title = categoryView.Title,
+                        Description = categoryView.Description,
+                        Url = categoryView.Url,
+                        SortOrder = categoryView.SortOrder,
+                        Status = (int)OnlineStore.Infractructure.Utility.Define.Status.Active,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = DateTime.Now
+                    };
+                    db.cms_Categories.Add(category);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
