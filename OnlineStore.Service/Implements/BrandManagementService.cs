@@ -14,8 +14,8 @@ namespace OnlineStore.Service.Implements
     public class BrandManagementService : IBrandManagementService
     {
         #region Properties
-
         private BrandRepository db = new BrandRepository(new OnlineStoreMVCEntities());
+        private Repository<system_Profiles> systemProfiles = new Repository<system_Profiles>(new OnlineStoreMVCEntities());
 
         #endregion
 
@@ -24,8 +24,11 @@ namespace OnlineStore.Service.Implements
         {
             ecom_Brands brand = db.GetByID(id);
             if (brand == null) { throw new ArgumentNullException(); }
+            // Get user create brand and user last time modified brand 
+            system_Profiles createBy = systemProfiles.GetByID(brand.CreatedBy);
+            system_Profiles modifiredBy = systemProfiles.GetByID(brand.CreatedBy);
 
-            return brand.ConvertToDetailsBrandView();
+            return brand.ConvertToDetailsBrandView(createBy != null ? createBy.UserName : "", modifiredBy != null ? modifiredBy.UserName : "");
         }
 
         public bool AddBrand(ecom_Brands brand)
@@ -54,13 +57,10 @@ namespace OnlineStore.Service.Implements
             return brands;
         }
 
-        public bool UpdateBrand(ecom_Brands request)
+        public bool UpdateBrand(ecom_Brands brand)
         {
             try
             {
-                ecom_Brands brand = db.GetByID(request.Id);
-                brand.Status = request.Status;
-                brand.Description = request.Description;
                 db.Update(brand);
                 db.Save();
                 return true;
@@ -69,7 +69,6 @@ namespace OnlineStore.Service.Implements
             {
                 return false;
             }
-
         }
 
         public bool DeleteBrand(int id)

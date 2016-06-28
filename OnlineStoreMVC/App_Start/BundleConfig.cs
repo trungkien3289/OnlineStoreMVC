@@ -38,9 +38,10 @@ namespace OnlineStoreMVC
                       "~/Content/bootstrap.css",  
                       "~/Content/font-awesome/4.3.0/css/font-awesome.min.css",
                       "~/Content/ionicons/2.0.1/css/ionicons.min.css",
-                      "~/Content/dist/css/AdminLTE.min.css",
+                      "~/Content/dist/css/AdminLTE.css",
                       "~/Content/dist/css/AdminLTE.addon.css",
-                      "~/Content/dist/css/skins/skin-green.min.css"));
+                      "~/Content/dist/css/skins/skin-green.min.css",
+                      "~/Content/common.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/brandManagement").Include(
                        "~/Scripts/Admin/brand-management.js"

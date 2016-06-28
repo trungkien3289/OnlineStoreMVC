@@ -4,11 +4,11 @@
         var message = "Bạn có muốn xóa " + brandName + " ?";
         MessageBox.showMessageBox(title, message, function () {
             $.ajax({
-                url: '/BrandManagement/Delete',
+                url: '/Admin/Brand/Delete',
                 data: { id: id },
                 type: 'POST',
                 success: function () {
-                    window.location.replace("/BrandManagement/Index");
+                    window.location.replace("/Admin/Brand/Index");
                 },
                 error: function () {
                     alert("Delete fail!");

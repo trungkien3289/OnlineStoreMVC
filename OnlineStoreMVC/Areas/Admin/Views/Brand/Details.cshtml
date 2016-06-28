@@ -1,0 +1,47 @@
+﻿@model OnlineStore.Model.ViewModel.DetailsBrandManagementView
+
+@{
+    ViewBag.Title = "CHI TIẾT THƯƠNG HIỆU";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>CHI TIẾT THƯƠNG HIỆU</h2>
+<div>
+    <fieldset>
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TÊN</label>
+            @Html.DisplayFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">MÔ TẢ</label>
+            @Html.DisplayFor(model => model.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TRẠNG THÁI</label>
+            @Html.DisplayFor(model => model.Status, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TẠO BỞI</label>
+            @Html.DisplayFor(model => model.CreatedBy, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGÀY KHỞI TẠO</label>
+            @Html.DisplayFor(model => model.CreatedDate, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="col-maxlarge control-label">THAY ĐỔI GẦN NHẤT BỞI</label>
+            @Html.DisplayFor(model => model.ModifiedBy, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGÀY THAY ĐỔI</label>
+            @Html.DisplayFor(model => model.ModifiedDate, new { @class = "form-control" })
+        </div>
+    </fieldset>
+</div>
+<p>
+    @Html.ActionLink("TRỞ LẠI DANH SÁCH", "Index", null, new { @class = "btn btn-default" })
+</p>
