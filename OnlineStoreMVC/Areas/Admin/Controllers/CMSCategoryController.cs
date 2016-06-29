@@ -43,7 +43,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         public ActionResult Index(string keyword, int page = 1)
         {
             int totalItems = 0;
-            var categories = _cmsCategoryService.GetCMSCategories(page, 10, out totalItems);
+            var categories = _cmsCategoryService.GetCMSCategories(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
 
             var availableCategories = new List<CMSCategoryView>();
             foreach (var item in categories)
@@ -52,7 +52,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 availableCategories.Add(item);
             }
 
-            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(availableCategories, page, 10, totalItems);
+            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(availableCategories, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
             return View(pageCategories);
         }
 
@@ -82,6 +82,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 }
             }
 
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel();
             return View(model);
         }
 
@@ -120,6 +121,8 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                     ModelState.AddModelError("", ex.Message);
                 }
             }
+
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel(model.Id);
             return View(model);
         }
 

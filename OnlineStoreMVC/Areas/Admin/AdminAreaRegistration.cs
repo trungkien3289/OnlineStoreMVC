@@ -14,6 +14,9 @@ namespace OnlineStoreMVC.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            context.MapRoute(name: "Admin_CMSCategory", url: "admin/danh-muc-tin-tuc", defaults: new { controller = "CMSCategory", action = "Index" });
+            context.MapRoute(name: "Admin_CMSNews", url: "admin/tin-tuc", defaults: new { controller = "CMSNews", action = "Index" });
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",

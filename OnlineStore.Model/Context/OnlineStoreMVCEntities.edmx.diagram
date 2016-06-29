@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUser" Width="1.5" PointX="10" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_Categories" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_News" Width="1.5" PointX="10" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.ecom_Brands" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.ecom_Categories" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.ecom_OrderDetails" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
@@ -23,7 +22,6 @@
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Profiles" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_ecom_Products_ecom_Brands" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_ecom_OrderDetails_ecom_Products" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_product_OrderDetails_product_Orders" ManuallyRouted="false" />
@@ -31,6 +29,8 @@
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Images" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Menu" Width="1.5" PointX="12.375" PointY="11.75" />
+        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_News" Width="1.5" PointX="10" PointY="8.625" />
+        <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

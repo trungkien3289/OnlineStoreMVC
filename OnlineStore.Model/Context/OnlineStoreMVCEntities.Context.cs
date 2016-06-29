@@ -30,7 +30,6 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<cms_Categories> cms_Categories { get; set; }
-        public virtual DbSet<cms_News> cms_News { get; set; }
         public virtual DbSet<ecom_Brands> ecom_Brands { get; set; }
         public virtual DbSet<ecom_Categories> ecom_Categories { get; set; }
         public virtual DbSet<ecom_OrderDetails> ecom_OrderDetails { get; set; }
@@ -42,5 +41,6 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<system_Config> system_Config { get; set; }
         public virtual DbSet<system_Profiles> system_Profiles { get; set; }
         public virtual DbSet<system_Menu> system_Menu { get; set; }
+        public virtual DbSet<cms_News> cms_News { get; set; }
     }
 }
