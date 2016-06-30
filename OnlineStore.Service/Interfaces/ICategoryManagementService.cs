@@ -1,4 +1,6 @@
 ﻿using OnlineStore.Model.Context;
+using OnlineStore.Model.MessageModel;
+using OnlineStore.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,15 @@ namespace OnlineStore.Service.Interfaces
 {
     public interface ICategoryManagementService
     {
+        IEnumerable<SummaryCategoryViewModel> GetListCategories();
         IEnumerable<ecom_Categories> GetAllCategories();
         ecom_Categories GetCategoryById(int id);
-        bool AddCategory(ecom_Categories category);
-        bool UpdateCategory(ecom_Categories category);
+        DetailCategoryViewModel GetDetailCategory(int id);
+        bool AddCategory(CreateCategoryPostRequest category);
+        bool UpdateCategory(CategoryViewModel category);
         bool DeleteCategory(int id);
         IEnumerable<ecom_Categories> GetRootCategoryList();
+        CategoryViewModel getCategoryViewModel(int id);
+        
     }
 }

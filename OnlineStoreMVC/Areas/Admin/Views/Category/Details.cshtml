@@ -1,0 +1,67 @@
+﻿@model OnlineStore.Model.ViewModel.DetailCategoryViewModel
+
+@{
+    ViewBag.Title = "CHI TIẾT DANH MỤC";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CHI TIẾT DANH MỤC</h2>
+
+<div>
+    <fieldset>
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TÊN DANH MỤC</label>
+            @Html.DisplayFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TÊN DANH MỤC CHA</label>
+            @Html.DisplayFor(model => model.ParentCategory, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">MÔ TẢ</label>
+            @Html.DisplayFor(model => model.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">ĐƯỜNG DẪN</label>
+            @Html.DisplayFor(model => model.Url, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">SẮP XẾP</label>
+            @Html.DisplayFor(model => model.SortOrder, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">TRẠNG THÁI</label>
+            @Html.DisplayFor(model => model.Status, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGƯỜI TẠO</label>
+            @Html.DisplayFor(model => model.CreatedBy, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGÀY TẠO</label>
+            @Html.DisplayFor(model => model.CreatedDate, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGƯỜI CẬP NHẬT GẦN NHẤT</label>
+            @Html.DisplayFor(model => model.ModifiedBy, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label class="col-maxlarge control-label">NGÀY CẬP NHẬT GẦN NHẤT</label>
+            @Html.DisplayFor(model => model.ModifiedDate, new { @class = "form-control" })
+        </div>
+
+    </fieldset>
+</div>
+<p>
+    @Html.ActionLink("SỬA", "Edit", new { id = Model.Id }, new { @class="btn btn-primary"}) |
+    @Html.ActionLink("TRỞ LẠI DANH SÁCH", "Index", null, new { @class="btn btn-default"})
+</p>

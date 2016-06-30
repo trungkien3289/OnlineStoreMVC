@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Model.MessageModel
 {
-    public class CreateBrandPostRequest
+    public class CreateCategoryPostRequest
     {
         public int Id { get; set; }
-        [DisplayName("TÊN THƯƠNG HIỆU")]
+        [DisplayName("TÊN DANH MỤC")]
         public string Name { get; set; }
+        [DisplayName("TÊN DANH MỤC CHA")]
+        public Nullable<int> ParentId { get; set; }
         [DisplayName("MÔ TẢ")]
         public string Description { get; set; }
+        [DisplayName("ĐƯỜNG DẪN")]
+        public string Url { get; set; }
+        [DisplayName("ƯU TIÊN SẮP XẾP")]
+        public Nullable<int> SortOrder { get; set; }
         [DisplayName("TRẠNG THÁI")]
         public string Status { get; set; }
     }

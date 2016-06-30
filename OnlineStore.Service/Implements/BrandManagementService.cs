@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnlineStore.Model.Mapper;
+using OnlineStore.Infractructure.Utility;
 
 namespace OnlineStore.Service.Implements
 {
@@ -76,7 +77,7 @@ namespace OnlineStore.Service.Implements
             try
             {
                 ecom_Brands brand = db.GetByID(id);
-                db.Delete(brand);
+                brand.Status = (int)Define.Status.Delete;
                 db.Save();
                 return true;
             }

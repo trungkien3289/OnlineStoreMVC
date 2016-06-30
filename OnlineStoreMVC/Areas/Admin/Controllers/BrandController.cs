@@ -18,7 +18,7 @@ using OnlineStore.Infractructure.Helper;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
-    public class BrandController : Controller
+    public class BrandController : BaseManagementController
     {
         private IBrandManagementService service = new BrandManagementService();
         private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
@@ -93,7 +93,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(EditBrandManagementPostRequest brand)
         {
             if (ModelState.IsValid)
@@ -107,21 +106,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("ServerError", "Update brand fail!");
                 }
-            }
-            return View(brand);
-        }
-
-        // GET: Admin/Brand/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ecom_Brands brand = service.GetBrandById((int)id);
-            if (brand == null)
-            {
-                return HttpNotFound();
             }
             return View(brand);
         }
@@ -146,33 +130,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private void PopulateStatusDropDownList(Define.Status status = Define.Status.Active)
-        {
-            IEnumerable<Define.Status> values =
-
-                    Enum.GetValues(typeof(Define.Status))
-
-                    .Cast<Define.Status>();
-
-            IEnumerable<SelectListItem> items =
-
-                from value in values
-
-                select new SelectListItem
-
-                {
-
-                    Text = EnumHelper.GetDescriptionFromEnum((Define.Status)value),
-
-                    Value = value.ToString(),
-
-                    Selected = value == status,
-
-                };
-
-            ViewBag.Status = items;
         }
     }
 }

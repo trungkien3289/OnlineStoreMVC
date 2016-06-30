@@ -1,4 +1,5 @@
-﻿using OnlineStore.Model.Context;
+﻿using OnlineStore.Infractructure.Utility;
+using OnlineStore.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,26 @@ namespace OnlineStore.Model.Repository
             return dbSet.ToList();
         }
 
+        /// <summary>
+        /// Get categories except which one have status is Delete(Just Active and Deactive)
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ecom_Categories> GetAllCategoriesWithoutDelete()
+        {
+            return dbSet.Where(c => c.Status != (int)Define.Status.Delete).ToList();
+        }
+
         public IEnumerable<ecom_Categories> GetRootCategoryList()
         {
             return dbSet.Where(c => c.ParentId == null).ToList();
+        }
+        /// <summary>
+        /// Find category by id with status not equal to Delete
+        /// </summary>
+        /// <returns></returns>
+        public ecom_Categories GetCategoryById(int id)
+        {
+            return dbSet.Where(c =>c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
         }
     }
 }
