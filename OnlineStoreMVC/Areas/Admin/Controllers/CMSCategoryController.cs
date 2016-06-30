@@ -10,6 +10,7 @@ using OnlineStore.Model.Context;
 using OnlineStore.Service.Implements;
 using OnlineStore.Service.Interfaces;
 using PagedList;
+using OnlineStore.Model.ViewModel;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -17,51 +18,72 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         private ICMSCategoryService _cmsCategoryService = new CMSCategoryService();
 
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
+        [NonAction]
+        protected virtual List<SelectListItem> PrepareAllCategoriesModel(int selectedItemId = 0)
+        {
+            var availableCategories = new List<SelectListItem>();
+            int totalItems = 0;
+            var categories = _cmsCategoryService.GetCMSCategories(1, int.MaxValue, out totalItems);
+            foreach (var c in categories)
+            {
+                if (c.Id != selectedItemId)
+                {
+                    availableCategories.Add(new SelectListItem
+                    {
+                        Text = CMSCategoryExtensions.GetFormattedBreadCrumb(c, categories),
+                        Value = c.Id.ToString()
+                    });
+                }
+            }
+
+            return availableCategories;
+        }
 
         // GET: /Admin/CMS_Category/
         public ActionResult Index(string keyword, int page = 1)
         {
-            var categories = _cmsCategoryService.GetCMSCategories();
-            return View(categories.ToList().ToPagedList(page, 10));
-        }
+            int totalItems = 0;
+            var categories = _cmsCategoryService.GetCMSCategories(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
 
-        // GET: /Admin/CMS_Category/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            var availableCategories = new List<CMSCategoryView>();
+            foreach (var item in categories)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                item.Title = CMSCategoryExtensions.GetFormattedBreadCrumb(item, _cmsCategoryService);
+                availableCategories.Add(item);
             }
-            cms_Categories cms_categories = db.cms_Categories.Find(id);
-            if (cms_categories == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cms_categories);
+
+            IPagedList<CMSCategoryView> pageCategories = new StaticPagedList<CMSCategoryView>(availableCategories, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            return View(pageCategories);
         }
 
         // GET: /Admin/CMS_Category/Create
         public ActionResult Create()
         {
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel();
             return View();
         }
 
         // POST: /Admin/CMS_Category/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,ParentId,Title,Description,Url,SortOrder,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] cms_Categories cms_categories)
+        public ActionResult Create(CMSCategoryView model)
         {
             if (ModelState.IsValid)
             {
-                db.cms_Categories.Add(cms_categories);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    _cmsCategoryService.AddCMSCategory(model);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
 
-            return View(cms_categories);
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel();
+            return View(model);
         }
 
         // GET: /Admin/CMS_Category/Edit/5
@@ -71,63 +93,44 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cms_Categories cms_categories = db.cms_Categories.Find(id);
-            if (cms_categories == null)
+            var category = _cmsCategoryService.GetCategoryById(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(cms_categories);
+
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel(id.Value);
+            return View(category);
         }
 
         // POST: /Admin/CMS_Category/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,ParentId,Title,Description,Url,SortOrder,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] cms_Categories cms_categories)
+        public ActionResult Edit(CMSCategoryView model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cms_categories).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    _cmsCategoryService.EditCMSCategory(model);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
-            return View(cms_categories);
+
+            ViewBag.AvailableCategories = PrepareAllCategoriesModel(model.Id);
+            return View(model);
         }
 
-        // GET: /Admin/CMS_Category/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpDelete]
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            cms_Categories cms_categories = db.cms_Categories.Find(id);
-            if (cms_categories == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cms_categories);
-        }
-
-        // POST: /Admin/CMS_Category/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            cms_Categories cms_categories = db.cms_Categories.Find(id);
-            db.cms_Categories.Remove(cms_categories);
-            db.SaveChanges();
+            _cmsCategoryService.DeleteCMSCategory(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

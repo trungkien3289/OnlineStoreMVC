@@ -10,6 +10,10 @@ namespace OnlineStore.Service.Interfaces
 {
     public interface ICMSCategoryService
     {
-        IList<CMSCategoryView> GetCMSCategories();
+        IList<CMSCategoryView> GetCMSCategories(int pageNumber, int pageSize, out int totalItems);
+        bool AddCMSCategory(CMSCategoryView categoryView);
+        bool EditCMSCategory(CMSCategoryView categoryView);
+        bool DeleteCMSCategory(int id);
+        CMSCategoryView GetCategoryById(int? categoryId);
     }
 }

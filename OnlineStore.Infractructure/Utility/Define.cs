@@ -9,6 +9,7 @@ namespace OnlineStore.Infractructure.Utility
 {
     public class Define
     {
+        public const int PAGE_SIZE = 10;
         public enum Status
         {
             [Description("Ngưng hoạt động")]
