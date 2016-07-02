@@ -14,7 +14,7 @@ using OnlineStore.Model.ViewModel;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
-    public class CMSCategoryController : Controller
+    public class CMSCategoryController : BaseManagementController
     {
         private ICMSCategoryService _cmsCategoryService = new CMSCategoryService();
 
@@ -100,6 +100,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             }
 
             ViewBag.AvailableCategories = PrepareAllCategoriesModel(id.Value);
+            PopulateStatusDropDownList((OnlineStore.Infractructure.Utility.Define.Status)category.Status);
             return View(category);
         }
 
@@ -123,6 +124,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             }
 
             ViewBag.AvailableCategories = PrepareAllCategoriesModel(model.Id);
+            PopulateStatusDropDownList((OnlineStore.Infractructure.Utility.Define.Status)model.Status);
             return View(model);
         }
 

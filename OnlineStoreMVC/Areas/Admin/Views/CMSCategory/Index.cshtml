@@ -45,7 +45,7 @@
                             <th>
                                 Url
                             </th>
-                            <th>
+                            <th style="width: 100px;">
                                 Tình trạng
                             </th>
                             <th style="width: 80px;"></th>
@@ -63,8 +63,8 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Url)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
+                            <td class="text-center">
+                                <span class="glyphicon @(item.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active ? "glyphicon-ok" : "glyphicon-remove")"></span>
                             </td>
                             <td>
                                 @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |

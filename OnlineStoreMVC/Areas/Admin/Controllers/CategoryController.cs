@@ -14,7 +14,6 @@ using OnlineStore.Infractructure.Utility;
 using OnlineStore.Infractructure.Helper;
 using OnlineStore.Model.MessageModel;
 
-
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
     public class CategoryController : BaseManagementController

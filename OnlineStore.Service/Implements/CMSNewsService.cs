@@ -85,6 +85,7 @@ namespace OnlineStore.Service.Implements
                     news.Tags = cmsNewsView.Tags;
                     news.TotalView = cmsNewsView.TotalView;
                     news.SortOrder = cmsNewsView.SortOrder;
+                    news.Status = cmsNewsView.Status;
                     news.ModifiedDate = DateTime.Now;
                     db.SaveChanges();
 
