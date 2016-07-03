@@ -35,6 +35,17 @@ namespace OnlineStore.Service.Implements
             return db.GetAllCategoriesWithoutDelete();
         }
         /// <summary>
+        /// Get list categories with paging, sort, filter
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SummaryCategoryViewModel> GetCategories(int pageNumber, int pageSize, out int totalItems)
+        {
+            IEnumerable<ecom_Categories> categories = db.GetAllCategoriesWithoutDelete();
+            totalItems = categories.Count();
+            IEnumerable<ecom_Categories> returnCategoryList = categories.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
+            return returnCategoryList.ConvertToIndexCategoryViews();
+        }
+        /// <summary>
         /// Get detail category after id
         /// </summary>
         /// <param name="id"></param>

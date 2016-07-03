@@ -37,7 +37,7 @@ namespace OnlineStore.Model.Mapper
             {
                 Id = brandRequest.Id,
                 Name = brandRequest.Name,
-                Status = (int)Define.Status.Parse(typeof(Define.Status), brandRequest.Status),
+                Status = brandRequest.Status,
                 Description = brandRequest.Description
             };
 
@@ -62,7 +62,7 @@ namespace OnlineStore.Model.Mapper
             {
                 Id = brandView.Id,
                 Name = brandView.Name,
-                Status = (int)Define.Status.Parse(typeof(Define.Status), brandView.Status),
+                Status = brandView.Status,
                 Description = brandView.Description
             };
 

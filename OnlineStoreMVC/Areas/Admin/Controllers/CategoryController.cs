@@ -13,6 +13,7 @@ using OnlineStore.Model.ViewModel;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Infractructure.Helper;
 using OnlineStore.Model.MessageModel;
+using PagedList;
 
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
@@ -22,9 +23,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         private ICategoryManagementService service = new CategoryManagementService();
 
         // GET: Admin/Category
-        public ActionResult Index()
+        public ActionResult Index(string keyword, int page = 1)
         {
-            return View(service.GetListCategories());
+            int totalItems = 0;
+            var categories = service.GetCategories(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
+
+            IPagedList<SummaryCategoryViewModel> pageCategories = new StaticPagedList<SummaryCategoryViewModel>(categories, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            return View(pageCategories);
         }
 
         // GET: Admin/Category/Details/5

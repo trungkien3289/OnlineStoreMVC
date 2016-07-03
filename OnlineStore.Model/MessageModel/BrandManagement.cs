@@ -15,6 +15,6 @@ namespace OnlineStore.Model.MessageModel
         [DisplayName("MÔ TẢ")]
         public string Description { get; set; }
         [DisplayName("TRẠNG THÁI")]
-        public string Status { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

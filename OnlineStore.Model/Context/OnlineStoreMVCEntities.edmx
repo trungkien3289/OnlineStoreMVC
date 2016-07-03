@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -411,6 +411,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ecom_Products_share_Images">
+          <End Role="share_Images" Type="Self.share_Images" Multiplicity="0..1" />
+          <End Role="ecom_Products" Type="Self.ecom_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ecom_Products">
+              <PropertyRef Name="CoverImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_product_OrderDetails_product_Orders">
           <End Role="ecom_Orders" Type="Self.ecom_Orders" Multiplicity="1" />
           <End Role="ecom_OrderDetails" Type="Self.ecom_OrderDetails" Multiplicity="*" />
@@ -487,6 +499,10 @@
           <AssociationSet Name="FK_ecom_Products_Images_share_Images" Association="Self.FK_ecom_Products_Images_share_Images">
             <End Role="share_Images" EntitySet="share_Images" />
             <End Role="ecom_Products_Images" EntitySet="ecom_Products_Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecom_Products_share_Images" Association="Self.FK_ecom_Products_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="ecom_Products" EntitySet="ecom_Products" />
           </AssociationSet>
           <AssociationSet Name="FK_product_OrderDetails_product_Orders" Association="Self.FK_product_OrderDetails_product_Orders">
             <End Role="ecom_Orders" EntitySet="ecom_Orders" />
@@ -664,6 +680,7 @@
           <NavigationProperty Name="ecom_OrderDetails" Relationship="Self.FK_ecom_OrderDetails_ecom_Products" FromRole="ecom_Products" ToRole="ecom_OrderDetails" />
           <NavigationProperty Name="ecom_Categories" Relationship="Self.ecom_Products_Categories" FromRole="ecom_Products" ToRole="ecom_Categories" />
           <NavigationProperty Name="share_Images" Relationship="Self.ecom_Products_Images" FromRole="ecom_Products" ToRole="share_Images" />
+          <NavigationProperty Name="CoverImage" Relationship="OnlineStoreMVCModel.FK_ecom_Products_share_Images" FromRole="ecom_Products" ToRole="share_Images" />
         </EntityType>
         <EntityType Name="share_Categories">
           <Key>
@@ -693,6 +710,7 @@
           <Property Name="ModifiedBy" Type="Guid" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ecom_Products" Relationship="Self.ecom_Products_Images" FromRole="share_Images" ToRole="ecom_Products" />
+          <NavigationProperty Name="ecom_Products1" Relationship="OnlineStoreMVCModel.FK_ecom_Products_share_Images" FromRole="share_Images" ToRole="ecom_Products" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -854,6 +872,10 @@
             <End Role="cms_Categories" EntitySet="cms_Categories" />
             <End Role="cms_News" EntitySet="cms_News" />
           </AssociationSet>
+          <AssociationSet Name="FK_ecom_Products_share_Images" Association="OnlineStoreMVCModel.FK_ecom_Products_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="ecom_Products" EntitySet="ecom_Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="system_Menu">
           <Key>
@@ -901,6 +923,18 @@
             </Principal>
             <Dependent Role="cms_News">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecom_Products_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
+          <End Type="OnlineStoreMVCModel.ecom_Products" Role="ecom_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ecom_Products">
+              <PropertyRef Name="CoverImageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

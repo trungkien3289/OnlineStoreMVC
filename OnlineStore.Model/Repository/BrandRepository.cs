@@ -1,4 +1,5 @@
-﻿using OnlineStore.Model.Context;
+﻿using OnlineStore.Infractructure.Utility;
+using OnlineStore.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,13 @@ namespace OnlineStore.Model.Repository
         {
             
         }
+        /// <summary>
+        /// Get all brand except which one have status equal Delete
+        /// </summary>
+        /// <returns></returns>
         public IList<ecom_Brands> GetAllBrands()
         {
-            return dbSet.ToList();
+            return dbSet.Where(b => b.Status!= (int)Define.Status.Delete).ToList();
         }
     }
 }

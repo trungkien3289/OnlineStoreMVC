@@ -52,10 +52,12 @@ namespace OnlineStore.Service.Implements
             return brand;
         }
 
-        public IEnumerable<ecom_Brands> GetAllBrands()
+        public IEnumerable<ecom_Brands> GetBrands(int pageNumber, int pageSize, out int totalItems)
         {
             IEnumerable<ecom_Brands> brands = db.GetAllBrands();
-            return brands;
+            totalItems = brands.Count();
+            IEnumerable<ecom_Brands> returnBrandList = brands.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
+            return returnBrandList;
         }
 
         public bool UpdateBrand(ecom_Brands brand)

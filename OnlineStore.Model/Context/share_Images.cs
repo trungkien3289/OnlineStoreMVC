@@ -18,6 +18,7 @@ namespace OnlineStore.Model.Context
         public share_Images()
         {
             this.ecom_Products = new HashSet<ecom_Products>();
+            this.ecom_Products1 = new HashSet<ecom_Products>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace OnlineStore.Model.Context
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ecom_Products> ecom_Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ecom_Products> ecom_Products1 { get; set; }
     }
 }

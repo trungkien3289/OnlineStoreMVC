@@ -28,7 +28,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
                     Text = EnumHelper.GetDescriptionFromEnum((Define.Status)value),
 
-                    Value = value.ToString(),
+                    Value = ((int)value).ToString(),
 
                     Selected = value == status,
 

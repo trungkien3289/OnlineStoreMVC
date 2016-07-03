@@ -4,44 +4,66 @@
     ViewBag.Title = "CHI TIẾT THƯƠNG HIỆU";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<h2>CHI TIẾT THƯƠNG HIỆU</h2>
-<div>
-    <fieldset>
-        <div class="form-group">
-            <label class="col-maxlarge control-label">TÊN</label>
-            @Html.DisplayFor(model => model.Name, new { @class = "form-control" })
-        </div>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Danh mục thương hiệu
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Chi tiết thương hiệu</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">TÊN</label>
+                                @Html.Label(Model.Name, new { @class = "span-value-control col-md-9" })
+                            </div>
 
-        <div class="form-group">
-            <label class="col-maxlarge control-label">MÔ TẢ</label>
-            @Html.DisplayFor(model => model.Description, new { @class = "form-control" })
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">MÔ TẢ</label>
+                                @Html.Label(Model.Description, new { @class = "span-value-control col-md-9" })
+                            </div>
 
-        <div class="form-group">
-            <label class="col-maxlarge control-label">TRẠNG THÁI</label>
-            @Html.DisplayFor(model => model.Status, new { @class = "form-control" })
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">TRẠNG THÁI</label>
+                                @Html.Label(Model.Status, new { @class = "span-value-control col-md-9" })
+                            </div>
 
-        <div class="form-group">
-            <label class="col-maxlarge control-label">TẠO BỞI</label>
-            @Html.DisplayFor(model => model.CreatedBy, new { @class = "form-control" })
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">TẠO BỞI</label>
+                                @Html.Label(Model.CreatedBy, new { @class = "span-value-control col-md-9" })
+                            </div>
 
-        <div class="form-group">
-            <label class="col-maxlarge control-label">NGÀY KHỞI TẠO</label>
-            @Html.DisplayFor(model => model.CreatedDate, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label class="col-maxlarge control-label">THAY ĐỔI GẦN NHẤT BỞI</label>
-            @Html.DisplayFor(model => model.ModifiedBy, new { @class = "form-control" })
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">NGÀY KHỞI TẠO</label>
+                                @Html.Label(Model.CreatedDate, new { @class = "span-value-control col-md-9" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">THAY ĐỔI GẦN NHẤT BỞI</label>
+                                @Html.Label(Model.ModifiedBy, new { @class = "span-value-control col-md-9" })
+                            </div>
 
-        <div class="form-group">
-            <label class="col-maxlarge control-label">NGÀY THAY ĐỔI</label>
-            @Html.DisplayFor(model => model.ModifiedDate, new { @class = "form-control" })
+                            <div class="form-group">
+                                <label class="control-label col-md-3">NGÀY THAY ĐỔI</label>
+                                @Html.Label(Model.ModifiedDate, new { @class = "span-value-control col-md-9" })
+                            </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("TRỞ LẠI DANH SÁCH", "Index", null, new { @class = "btn btn-default" })
+                    </p>
+                </div>
+            </div>
         </div>
-    </fieldset>
-</div>
-<p>
-    @Html.ActionLink("TRỞ LẠI DANH SÁCH", "Index", null, new { @class = "btn btn-default" })
-</p>
+    </div>
+</section>

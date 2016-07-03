@@ -24,7 +24,7 @@ namespace OnlineStore.Model.ViewModel
          [DisplayName("TÊN THƯƠNG HIỆU")]
         public string Name { get; set; }
         [DisplayName("TRẠNG THÁI")]
-        public string Status { get; set; }
+        public Nullable<int> Status { get; set; }
         [DisplayName("THÔNG TIN VỀ THƯƠNG HIỆU")]
         public string Description { get; set; }
     }
@@ -35,7 +35,7 @@ namespace OnlineStore.Model.ViewModel
         [DisplayName("TÊN THƯƠNG HIỆU")]
         public string Name { get; set; }
         [DisplayName("TRẠNG THÁI")]
-        public int? Status { get; set; }
+        public Nullable<int> Status { get; set; }
         [DisplayName("THÔNG TIN VỀ THƯƠNG HIỆU")]
         public string Description { get; set; }
     }

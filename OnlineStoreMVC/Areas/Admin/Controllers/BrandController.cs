@@ -15,6 +15,7 @@ using OnlineStoreMVC.Utility;
 using OnlineStore.Model.MessageModel;
 using OnlineStore.Model.Mapper;
 using OnlineStore.Infractructure.Helper;
+using PagedList;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -24,9 +25,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
 
         // GET: Admin/Brand
-        public ActionResult Index()
+        public ActionResult Index(string keyword, int page = 1)
         {
-            return View(service.GetAllBrands());
+            int totalItems = 0;
+            var brands = service.GetBrands(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
+
+            IPagedList<ecom_Brands> pageBrands = new StaticPagedList<ecom_Brands>(brands, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            return View(pageBrands);
         }
 
         // GET: Admin/Brand/Details/5

@@ -51,5 +51,6 @@ namespace OnlineStore.Model.Context
         public virtual ICollection<ecom_Categories> ecom_Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<share_Images> share_Images { get; set; }
+        public virtual share_Images CoverImage { get; set; }
     }
 }

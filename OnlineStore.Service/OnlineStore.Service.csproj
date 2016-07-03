@@ -56,6 +56,7 @@
     <Compile Include="Implements\CategoryManagementService.cs" />
     <Compile Include="Implements\DisplayProductService.cs" />
     <Compile Include="Implements\ManageProductService.cs" />
+    <Compile Include="Implements\ProductService.cs" />
     <Compile Include="Interfaces\ICMSNewsService.cs" />
     <Compile Include="Interfaces\ICMSCategoryService.cs" />
     <Compile Include="Interfaces\IMenuService.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interfaces\ICategoryManagementService.cs" />
     <Compile Include="Interfaces\IDisplayProductService.cs" />
     <Compile Include="Interfaces\IManageProductService.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

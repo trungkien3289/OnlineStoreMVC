@@ -13,7 +13,7 @@ namespace OnlineStore.Service.Interfaces
         DetailsBrandManagementView GetDetailBrand(int id);
         bool AddBrand(ecom_Brands brand);
         ecom_Brands GetBrandById(int id);
-        IEnumerable<ecom_Brands> GetAllBrands();
+        IEnumerable<ecom_Brands> GetBrands(int pageNumber, int pageSize, out int totalItems);
         bool UpdateBrand(ecom_Brands request);
         bool DeleteBrand(int id);
     }
