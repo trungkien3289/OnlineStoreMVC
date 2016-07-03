@@ -15,7 +15,6 @@ using OnlineStore.Infractructure.Helper;
 using OnlineStore.Model.MessageModel;
 using PagedList;
 
-
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
     public class CategoryController : BaseManagementController

@@ -12,27 +12,15 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         protected virtual void PopulateStatusDropDownList(Define.Status status = Define.Status.Active)
         {
-            IEnumerable<Define.Status> values =
-
-                    Enum.GetValues(typeof(Define.Status))
-
-                    .Cast<Define.Status>();
-
-            IEnumerable<SelectListItem> items =
-
-                from value in values
-                where value != Define.Status.Delete
-                select new SelectListItem
-
-                {
-
-                    Text = EnumHelper.GetDescriptionFromEnum((Define.Status)value),
-
-                    Value = ((int)value).ToString(),
-
-                    Selected = value == status,
-
-                };
+            IEnumerable<Define.Status> values = Enum.GetValues(typeof(Define.Status)).Cast<Define.Status>();
+            IEnumerable<SelectListItem> items = from value in values
+                                                where value != Define.Status.Delete
+                                                select new SelectListItem
+                                                {
+                                                    Text = EnumHelper.GetDescriptionFromEnum((Define.Status)value),
+                                                    Value = ((int)value).ToString(),
+                                                    Selected = value == status,
+                                                };
 
             ViewBag.Status = items;
         }

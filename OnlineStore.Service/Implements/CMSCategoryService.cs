@@ -75,6 +75,7 @@ namespace OnlineStore.Service.Implements
                     category.Description = categoryView.Description;
                     category.Url = categoryView.Url;
                     category.SortOrder = categoryView.SortOrder;
+                    category.Status = categoryView.Status;
                     category.ModifiedDate = DateTime.Now;
                     db.SaveChanges();
 

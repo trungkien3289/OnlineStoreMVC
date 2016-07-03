@@ -11,7 +11,6 @@ using OnlineStore.Service.Interfaces;
 using OnlineStore.Service.Implements;
 using OnlineStore.Model.ViewModel;
 using OnlineStore.Infractructure.Utility;
-using OnlineStoreMVC.Utility;
 using OnlineStore.Model.MessageModel;
 using OnlineStore.Model.Mapper;
 using OnlineStore.Infractructure.Helper;
