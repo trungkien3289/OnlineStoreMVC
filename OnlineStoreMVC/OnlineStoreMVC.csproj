@@ -186,7 +186,6 @@
     <Compile Include="Utility\Common.cs" />
     <Compile Include="Utility\ImageResult.cs" />
     <Compile Include="Utility\ImageUpload.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -1561,6 +1560,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Utility\common.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\Frontend\Garden\about.html" />
+    <Content Include="Template\Frontend\Garden\authentication.html" />
+    <Content Include="Template\Frontend\Garden\blog.html" />
+    <Content Include="Template\Frontend\Garden\contact.html" />
     <Content Include="Template\Frontend\Garden\css\blockcart.css" />
     <Content Include="Template\Frontend\Garden\css\blockcategories.css" />
     <Content Include="Template\Frontend\Garden\css\blockcurrencies.css" />
@@ -1571,6 +1574,7 @@
     <Content Include="Template\Frontend\Garden\css\blockviewed.css" />
     <Content Include="Template\Frontend\Garden\css\blockwishlist.css" />
     <Content Include="Template\Frontend\Garden\css\cbb092d6554938a9549cb716ffcb1f94.css" />
+    <Content Include="Template\Frontend\Garden\css\cms.css" />
     <Content Include="Template\Frontend\Garden\css\front%281%29.css" />
     <Content Include="Template\Frontend\Garden\css\front%282%29.css" />
     <Content Include="Template\Frontend\Garden\css\front.css" />
@@ -1692,6 +1696,7 @@
     <Content Include="Template\Frontend\Garden\images\de8f87bc1e4da3ee068cc6c6c076b2b7c8184e0a_banner4.jpg" />
     <Content Include="Template\Frontend\Garden\images\fb5912a4fac8d84c52a9c6627965b93c1600152f_menu-baner3.jpg" />
     <Content Include="Template\Frontend\Garden\images\new-store-logo-1446798318.jpg" />
+    <Content Include="Template\Frontend\Garden\index.html" />
     <Content Include="Template\Frontend\Garden\js\10-bootstrap.min.js" />
     <Content Include="Template\Frontend\Garden\js\14-device.min.js" />
     <Content Include="Template\Frontend\Garden\js\15-jquery.total-storage.min.js" />
@@ -1744,6 +1749,7 @@
     <Content Include="Template\Frontend\Garden\js\validate.js" />
     <Content Include="Template\Frontend\Garden\js\wp-embed.min.js" />
     <Content Include="Template\Frontend\Garden\js\wp-emoji-release.min.js" />
+    <Content Include="Template\Frontend\Garden\product.html" />
     <Content Include="Template\Frontend\Garden\saved_resource%281%29.html" />
     <Content Include="Template\Frontend\Garden\saved_resource.html" />
     <Content Include="Template\Frontend\Garden\storage.html" />
