@@ -2,30 +2,84 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<div id="columns" class="container">
+    <div id="slider_row" class="row">
+        <div id="top_column" class="center_column col-xs-12 col-sm-12">
+            <div id="homepage-slider">
+                <div class="bx-wrapper" style="max-width: 10000px;">
+                    <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 525px;">
+                        <ul id="homeslider" style="max-height: 721px; width: auto; position: relative;">
+                            <li class="homeslider-container" style="float: none; list-style: none; position: absolute; display: block; width: 1289px; opacity: 1; z-index: 0;">
+                                <a href="#" title="sample-1">
+                                    <img src="~/Content/template/images/3a5665a553a21342177dc39236c79ab1338d49f6_slide1.jpg" width="1770" height="721" alt="sample-1">
+                                </a>
+                            </li>
+                            <li class="homeslider-container" style="float: none; list-style: none; position: absolute; width: 1289px; display: list-item; z-index: 51; opacity: 0;">
+                                <a href="#" title="sample-2">
+                                    <img src="~/Content/template/images/bea785a5af97581f4004230d1c05cb97f8c7b61b_slide2.jpg" width="1770" height="721" alt="sample-2">
+                                </a>
+                            </li>
+                            <li class="homeslider-container" style="float: none; list-style: none; position: absolute; width: 1289px; display: none; z-index: 0;">
+                                <a href="#" title="sample-3">
+                                    <img src="~/Content/template/images/20310f766be96a80b0b5cbe6c22e0b99881d361d_slide3.jpg" width="1770" height="721" alt="sample-3">
+                                </a>
+                            </li>
+                            <li class="homeslider-container" style="float: none; list-style: none; position: absolute; width: 1289px; display: none; z-index: 0;">
+                                <a href="#" title="sample-4">
+                                    <img src="~/Content/template/images/5bd3cda4c18514373015cd9a3ac73fef8ec938eb_slide4.jpg" width="1770" height="721" alt="sample-4">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bx-controls bx-has-controls-direction">
+                        <div class="bx-controls-direction">
+                            <a class="bx-prev" href="#">Prev</a>
+                            <a class="bx-next" href="#">Next</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="bx-pager-thumb" class="">
+                    <a class="thumb-1" data-slide-index="0" href="#"><img src="~/Content/template/images/3a5665a553a21342177dc39236c79ab1338d49f6_slide1.jpg" alt=""></a>
+                    <a class="thumb-2 next active" data-slide-index="1" href="#"><img src="~/Content/template/images/bea785a5af97581f4004230d1c05cb97f8c7b61b_slide2.jpg" alt=""></a>
+                    <a class="thumb-3" data-slide-index="2" href="#"><img src="~/Content/template/images/20310f766be96a80b0b5cbe6c22e0b99881d361d_slide3.jpg" alt=""></a>
+                    <a class="thumb-4 prev" data-slide-index="3" href="#"><img src="~/Content/template/images/5bd3cda4c18514373015cd9a3ac73fef8ec938eb_slide4.jpg" alt=""></a>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <div id="htmlcontent_top">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1 col-xs-4">
+                        <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
+                            <img src="~/Content/template/images/47f87d91a268e2f23b499c3cfc0dfc36a3c24f36_banner1.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Chairs</h3>
+                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-2 col-xs-4">
+                        <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
+                            <img src="~/Content/template/images/3dd8c7443cc774ec714eb69a49ffb01369b9be1c_banner2.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Sectionals</h3>
+                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-3 col-xs-4">
+                        <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
+                            <img src="~/Content/template/images/58a7f9e3eb536aac771af3579db25f9864bcc3db_banner3.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Tables</h3>
+                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+</div>
+<div class="home-column">
+
 </div>
