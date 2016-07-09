@@ -19,7 +19,6 @@ namespace OnlineStore.Service.Interfaces
         bool AddCategory(CreateCategoryPostRequest category);
         bool UpdateCategory(CategoryViewModel category);
         bool DeleteCategory(int id);
-        IEnumerable<ecom_Categories> GetRootCategoryList();
         CategoryViewModel getCategoryViewModel(int id);
         
     }

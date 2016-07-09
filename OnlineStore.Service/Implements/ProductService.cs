@@ -10,14 +10,22 @@ using System.Threading.Tasks;
 using OnlineStore.Infractructure.Helper;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.MessageModel;
+using System.Data.Entity;
 
 namespace OnlineStore.Service.Implements
 {
     public class ProductService : IProductService
     {
-        private ProductRepository db = new ProductRepository(new OnlineStoreMVCEntities());
-        private BrandRepository brandRepository = new BrandRepository(new OnlineStoreMVCEntities());
-        private Repository<share_Images> imageRepository = new Repository<share_Images>(new OnlineStoreMVCEntities());
+        #region properties
+
+        private static OnlineStoreMVCEntities context = new OnlineStoreMVCEntities();
+        private ProductRepository db = new ProductRepository(context);
+        private BrandRepository brandRepository = new BrandRepository(context);
+        private Repository<share_Images> imageRepository = new Repository<share_Images>(context);
+        private CategoryRepository categoryRepository = new CategoryRepository(context);
+
+        #endregion
+
         public IEnumerable<ProductSummaryViewModel> GetListProducts()
         {
             IEnumerable<ProductSummaryViewModel> listProducts = db.GetAllProducts().Select(p => new ProductSummaryViewModel()
@@ -33,6 +41,7 @@ namespace OnlineStore.Service.Implements
 
             return listProducts;
         }
+
         /// <summary>
         /// Get list products with paging, sort, filter
         /// </summary>
@@ -52,18 +61,20 @@ namespace OnlineStore.Service.Implements
                 Price = p.Price,
                 SortOrder = p.SortOrder,
                 Status = EnumHelper.GetDescriptionFromEnum((Define.Status)p.Status),
-                CoverImage = p.share_Images.FirstOrDefault()
+                CoverImage = p.CoverImage
             }).ToList();
             return returnCategoryList;
         }
+
         /// <summary>
         /// Get list brand for create dropdownlist
         /// </summary>
         /// <returns></returns>
         public IEnumerable<ecom_Brands> GetListBrand()
         {
-            return brandRepository.GetAllBrands().Where(b => b.Status != (int)Define.Status.Delete).ToList();
+            return brandRepository.GetAllAvailableBrands().Where(b => b.Status != (int)Define.Status.Delete).ToList();
         }
+
         /// <summary>
         /// Add new image to database
         /// </summary>
@@ -80,6 +91,7 @@ namespace OnlineStore.Service.Implements
                 return null;
             }
         }
+
         /// <summary>
         /// Add new product to database
         /// </summary>
@@ -105,6 +117,9 @@ namespace OnlineStore.Service.Implements
                     SortOrder = newProduct.SortOrder,
                     Status = newProduct.Status
                 };
+
+                share_Images coverImage = imageRepository.GetByID(newProduct.CoverImageId);
+                product.share_Images.Add(coverImage);
                 db.Insert(product);
                 db.Save();
                 return true;
@@ -114,6 +129,7 @@ namespace OnlineStore.Service.Implements
                 return false;
             }
         }
+
         /// <summary>
         /// Add image for exist product 
         /// </summary>
@@ -121,22 +137,21 @@ namespace OnlineStore.Service.Implements
         /// <param name="photo">new image</param>
         /// <param name="listImages"> return list image after adding finish</param>
         /// <returns>return true if action is success or false action is fail</returns>
-        public bool AddImageForProduct(int IdProduct, share_Images photo, out IEnumerable<share_Images> listImages)
+        public bool AddImageForProduct(int IdProduct, share_Images photo)
         {
             ecom_Products product = db.GetProductById(IdProduct);
             if (product == null)
             {
-                listImages = null;
                 return false;
             }
             else
             {
                 product.share_Images.Add(photo);
                 db.Save();
-                listImages = product.share_Images;
                 return true;
             }
         }
+
         /// <summary>
         /// Update product
         /// </summary>
@@ -165,6 +180,24 @@ namespace OnlineStore.Service.Implements
                 product.SortOrder = productViewModel.SortOrder;
                 product.Status = productViewModel.Status;
 
+                if(productViewModel.CategoryId == null){
+                    product.ecom_Categories = new List<ecom_Categories>();
+                }else{
+                    var selectedCategories = new HashSet<int>(productViewModel.CategoryId);
+                    var categoriesProduct = new HashSet<int>(product.ecom_Categories.Select(c => c.Id));
+                    foreach (var category in categoryRepository.GetAllCategories()){
+                        if(selectedCategories.Contains(category.Id)){
+                            if(!categoriesProduct.Contains(category.Id)){
+                                product.ecom_Categories.Add(category);
+                            }
+                        }else{
+                            if(categoriesProduct.Contains(category.Id)){
+                                product.ecom_Categories.Remove(category);
+                            }
+                        }
+                    }
+                }
+
                 db.Save();
                 return true;
             }
@@ -173,6 +206,7 @@ namespace OnlineStore.Service.Implements
         {
             return db.GetProductById(id);
         }
+
         /// <summary>
         /// Delete image in product
         /// </summary>
@@ -181,7 +215,7 @@ namespace OnlineStore.Service.Implements
         /// <param name="listImages">list images of product after do action</param>
         /// <param name="imagePath">path of deteled image(using for delete image in folder)</param>
         /// <returns>return true if action is success or false if action is fail</returns>
-        public bool DeleteImage(int productId, int imageId, out IEnumerable<share_Images> listImages, out string imagePath)
+        public bool DeleteImage(int productId, int imageId, out string imagePath)
         {
             try
             {
@@ -195,16 +229,15 @@ namespace OnlineStore.Service.Implements
                 imagePath = deleteImage.ImagePath;
                 imageRepository.Delete(deleteImage);
                 imageRepository.Save();
-                listImages = product.share_Images;
                 return true;
             }
             catch (Exception ex)
             {
-                listImages = null;
                 imagePath = null;
                 return false;
             }
         }
+
         /// <summary>
         /// Delete product (set Status is Delete)
         /// </summary>
@@ -225,8 +258,78 @@ namespace OnlineStore.Service.Implements
             }
             
         }
-        //IEnumerable<ecom_Products> GetAllProducts();
-        //IEnumerable<ProductSummaryViewModel> GetProducts(int pageNumber, int pageSize, out int totalItems);
-        //ecom_Products GetProductById(int id);
+
+        /// <summary>
+        /// Set as cover image of product
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="imageId"></param>
+        /// <param name="listImages"></param>
+        /// <returns></returns>
+        public bool SetAsCoverImage(int productId, int imageId)
+        {
+            try
+            {
+                ecom_Products product = GetProductById(productId);
+                product.CoverImageId = imageId;
+                db.Update(product);
+                db.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// update image information of product
+        /// </summary>
+        /// <param name="productId">product id</param>
+        /// <param name="image">image id</param>
+        /// <param name="isCoverImage">is cover image of product or not</param>
+        /// <param name="listImages">list images of product returned</param>
+        /// <returns></returns>
+        public bool UpdateProductImage(int productId, OnlineStore.Service.Messaging.UpdateProductImage imageInfor, bool isCoverImage)
+        {
+            try
+            {
+                share_Images image = imageRepository.GetByID(imageInfor.ImageId);
+                image.ImageName = imageInfor.Name;
+                image.Status = imageInfor.IsActive ? (int)Define.Status.Active : (int)Define.Status.Deactive;
+                imageRepository.Update(image);
+                imageRepository.Save();
+
+                ecom_Products product = db.GetProductById(productId);
+                if (isCoverImage)
+                {
+                    product.CoverImageId = image.Id;
+                }
+                else
+                {
+                    if (product.CoverImageId == image.Id)
+                    {
+                        product.CoverImageId = null;
+                    }
+                }
+                db.Update(product);
+                db.Save();
+                
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Get all available category in system
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ecom_Categories> GetListCategory()
+        {
+            return categoryRepository.GetAllActiveCategory();
+        }
     }
 }

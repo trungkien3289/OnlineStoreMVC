@@ -37,4 +37,12 @@ namespace OnlineStore.Model.MessageModel
         [DisplayName("Trạng thái")]
         public Nullable<int> Status { get; set; }
     }
+    public class UpdateProductImageRequest
+    {
+        public int productId{get;set;}
+        public int ImageId{get;set;}
+        public string Name{get;set;}
+        public bool IsActive{get;set;}
+        public bool IsCoverImage{get;set;}
+    }
 }

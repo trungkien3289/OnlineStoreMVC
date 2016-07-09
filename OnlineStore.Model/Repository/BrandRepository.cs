@@ -18,7 +18,7 @@ namespace OnlineStore.Model.Repository
         /// Get all brand except which one have status equal Delete
         /// </summary>
         /// <returns></returns>
-        public IList<ecom_Brands> GetAllBrands()
+        public IList<ecom_Brands> GetAllAvailableBrands()
         {
             return dbSet.Where(b => b.Status!= (int)Define.Status.Delete).ToList();
         }

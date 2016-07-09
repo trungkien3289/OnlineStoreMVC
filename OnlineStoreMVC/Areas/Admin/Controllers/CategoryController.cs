@@ -21,7 +21,12 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         private ICategoryManagementService service = new CategoryManagementService();
 
-        // GET: Admin/Category
+        /// <summary>
+        /// Get list available category 
+        /// </summary>
+        /// <param name="keyword">search key</param>
+        /// <param name="page">current page index</param>
+        /// <returns></returns>
         public ActionResult Index(string keyword, int page = 1)
         {
             int totalItems = 0;
@@ -31,7 +36,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(pageCategories);
         }
 
-        // GET: Admin/Category/Details/5
+        /// <summary>
+        /// Get details of category
+        /// </summary>
+        /// <param name="id">id of category</param>
+        /// <returns></returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,7 +55,10 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Category/Create
+        /// <summary>
+        /// Create GUI for create a new category
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             PopulateStatusDropDownList();
@@ -54,9 +66,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Category/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Create a new category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>if success return to index page or not return to Create page with error message</returns>
         [HttpPost]
         public ActionResult Create(CreateCategoryPostRequest category)
         {
@@ -76,7 +90,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/Category/Edit/5
+        /// <summary>
+        /// Create GUI for edit a category
+        /// </summary>
+        /// <param name="id">id of category</param>
+        /// <returns></returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,17 +106,17 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-
-            PopulateStatusDropDownList((Define.Status)Define.Status.Parse(typeof(Define.Status), category.Status));
+            PopulateStatusDropDownList((Define.Status)category.Status);
             PopulateParentCategoryDropDownList(category.ParentId, id);
             return View(category);
         }
 
-        // POST: Admin/Category/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Update information of a category
+        /// </summary>
+        /// <param name="category">information of category need to updated</param>
+        /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(CategoryViewModel category)
         {
             if (ModelState.IsValid)
@@ -109,9 +127,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/Category/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        /// <summary>
+        /// Delete a category from system
+        /// </summary>
+        /// <param name="id">id of category need to delete</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             bool isSuccess = service.DeleteCategory(id);
             if (!isSuccess)
@@ -126,11 +148,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         /// </summary>
         /// <param name="parentId"></param>
         /// <param name="id"></param>
-        private void PopulateParentCategoryDropDownList(int? parentId = null,int? id = null)
+        private void PopulateParentCategoryDropDownList(int? parentId = null, int? id = null)
         {
             IEnumerable<ecom_Categories> listCategories;
             IEnumerable<ecom_Categories> categories = service.GetAllCategories();
-            if (parentId!=null)
+            if (parentId != null)
             {
                 listCategories = categories.Where(c => c.Id != id).ToList();
             }

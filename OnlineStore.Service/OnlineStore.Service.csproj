@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\IDisplayProductService.cs" />
     <Compile Include="Interfaces\IManageProductService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Messaging\ProductManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Messaging\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

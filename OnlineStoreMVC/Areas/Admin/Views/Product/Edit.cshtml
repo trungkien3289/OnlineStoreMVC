@@ -26,8 +26,8 @@
         </ul>
 
         <div class="tab-content">
-            <div id="common" class="tab-pane fade in active">
-                <!-- Common properties of product tab-->
+            <!-- Common properties of product tab-->
+            <div id="common" class="tab-pane fade in active"><!-- Common properties of product tab-->
                 <div class="row">
                     <div class="box">
                         <div class="box-header">
@@ -81,26 +81,20 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.BrandId, "BrandId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
                                             @Html.DropDownList("BrandId", @ViewBag.BrandId as SelectList,"Chọn thương hiệu",new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
 
-                                    @*<div class="form-group">
-                                            @Html.LabelFor(model => model.CoverImageId, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.CoverImageId, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.CoverImageId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>*@
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.CoverImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
-                                            <img src="@Model.CoverImage.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                            @Html.DropDownList("CategoryId", ViewBag.Categories as MultiSelectList, new { multiple = "multiple", @class = "chzn-select form-control", data_placeholder = "Choose  Countries..." })
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
@@ -221,8 +215,8 @@
                     </div>
                 </div>
             </div>
-            <div id="images" class="tab-pane fade">
-                <!-- images of product-->
+            <!-- images of product-->
+            <div id="images" class="tab-pane fade"><!-- images of product-->
                 <div class="row">
                     <div class="box">
                         <div class="box-header">
@@ -230,43 +224,83 @@
                         </div>
                         <div class="box-body">
                             <div id="EditProduct_ListProductImages">
-                                @if (Model.share_Images != null)
-                            {
-                                    <table class="table">
-                                        <tr>
-                                            <th>
-                                                Tên ảnh
-                                            </th>
-                                            <th>
-                                                Ảnh
-                                            </th>
-                                            <th>
-                                                Trạng thái
-                                            </th>
-                                            <th></th>
-                                        </tr>
-
-                                        @foreach (var item in Model.share_Images)
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            Tên ảnh
+                                        </th>
+                                        <th>
+                                            Ảnh
+                                        </th>
+                                        <th>
+                                            Hiển thị
+                                        </th>
+                                        <th>
+                                            Ảnh đại diện
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    @foreach (var item in Model.share_Images)
                                     {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ImageName)
-                                                </td>
-                                                <td>
-                                                    @*@Html.DisplayFor(modelItem => item.ImagePath)*@
-                                                    <img src="@item.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Status)
-                                                </td>
-                                                <td>
-                                                    <input type="button" id="deleteProductImage" onclick="ProductManagement.RequestDeleteProductImage(@Model.Id,@item.Id)" value="Xóa" class="btn btn-danger">
-                                                </td>
-                                            </tr>
+                                        <tr data-id="@item.Id" class="display-mode">
+                                            <td>
+                                                @item.ImageName
+                                            </td>
+                                            <td>
+                                                <img src="@item.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                            </td>
+                                            <td>
+                                                @if (item.IsActive)
+                                                {
+                                                    <span>Hiện</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Ẩn</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (Model.CoverImageId == item.Id)
+                                                {
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <input type="button" id="EditProductImage" onclick="ProductManagement.editProductImage(this,@item.Id)" value="Sửa" class="btn btn-primary">
+                                                <input type="button" id="DeleteProductImage" onclick="ProductManagement.requestDeleteProductImage(@Model.Id,@item.Id)" value="Xóa" class="btn btn-danger">
+                                            </td>
+                                        </tr>
+                                        <tr data-id="@item.Id" class="edit-mode hidden">
+                                            <td>
+                                                @Html.EditorFor(modelItem => item.ImageName, new { htmlAttributes = new { @class = "txt-imagename" } })
+                                            </td>
+                                            <td>
+                                                <img src="@item.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(modelItem => item.IsActive, new { htmlAttributes = new { @class = "ckb-isactive" } })
+                                            </td>
+                                            <td>
+                                                @if (Model.CoverImageId == item.Id)
+                                                {
+                                                    <input type="checkbox" class="ckb-iscoverimage" checked/>
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" class="ckb-iscoverimage" />
+                                                }
+                                            </td>
+                                            <td>
+                                                <input type="button" id="UpdateProductImage" onclick="ProductManagement.updateProductImage(this,@Model.Id,@item.Id)" value="Cập nhật" class="btn btn-primary">
+                                                <input type="button" id="CancelUpdateProductImage" onclick="ProductManagement.cancelUpdateProductImage(this,@item.Id)" value="Hủy" class="btn btn-danger">
+                                            </td>
+                                        </tr>
                                     }
-
-                                    </table>
-                            }
+                                </table>
 
                             </div>
                             <div class="form-group">
@@ -274,16 +308,16 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             @if (ViewBag.Error != null)
-                                        {
+                                            {
                                                 <h4 style="color:red">@ViewBag.Error</h4>
-                                        }
+                                            }
                                             @using (Ajax.BeginForm("UploadImage", "Product", new AjaxOptions() { UpdateTargetId = "EditProduct_ListProductImages", HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
-                                        {
+                                            {
                                                 @Html.AntiForgeryToken()
                                                 <input type="file" name="files" class="btn btn-info" style="display:inline-block;margin-right:10px;">
-                                                <input type="hidden" value=@Model.Id name="IdProduct" />
+                                                <input type="hidden" value=@Model.Id name="productId" />
                                                 <input type="submit" value="upload" class="btn btn-danger" style="display:inline-block;width:100px;" />
-                                        }
+                                            }
                                         </div>
                                     </div>
                                 </div>

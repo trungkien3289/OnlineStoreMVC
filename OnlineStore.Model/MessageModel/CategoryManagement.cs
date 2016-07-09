@@ -21,6 +21,6 @@ namespace OnlineStore.Model.MessageModel
         [DisplayName("ƯU TIÊN SẮP XẾP")]
         public Nullable<int> SortOrder { get; set; }
         [DisplayName("TRẠNG THÁI")]
-        public string Status { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

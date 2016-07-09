@@ -41,7 +41,7 @@ namespace OnlineStore.Model.ViewModel
         [DisplayName("Thương hiệu")]
         public Nullable<int> BrandId { get; set; }
         [DisplayName("Ảnh đại diện")]
-        public share_Images CoverImage { get; set; }
+        public Nullable<int> CoverImageId { get; set; }
         [DisplayName("Mô tả")]
         public string Description { get; set; }
         [DisplayName("Mô tả chi tiết")]
@@ -68,15 +68,33 @@ namespace OnlineStore.Model.ViewModel
         public string ModifiedBy { get; set; }
         [DisplayName("Ngày cập nhật")]
         public string ModifiedDate { get; set; }
+        [DisplayName("Danh mục sản phẩm")]
+        public int[] CategoryId { get; set; }
 
-        //public ecom_Brands Brand { get; set; }
-        public ICollection<ecom_Categories> Categories { get; set; }
-        public ICollection<share_Images> share_Images { get; set; }
+        [DisplayName("Danh mục sản phẩm")]
+        public IEnumerable<ecom_Categories> Categories { get; set; }
+        public IEnumerable<ImageProductViewModel> share_Images { get; set; }
     }
 
     public class LoadListImageProductPartialViewModels
     {
         public int ProductId;
         public IEnumerable<share_Images> Images;
+    }
+
+    public class ListImageProductPartialViewModels
+    {
+        public int ProductId;
+        public IEnumerable<ImageProductViewModel> Images;
+        public Nullable<int> CoverImageId;
+    }
+
+    public class ImageProductViewModel
+    {
+        public int Id { get; set; }
+        public string ImageName { get; set; }
+        public string ImagePath { get; set; }
+        public bool IsActive { get; set; } 
+
     }
 }

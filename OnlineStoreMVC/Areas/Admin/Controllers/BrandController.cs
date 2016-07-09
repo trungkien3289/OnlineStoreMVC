@@ -21,9 +21,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     public class BrandController : BaseManagementController
     {
         private IBrandManagementService service = new BrandManagementService();
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
 
-        // GET: Admin/Brand
+        /// <summary>
+        /// Return list of brand
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(string keyword, int page = 1)
         {
             int totalItems = 0;
@@ -32,8 +36,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             IPagedList<ecom_Brands> pageBrands = new StaticPagedList<ecom_Brands>(brands, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
             return View(pageBrands);
         }
-
-        // GET: Admin/Brand/Details/5
+        /// <summary>
+        /// Details of brand
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns></returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -47,17 +54,20 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             }
             return View(viewModel);
         }
-
-        // GET: Admin/Brand/Create
+        /// <summary>
+        /// Create GUI for Creat a new brand
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             PopulateStatusDropDownList();
             return View();
         }
-
-        // POST: Admin/Brand/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Create a new brand 
+        /// </summary>
+        /// <param name="brand">information of new brand</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(CreateBrandPostRequest brand)
         {
@@ -76,8 +86,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
             return View(brand);
         }
-
-        // GET: Admin/Brand/Edit/5
+        /// <summary>
+        /// Create GUI for edit a brand
+        /// </summary>
+        /// <param name="id">id of brand, which need to update</param>
+        /// <returns></returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,10 +105,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             PopulateStatusDropDownList((Define.Status)brand.Status);
             return View(brand.ConvertToEditBrandManagementGetResponse());
         }
-
-        // POST: Admin/Brand/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Update selected brand
+        /// </summary>
+        /// <param name="brand">information need to updated</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(EditBrandManagementPostRequest brand)
         {
@@ -113,11 +127,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             }
             return View(brand);
         }
-
-        // POST: Admin/Brand/Delete/5
-        [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        /// <summary>
+        /// Delete selected brand
+        /// </summary>
+        /// <param name="id">id of needed delete brand</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             bool isSuccess = service.DeleteBrand(id);
             if (!isSuccess)
@@ -125,15 +141,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 ModelState.AddModelError("ServerError", "Delete brand fail!");
             }
             return Redirect("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
