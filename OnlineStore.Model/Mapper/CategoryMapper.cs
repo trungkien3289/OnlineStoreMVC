@@ -33,6 +33,7 @@ namespace OnlineStore.Model.Mapper
                 yield return category.ConvertToIndexCategoryView();
             }
         }
+
         /// <summary>
         /// Convert Category context model to full detail category model
         /// </summary>
@@ -53,9 +54,9 @@ namespace OnlineStore.Model.Mapper
                 SortOrder = category.SortOrder,
                 Status = EnumHelper.GetDescriptionFromEnum((Define.Status)category.Status),
                 CreatedBy = createBy!=null?createBy.UserName:"",
-                CreatedDate = string.Format("yyyy-MM-dd", category.CreatedDate),
+                CreatedDate = string.Format("{0:yyyy-MM-dd}", category.CreatedDate),
                 ModifiedBy = modifiredBy != null ? createBy.UserName : "",
-                ModifiedDate = string.Format("yyyy-MM-dd", category.ModifiedDate)
+                ModifiedDate = string.Format("{0:yyyy-MM-dd}", category.ModifiedDate)
             };
 
             return detailCategory;
@@ -71,7 +72,7 @@ namespace OnlineStore.Model.Mapper
                 Url = viewModel.Url,
                 SortOrder = viewModel.SortOrder,
                 ParentId = viewModel.ParentId,
-                Status = (int)Define.Status.Parse(typeof(Define.Status), viewModel.Status),
+                Status = viewModel.Status != null? (int)viewModel.Status:(int)Define.Status.Deactive,
                 CreatedBy = null,
                 CreatedDate = DateTime.Now,
                 ModifiedBy = null,
@@ -91,7 +92,7 @@ namespace OnlineStore.Model.Mapper
                 Url = category.Url,
                 SortOrder = category.SortOrder,
                 ParentId = category.ParentId,
-                Status = category.Status.ToString()
+                Status = category.Status
             };
 
             return viewModel;

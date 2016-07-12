@@ -27,7 +27,10 @@ namespace OnlineStoreMVC
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminScript").Include(
-                       "~/Scripts/Utility/common.js"
+                       "~/Scripts/Utility/common.js",
+                        "~/Content/chosen-library/chosen.jquery.min.js"
+                         //"~/Content/custom-file-input/custom-file-input.js",
+                         //"~/Content/custom-file-input/jquery.custom-file-input.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/others").Include(
@@ -42,7 +45,11 @@ namespace OnlineStoreMVC
                       "~/Content/dist/css/AdminLTE.css",
                       "~/Content/dist/css/AdminLTE.addon.css",
                       "~/Content/dist/css/skins/skin-green.min.css",
-                      "~/Content/common.css"));
+                      "~/Content/common.css",
+                      "~/Content/chosen-library/chosen.min.css"
+                      //"~/Content/custom-file-input/component.css",
+                      //"~/Content/custom-file-input/normalize.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/brandManagement").Include(
                        "~/Scripts/Admin/brand-management.js"

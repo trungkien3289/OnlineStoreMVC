@@ -16,8 +16,10 @@ namespace OnlineStore.Service.Implements
     public class CategoryManagementService : ICategoryManagementService
     {
         #region Properties
+
         private CategoryRepository db = new CategoryRepository(new OnlineStoreMVCEntities());
         private Repository<system_Profiles> systemProfiles = new Repository<system_Profiles>(new OnlineStoreMVCEntities());
+
         #endregion
 
         #region Public functions
@@ -30,10 +32,15 @@ namespace OnlineStore.Service.Implements
             return db.GetAllCategoriesWithoutDelete().ConvertToIndexCategoryViews();
         }
 
+        /// <summary>
+        /// Get all available category 
+        /// </summary>
+        /// <returns>list category</returns>
         public IEnumerable<ecom_Categories> GetAllCategories()
         {
             return db.GetAllCategoriesWithoutDelete();
         }
+
         /// <summary>
         /// Get list categories with paging, sort, filter
         /// </summary>
@@ -45,6 +52,7 @@ namespace OnlineStore.Service.Implements
             IEnumerable<ecom_Categories> returnCategoryList = categories.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
             return returnCategoryList.ConvertToIndexCategoryViews();
         }
+
         /// <summary>
         /// Get detail category after id
         /// </summary>
@@ -52,7 +60,7 @@ namespace OnlineStore.Service.Implements
         /// <returns></returns>
         public DetailCategoryViewModel GetDetailCategory(int id)
         {
-            string parentCategory = "";
+           string parentCategory = "";
            ecom_Categories category = db.GetByID(id);
            if (category == null) {
                return null;
@@ -90,7 +98,12 @@ namespace OnlineStore.Service.Implements
                 return null;
             }
         }
-
+        
+        /// <summary>
+        /// Add a new category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         public bool AddCategory(CreateCategoryPostRequest category)
         {
             try
@@ -105,6 +118,11 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        /// <summary>
+        /// Update a category
+        /// </summary>
+        /// <param name="viewModel">information of category need to update</param>
+        /// <returns>if success return true or if fail return false</returns>
         public bool UpdateCategory(CategoryViewModel viewModel)
         {
             try
@@ -114,7 +132,7 @@ namespace OnlineStore.Service.Implements
                 category.Description = viewModel.Description;
                 category.Url = viewModel.Url;
                 category.SortOrder = viewModel.SortOrder;
-                category.Status = (int)Define.Status.Parse(typeof(Define.Status), viewModel.Status);
+                category.Status = (int)viewModel.Status;
                 category.ParentId = viewModel.ParentId;
 
                 db.Save();
@@ -126,12 +144,18 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        /// <summary>
+        /// Delete a category by change their status to delete
+        /// </summary>
+        /// <param name="id">id of category</param>
+        /// <returns>return true if delete success and return false if delete fail</returns>
         public bool DeleteCategory(int id)
         {
             try
             {
                 ecom_Categories category = db.GetByID(id);
                 category.Status = (int)Define.Status.Delete;
+                db.Update(category);
                 db.Save();
                 return true;
             }
@@ -141,20 +165,14 @@ namespace OnlineStore.Service.Implements
             }
         }
 
-        public IEnumerable<ecom_Categories> GetRootCategoryList()
-        {
-            return db.GetRootCategoryList();
-        }
-
+        /// <summary>
+        /// Get category by id and return category view model object to show in client side
+        /// </summary>
+        /// <param name="id">id of category</param>
+        /// <returns>list category view model</returns>
         public CategoryViewModel getCategoryViewModel(int id){
             ecom_Categories category = db.GetCategoryById(id);
             if(category != null){
-                //string parentName = "";
-                //if(category.ParentId!=null){
-                //    ecom_Categories parentCategory = db.GetCategoryById((int)category.ParentId);
-                //    parentName = parentCategory !=null ? parentCategory.Name : "";
-                //}
-
                 return category.ConvertToCategoryViewModel();
             }else{
                 return null;

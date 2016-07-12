@@ -23,9 +23,9 @@ namespace OnlineStore.Model.Mapper
                 Status = EnumHelper.GetDescriptionFromEnum((Define.Status)brand.Status),
                 Description = brand.Description,
                 CreatedBy = createBy,
-                CreatedDate = string.Format("yyyy-MM-dd",brand.CreatedDate),
+                CreatedDate = string.Format("{0:yyyy-MM-dd}",brand.CreatedDate),
                 ModifiedBy = modifiredBy,
-                ModifiedDate = string.Format("yyyy-MM-dd", brand.ModifiedDate)
+                ModifiedDate = string.Format("{0:yyyy-MM-dd}", brand.ModifiedDate)
             };
 
             return returnView;

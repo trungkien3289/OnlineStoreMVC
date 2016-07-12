@@ -22,9 +22,14 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
     public class ProductController : BaseManagementController
     {
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
         private IProductService service = new ProductService();
-        // GET: Admin/Product
+
+        /// <summary>
+        /// Return view with list product
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(string keyword, int page = 1)
         {
             int totalItems = 0;
@@ -34,22 +39,10 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(pageProducts);
         }
 
-        // GET: Admin/Product/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ecom_Products ecom_Products = db.ecom_Products.Find(id);
-            if (ecom_Products == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ecom_Products);
-        }
-
-        // GET: Admin/Product/Create
+        /// <summary>
+        /// Return Create view to let user input information of new product
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             PopulateStatusDropDownList();
@@ -57,7 +50,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Product/Create
+        /// <summary>
+        /// Create a product
+        /// </summary>
+        /// <param name="productRequest">information of new product</param>
+        /// <returns></returns>
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(CreateProductPostRequest productRequest)
         {
@@ -109,7 +106,11 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(productRequest);
         }
 
-        // GET: Admin/Product/Edit/5
+        /// <summary>
+        /// Get information of product and return Edit View for user update data for product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -131,10 +132,24 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 PopulateStatusDropDownList();
             }
             ViewBag.BrandId = PopulateListBrand(product.BrandId);
+            int[] listCategory;
+            if (product.ecom_Categories.Count > 0)
+            {
+                listCategory = product.ecom_Categories.Select(c => c.Id).ToArray();
+            }
+            else
+            {
+                listCategory = null;
+            }
+            ViewBag.Categories = PopulateListCategory(listCategory);
             return View(product.ConvertToProductFullView());
         }
 
-        // POST: Admin/Product/Edit/5
+        /// <summary>
+        /// Update product
+        /// </summary>
+        /// <param name="product">information of product need to updated</param>
+        /// <returns></returns>
         [HttpPost, ValidateInput(false)]
         public ActionResult Edit(ProductFullView product)
         {
@@ -159,15 +174,19 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(product);
         }
 
+        /// <summary>
+        /// Upload image to server
+        /// </summary>
+        /// <param name="files"></param>
+        /// <param name="IdProduct"></param>
+        /// <returns></returns>
         [HttpPost, ValidateInput(false)]
-        [ValidateAntiForgeryToken]
-        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> files, int? IdProduct)
+        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> files, int productId)
         {
-            if (IdProduct == null)
+            if (productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IEnumerable<share_Images> listImages = new List<share_Images>();
             if (files != null)
             {
 
@@ -185,7 +204,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                                 ImagePath = Path.Combine(ImageUpload.LoadPath, imageResult.ImageName)
                             };
 
-                            service.AddImageForProduct((int)IdProduct, photo, out listImages);
+                            service.AddImageForProduct(productId, photo);
                         }
                         else
                         {
@@ -196,13 +215,16 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
                 }
             }
+            return ListImageProduct(productId);
+            //ecom_Products product = service.GetProductById((int)IdProduct);
 
-            LoadListImageProductPartialViewModels listImageViewModels = new LoadListImageProductPartialViewModels()
-            {
-                ProductId = (int)IdProduct,
-                Images = listImages
-            };
-            return PartialView("LoadListImageProduct", listImageViewModels);
+            //ListImageProductPartialViewModels listImageViewModels = new ListImageProductPartialViewModels()
+            //{
+            //    ProductId = (int)IdProduct,
+            //    Images = product.share_Images.ConvertToImageProductViewModels(),
+            //    CoverImageId = product.CoverImageId
+            //};
+            //return PartialView("ListImageProduct", listImageViewModels);
         }
 
         /// <summary>
@@ -214,9 +236,8 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             try
             {
-                IEnumerable<share_Images> listImages = new List<share_Images>();
                 string imagePath = "";
-                bool isSuccess = service.DeleteImage(productId, imageId, out listImages, out imagePath);
+                bool isSuccess = service.DeleteImage(productId, imageId, out imagePath);
                 if (isSuccess)
                 {
                     DeleteImageInFolder(imagePath);
@@ -225,13 +246,15 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 {
                     ViewBag.Error = "Error when delete image";
                 }
-
-                LoadListImageProductPartialViewModels listImageViewModels = new LoadListImageProductPartialViewModels()
-                {
-                    ProductId = productId,
-                    Images = listImages
-                };
-                return PartialView("LoadListImageProduct", listImageViewModels);
+                return ListImageProduct(productId);
+                //ecom_Products product = service.GetProductById(productId);
+                //ListImageProductPartialViewModels listImageViewModels = new ListImageProductPartialViewModels()
+                //{
+                //    ProductId = productId,
+                //    Images = product.share_Images.ConvertToImageProductViewModels(),
+                //    CoverImageId = product.CoverImageId
+                //};
+                //return PartialView("ListImageProduct", listImageViewModels);
             }
             catch (Exception ex)
             {
@@ -239,6 +262,98 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             }
         }
 
+        /// <summary>
+        /// Set image as cover image of product
+        /// </summary>
+        /// <param name="productId">id of product</param>
+        /// <param name="imageId">id of image</param>
+        /// <returns></returns>
+        public ActionResult SetAsCoverImage(int productId, int imageId)
+        {
+            bool isSuccess = service.SetAsCoverImage(productId, imageId);
+            if (isSuccess)
+            {
+                //DeleteImageInFolder(imagePath);
+            }
+            else
+            {
+                ViewBag.Error = "Error when delete image";
+            }
+            return ListImageProduct(productId);
+            //ecom_Products product = service.GetProductById(productId);
+            //ListImageProductPartialViewModels listImageViewModels = new ListImageProductPartialViewModels()
+            //{
+            //    ProductId = productId,
+            //    Images = product.share_Images.ConvertToImageProductViewModels(),
+            //    CoverImageId = product.CoverImageId
+            //};
+            //return PartialView("ListImageProduct", listImageViewModels);
+        }
+
+        /// <summary>
+        /// Delete product 
+        /// </summary>
+        /// <param name="id">id of product</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            bool isSuccess = service.DeleteProduct(id);
+            if (!isSuccess)
+            {
+                ModelState.AddModelError("ServerError", "Delete product fail!");
+            }
+             
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// update image of product
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UpdateProductImage(UpdateProductImageRequest request)
+        {
+            if (request == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OnlineStore.Service.Messaging.UpdateProductImage imageInfor = new OnlineStore.Service.Messaging.UpdateProductImage(){
+                ImageId = request.ImageId,
+                Name = request.Name,
+                IsActive = request.IsActive
+            };
+            bool isSuccess = service.UpdateProductImage(request.productId, imageInfor,request.IsCoverImage);
+            if (!isSuccess)
+            {
+                ViewBag.Error = "Error when update image";
+            }
+            return ListImageProduct(request.productId);
+        }
+       
+        /// <summary>
+        /// Create list product image for return to client side
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public ActionResult ListImageProduct(int productId)
+        {
+            ecom_Products product = service.GetProductById(productId);
+            ListImageProductPartialViewModels listImageViewModels = new ListImageProductPartialViewModels()
+            {
+                ProductId = productId,
+                Images = product.share_Images.ConvertToImageProductViewModels(),
+                CoverImageId = product.CoverImageId
+            };
+            return PartialView("ListImageProduct", listImageViewModels);
+        }
+
+        /// <summary>
+        /// Delete image from server
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        [NonAction]
         private bool DeleteImageInFolder(string path)
         {
 
@@ -258,20 +373,12 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return true;
         }
 
-        // POST: Admin/Product/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            bool isSuccess = service.DeleteProduct(id);
-            if (!isSuccess)
-            {
-                ModelState.AddModelError("ServerError", "Delete product fail!");
-            }
-             
-            return RedirectToAction("Index");
-        }
-
-        public IEnumerable<SelectListItem> PopulateListBrand(int? selectedBrandId = null)
+        /// <summary>
+        /// Create SelectList using as dataSource for dropdownlist
+        /// </summary>
+        /// <param name="selectedBrandId"></param>
+        /// <returns></returns>
+        private IEnumerable<SelectListItem> PopulateListBrand(int? selectedBrandId = null)
         {
             IEnumerable<ecom_Brands> brands = service.GetListBrand();
 
@@ -285,13 +392,16 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return listBrands;
         }
 
-        protected override void Dispose(bool disposing)
+        /// <summary>
+        /// Create SelectList using as dataSource for dropdownlist
+        /// </summary>
+        /// <param name="selectedBrandId"></param>
+        /// <returns></returns>
+        private IEnumerable<SelectListItem> PopulateListCategory(int[] selectedCategories = null)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            IEnumerable<ecom_Categories> categories = service.GetListCategory();
+
+            return new MultiSelectList(categories, "Id", "Name", selectedCategories);
         }
     }
 }

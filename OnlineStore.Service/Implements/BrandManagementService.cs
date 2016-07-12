@@ -21,6 +21,26 @@ namespace OnlineStore.Service.Implements
         #endregion
 
         #region Public functions
+
+        /// <summary>
+        /// Get brand with conditions(sort, filter, paging, search)
+        /// </summary>
+        /// <param name="pageNumber">current page index</param>
+        /// <param name="pageSize">number of product per page</param>
+        /// <param name="totalItems">return total products</param>
+        /// <returns>list product of current page</returns>
+        public IEnumerable<ecom_Brands> GetBrands(int pageNumber, int pageSize, out int totalItems)
+        {
+            IEnumerable<ecom_Brands> brands = db.GetAllAvailableBrands();
+            totalItems = brands.Count();
+            IEnumerable<ecom_Brands> returnBrandList = brands.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
+            return returnBrandList;
+        }
+        /// <summary>
+        /// Get information of a brand
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns>return a view model to display on client side</returns>
         public Model.ViewModel.DetailsBrandManagementView GetDetailBrand(int id)
         {
             ecom_Brands brand = db.GetByID(id);
@@ -31,7 +51,11 @@ namespace OnlineStore.Service.Implements
 
             return brand.ConvertToDetailsBrandView(createBy != null ? createBy.UserName : "", modifiredBy != null ? modifiredBy.UserName : "");
         }
-
+        /// <summary>
+        /// Add new brand
+        /// </summary>
+        /// <param name="brand">information of new brand</param>
+        /// <returns></returns>
         public bool AddBrand(ecom_Brands brand)
         {
             try
@@ -45,21 +69,21 @@ namespace OnlineStore.Service.Implements
                 return false;
             }
         }
-
+        /// <summary>
+        /// Get information of brand 
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns></returns>
         public ecom_Brands GetBrandById(int id)
         {
             ecom_Brands brand = db.GetByID(id);
             return brand;
         }
-
-        public IEnumerable<ecom_Brands> GetBrands(int pageNumber, int pageSize, out int totalItems)
-        {
-            IEnumerable<ecom_Brands> brands = db.GetAllBrands();
-            totalItems = brands.Count();
-            IEnumerable<ecom_Brands> returnBrandList = brands.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
-            return returnBrandList;
-        }
-
+        /// <summary>
+        /// Update information of brand
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns></returns>
         public bool UpdateBrand(ecom_Brands brand)
         {
             try
@@ -73,13 +97,18 @@ namespace OnlineStore.Service.Implements
                 return false;
             }
         }
-
+        /// <summary>
+        /// Delete brand
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns></returns>
         public bool DeleteBrand(int id)
         {
             try
             {
                 ecom_Brands brand = db.GetByID(id);
                 brand.Status = (int)Define.Status.Delete;
+                db.Update(brand);
                 db.Save();
                 return true;
             }
