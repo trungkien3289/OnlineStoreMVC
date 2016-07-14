@@ -65,5 +65,32 @@ namespace OnlineStore.Model.Mapper
 
             return listImages;
         }
+
+        public static ProductSummaryView ConvertToProductSummaryView(this ecom_Products product)
+        {
+            ProductSummaryView productSummaryView = new ProductSummaryView()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                BrandName = product.ecom_Brands !=null? product.ecom_Brands.Name:"",
+                Price = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:c}", product.Price),
+                CoverImageUrl = product.CoverImage != null ? product.CoverImage.ImagePath : DisplayProductConstants.NoImagePath,
+                IsNew = product.IsNewProduct,
+                ShortDescription = product.Description
+            };
+
+            return productSummaryView;
+        }
+
+        public static IEnumerable<ProductSummaryView> ConvertToProductSummaryViews(this IEnumerable<ecom_Products> products)
+        {
+            ICollection<ProductSummaryView> productSummaryViews = new List<ProductSummaryView>();
+            foreach (var product in products)
+            {
+                productSummaryViews.Add(product.ConvertToProductSummaryView());
+            }
+
+            return productSummaryViews;
+        }
     }
 }

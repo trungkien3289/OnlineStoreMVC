@@ -30,7 +30,6 @@ namespace OnlineStore.Model.Mapper
 
             return returnView;
         }
-
         public static ecom_Brands ConvertToBrandModel(this CreateBrandPostRequest brandRequest)
         {
             ecom_Brands brand = new ecom_Brands()
@@ -43,7 +42,6 @@ namespace OnlineStore.Model.Mapper
 
             return brand;
         }
-
         public static EditBrandManagementGetResponse ConvertToEditBrandManagementGetResponse(this ecom_Brands brand)
         {
             EditBrandManagementGetResponse returnModel = new EditBrandManagementGetResponse()
@@ -68,8 +66,25 @@ namespace OnlineStore.Model.Mapper
 
             return returnModel;
         }
-        
-        
-        
+        public static BrandSummaryView ConvertToBrandSummaryView(this ecom_Brands brand)
+        {
+            BrandSummaryView brandSummaryView = new BrandSummaryView()
+            {
+               Id = brand.Id,
+               Name = brand.Name
+            };
+
+            return brandSummaryView;
+        }
+        public static IEnumerable<BrandSummaryView> ConvertToBrandSummaryViews(this IEnumerable<ecom_Brands> brands)
+        {
+            ICollection<BrandSummaryView> brandSummaryViews = new List<BrandSummaryView>();
+            foreach (var brand in brands)
+            {
+                brandSummaryViews.Add(brand.ConvertToBrandSummaryView());
+            }
+
+            return brandSummaryViews;
+        }
     }
 }

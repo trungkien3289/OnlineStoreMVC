@@ -38,6 +38,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\Library\LinqKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -133,6 +136,7 @@
     <Compile Include="ViewModel\CategoryView.cs" />
     <Compile Include="ViewModel\MenuView.cs" />
     <Compile Include="ViewModel\BrandManagementView.cs" />
+    <Compile Include="ViewModel\ProductDisplayView.cs" />
     <Compile Include="ViewModel\ProductManagementView.cs" />
   </ItemGroup>
   <ItemGroup>

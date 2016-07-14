@@ -1,0 +1,842 @@
+﻿@model OnlineStore.Service.Messaging.GetProductsByCategoryResponse
+
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="columns-container">
+    <div id="columns" class="container">
+
+        <div class="breadcrumb clearfix">
+            <a class="home" href="https://livedemo00.template-help.com/prestashop_58023/" title="Return to Home">
+                <i class="fa fa-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+            Benches
+        </div><!-- breadcrumb -->
+        <div class="row"><!-- content -->
+            <div class="large-left col-sm-12">
+                <div class="row">
+                    <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+                        <div class="content_scene_cat">
+                            <div class="content_scene_cat_bg row">
+                                <div class="category-image hidden-xs col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                                    <img class="img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/c/12-tm_category_default.jpg" alt="Benches">
+                                </div>
+                                <div class="cat_desc  col-xs-12 col-sm-7 col-md-8 col-lg-9">
+                                    <span class="category-name">
+                                        Benches
+                                    </span>
+                                    <div id="category_description_short" class="rte"><p>Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be i...</p></div>
+                                    <div id="category_description_full" class="unvisible rte"><p>Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.</p></div>
+                                    <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1" class="lnk_more" title="More">More</a>
+                                </div>
+                            </div>
+                        </div><!-- category short description -->
+                        <h1 class="page-heading product-listing">
+                            <span class="cat-name">Benches </span>
+                            <span class="heading-counter">There are 20 products.</span>
+                        </h1> <!-- title panel -->
+                        <div class="content_sortPagiBar clearfix">
+                            <div class="sortPagiBar clearfix">
+                                <ul class="display hidden-xs">
+                                    <li class="display-title">View:</li>
+                                    <li id="grid" class="selected">
+                                        <a rel="nofollow" href="#" title="Grid">
+                                            <i class="fa fa-th-large"></i>
+                                            Grid
+                                        </a>
+                                    </li>
+                                    <li id="list">
+                                        <a rel="nofollow" href="#" title="List">
+                                            <i class="fa fa-th-list"></i>
+                                            List
+                                        </a>
+                                    </li>
+                                </ul>
+                                <form id="productsSortForm" action="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1" class="productsSortForm">
+                                    <div class="select selector1">
+                                        <label for="selectProductSort">Sort by</label>
+                                        <div class="selector" id="uniform-selectProductSort" style="width: 190px;">
+                                            <span style="width: 180px; -webkit-user-select: none;">Product Name: A to Z</span><select id="selectProductSort" class="selectProductSort form-control">
+                                                <option value="name:asc">--</option>
+                                                <option value="price:asc">Price: Lowest first</option>
+                                                <option value="price:desc">Price: Highest first</option>
+                                                <option value="name:asc" selected="selected">Product Name: A to Z</option>
+                                                <option value="name:desc">Product Name: Z to A</option>
+                                                <option value="quantity:desc">In stock</option>
+                                                <option value="reference:asc">Reference: Lowest first</option>
+                                                <option value="reference:desc">Reference: Highest first</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                                <form action="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1" method="get" class="nbrItemPage">
+                                    <div class="clearfix selector1">
+                                        <label for="nb_item">
+                                            Show
+                                        </label>
+                                        <input type="hidden" name="id_category" value="12">
+                                        <input type="hidden" name="controller" value="category">
+                                        <div class="selector" id="uniform-nb_item" style="width: 57px;">
+                                            <span style="width: 47px; -webkit-user-select: none;">9</span><select name="n" id="nb_item" class="form-control">
+                                                <option value="9" selected="selected">9</option>
+                                                <option value="18">18</option>
+                                                <option value="45">45</option>
+                                            </select>
+                                        </div>
+                                        <span>per page</span>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="top-pagination-content clearfix">
+                                <form method="post" action="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=products-comparison" class="compare-form">
+                                    <button type="submit" class="btn btn-default bt_compare icon-right" disabled="disabled">
+                                        <span>
+                                            Compare
+                                            (
+                                            <strong class="total-compare-val">0</strong>
+                                            )
+                                        </span>
+                                    </button>
+                                    <input type="hidden" name="compare_product_count" class="compare_product_count" value="0">
+                                    <input type="hidden" name="compare_product_list" class="compare_product_list" value="">
+                                </form>
+
+                                <div id="pagination" class="pagination clearfix">
+                                    <form class="showall" action="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1" method="get">
+                                        <div>
+                                            <button type="submit" class="btn btn-default">
+                                                <span>Show all</span>
+                                            </button>
+                                            <input type="hidden" name="id_category" value="12">
+                                            <input type="hidden" name="controller" value="category">
+                                            <input name="n" id="nb_item" class="hidden" value="20">
+                                        </div>
+                                    </form>
+                                    <ul class="pagination">
+                                        <li id="pagination_previous" class="disabled pagination_previous">
+                                            <span>
+                                                <i class="fa fa-chevron-left"></i>
+                                                <b>Previous</b>
+                                            </span>
+                                        </li>
+                                        <li class="active current">
+                                            <span>
+                                                <span>1</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-2">
+                                                <span>2</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-3">
+                                                <span>3</span>
+                                            </a>
+                                        </li>
+                                        <li id="pagination_next" class="pagination_next">
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-2" rel="next">
+                                                <b>Next</b> <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-count">
+                                    Showing 1 - 9 of 20 items
+                                </div>
+
+                            </div>
+                        </div><!-- sort bar -->
+                        @Html.Partial("ListProduct", Model.Products)  <!-- list product -->
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+                                <form method="post" action="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=products-comparison" class="compare-form">
+                                    <button type="submit" class="btn btn-default bt_compare icon-right" disabled="disabled">
+                                        <span>
+                                            Compare
+                                            (
+                                            <strong class="total-compare-val">0</strong>
+                                            )
+                                        </span>
+                                    </button>
+                                    <input type="hidden" name="compare_product_count" class="compare_product_count" value="0">
+                                    <input type="hidden" name="compare_product_list" class="compare_product_list" value="">
+                                </form>
+
+                                <div id="pagination_bottom" class="pagination clearfix">
+                                    <form class="showall" action="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1" method="get">
+                                        <div>
+                                            <button type="submit" class="btn btn-default">
+                                                <span>Show all</span>
+                                            </button>
+                                            <input type="hidden" name="id_category" value="12">
+                                            <input type="hidden" name="controller" value="category">
+                                            <input name="n" id="nb_item" class="hidden" value="20">
+                                        </div>
+                                    </form>
+                                    <ul class="pagination">
+                                        <li id="pagination_previous_bottom" class="disabled pagination_previous">
+                                            <span>
+                                                <i class="fa fa-chevron-left"></i>
+                                                <b>Previous</b>
+                                            </span>
+                                        </li>
+                                        <li class="active current">
+                                            <span>
+                                                <span>1</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-2">
+                                                <span>2</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-3">
+                                                <span>3</span>
+                                            </a>
+                                        </li>
+                                        <li id="pagination_next_bottom" class="pagination_next">
+                                            <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category#/page-2" rel="next">
+                                                <b>Next</b> <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-count">
+                                    Showing 1 - 9 of 20 items
+                                </div>
+
+                            </div>
+                        </div><!-- sort bar -->
+                    </div><!-- list product panel -->
+                    <div id="left_column" class="column col-xs-12 col-sm-3">
+                        <section id="layered_block_left" class="block">
+                            <h4 class="title_block">Catalog</h4>
+                            <div class="block_content">
+                                <form action="#" id="layered_form">
+                                    <div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Categories</span>
+
+                                            </div>
+                                            <ul id="ul_layered_category_0" class="col-lg-12 layered_filter_ul">
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_category_24"><span><input type="checkbox" class="checkbox" name="layered_category_24" id="layered_category_24" value="24"></span></div>
+                                                    <label for="layered_category_24">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#categories-metal" data-rel="nofollow">
+                                                            Metal
+                                                            <span> (20)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_category_25"><span><input type="checkbox" class="checkbox" name="layered_category_25" id="layered_category_25" value="25"></span></div>
+                                                    <label for="layered_category_25">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#categories-rattan" data-rel="nofollow">
+                                                            Rattan
+                                                            <span> (20)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_category_26"><span><input type="checkbox" class="checkbox" name="layered_category_26" id="layered_category_26" value="26"></span></div>
+                                                    <label for="layered_category_26">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#categories-wood" data-rel="nofollow">
+                                                            Wood
+                                                            <span> (20)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_category_27"><span><input type="checkbox" class="checkbox" name="layered_category_27" id="layered_category_27" value="27"></span></div>
+                                                    <label for="layered_category_27">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#categories-plastic" data-rel="nofollow">
+                                                            Plastic
+                                                            <span> (20)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Availability</span>
+
+                                            </div>
+                                            <ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_quantity_0"><span><input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0"></span></div>
+                                                    <label for="layered_quantity_0">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#availability-not_available" data-rel="nofollow">
+                                                            Not available
+                                                            <span> (1)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_quantity_1"><span><input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1"></span></div>
+                                                    <label for="layered_quantity_1">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#availability-in_stock" data-rel="nofollow">
+                                                            In stock
+                                                            <span> (19)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Manufacturer</span>
+
+                                            </div>
+                                            <ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_8"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_8" id="layered_manufacturer_8" value="8"></span></div>
+                                                    <label for="layered_manufacturer_8">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-adam_manufacturing" data-rel="nofollow">
+                                                            Adam Manufacturing
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_6"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_6" id="layered_manufacturer_6" value="6"></span></div>
+                                                    <label for="layered_manufacturer_6">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-agio" data-rel="nofollow">
+                                                            Agio
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_11"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_11" id="layered_manufacturer_11" value="11"></span></div>
+                                                    <label for="layered_manufacturer_11">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-camelot" data-rel="nofollow">
+                                                            Camelot
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_9"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_9" id="layered_manufacturer_9" value="9"></span></div>
+                                                    <label for="layered_manufacturer_9">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-casuwel" data-rel="nofollow">
+                                                            Casuwel
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_4"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_4" id="layered_manufacturer_4" value="4"></span></div>
+                                                    <label for="layered_manufacturer_4">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-hi_teak" data-rel="nofollow">
+                                                            HI-Teak
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_7"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_7" id="layered_manufacturer_7" value="7"></span></div>
+                                                    <label for="layered_manufacturer_7">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-outdoor_elegance" data-rel="nofollow">
+                                                            Outdoor Elegance
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_5"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_5" id="layered_manufacturer_5" value="5"></span></div>
+                                                    <label for="layered_manufacturer_5">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-royal_garden" data-rel="nofollow">
+                                                            Royal Garden
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_10"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_10" id="layered_manufacturer_10" value="10"></span></div>
+                                                    <label for="layered_manufacturer_10">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-sun_time" data-rel="nofollow">
+                                                            Sun Time
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_2"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_2" id="layered_manufacturer_2" value="2"></span></div>
+                                                    <label for="layered_manufacturer_2">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-winston" data-rel="nofollow">
+                                                            Winston
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                                <li class="nomargin hiddable col-lg-12">
+                                                    <div class="checker" id="uniform-layered_manufacturer_3"><span><input type="checkbox" class="checkbox" name="layered_manufacturer_3" id="layered_manufacturer_3" value="3"></span></div>
+                                                    <label for="layered_manufacturer_3">
+                                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=12&amp;controller=category&amp;id_lang=1#manufacturer-wonderful_garden" data-rel="nofollow">
+                                                            Wonderful Garden
+                                                            <span> (2)</span>
+                                                        </a>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="layered_price clearfix" style="">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Price</span>
+
+                                            </div>
+                                            <ul id="ul_layered_price_0" class="col-lg-12 layered_filter_ul">
+                                                <label for="price">
+                                                    Range:
+                                                </label>
+                                                <span id="layered_price_range">$16.00 - $1,560.00</span>
+                                                <div class="layered_slider_container">
+                                                    <div class="layered_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="layered_price_slider" data-type="price" data-format="1" data-unit="$" aria-disabled="false">
+                                                        <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="id_category_layered" value="12">
+                                </form>
+                            </div>
+                            <div id="layered_ajax_loader" style="display: none;">
+                                <p>
+                                    <img src="https://livedemo00.template-help.com/prestashop_58023/img/loader.gif" alt="">
+                                    <br>Loading...
+                                </p>
+                            </div>
+                        </section>
+
+                        <section id="categories_block_left" class="block">
+                            <h4 class="title_block">
+                                Benches
+                            </h4>
+                            <div class="block_content" style="">
+                                <ul class="tree dhtml">
+                                    <li>
+                                        <span class="grower CLOSE"> </span><a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=24&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                            Metal
+                                        </a>
+                                        <ul style="display: none;">
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=31&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Garden Sets
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=29&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Rattan
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=30&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Wicker Sofas
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=32&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Outdoor Tables
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=33&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Patio Umbrellas &amp; Bases
+                                                </a>
+                                            </li>
+                                            <li class="last">
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=34&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Living Room Sofas
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="grower CLOSE"> </span><a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=25&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                            Rattan
+                                        </a>
+                                        <ul style="display: none;">
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=35&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Outdoor Tables &amp; Chairs
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=36&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Lounging furniture
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=37&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Outdoor organising
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=38&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Outdoor cushions
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=39&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Decorative Lighting
+                                                </a>
+                                            </li>
+                                            <li class="last">
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=40&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Parasols &amp; Gazebos
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="grower CLOSE"> </span><a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=26&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                            Wood
+                                        </a>
+                                        <ul style="display: none;">
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=41&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Decking
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=42&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Barbeques
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=43&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Garden furniture sets
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=44&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Benches &amp; swing seats
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=45&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Cushions &amp; covers
+                                                </a>
+                                            </li>
+                                            <li class="last">
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=46&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Parasols &amp; bases
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="last">
+                                        <span class="grower CLOSE"> </span><a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=27&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                            Plastic
+                                        </a>
+                                        <ul style="display: none;">
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=47&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Relaxing furniture
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=48&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Pools &amp; spas
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=49&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Playhouses
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=50&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Garden candles and lanterns
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=51&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Camping &amp; caravan equipment
+                                                </a>
+                                            </li>
+                                            <li class="last">
+                                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_category=52&amp;controller=category&amp;id_lang=1" title="Fashion in this case is really interesting phenomenon - we often like things that are good-looking. And it is normal - after all we get maximum information through the eyes. And our product is a perfect combination of cute shapes and real good content. It is really a product of a new generation. We promise that with our good you will always be in fashion and stylish.">
+                                                    Sports equipment
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section id="wishlist_block" class="block account">
+                            <h4 class="title_block">
+                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?fc=module&amp;module=blockwishlist&amp;controller=mywishlist&amp;id_lang=1" title="My wishlists" rel="nofollow">
+                                    Wishlist
+                                </a>
+                            </h4>
+                            <div class="block_content" style="">
+                                <div id="wishlist_block_list" class="expanded">
+                                    <dl class="products no-products">
+                                        <dt>No products</dt>
+                                        <dd></dd>
+                                    </dl>
+                                </div>
+                                <div class="lnk">
+                                    <a class="btn btn-default btn-sm icon-right" href="https://livedemo00.template-help.com/prestashop_58023/index.php?fc=module&amp;module=blockwishlist&amp;controller=mywishlist&amp;id_lang=1" title="My wishlists">
+                                        <span>
+                                            My wishlists
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="informations_block_left_1" class="block informations_block_left">
+                            <h4 class="title_block">
+                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms_category=1&amp;controller=cms&amp;id_lang=1" title="Information">
+                                    Information
+                                </a>
+                            </h4>
+                            <div class="block_content list-block" style="">
+                                <ul>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms=1&amp;controller=cms&amp;id_lang=1" title="Delivery">
+                                            Delivery
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms=2&amp;controller=cms&amp;id_lang=1" title="Legal Notice">
+                                            Legal Notice
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms=3&amp;controller=cms&amp;id_lang=1" title="Terms and conditions of use">
+                                            Terms and conditions of use
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms=4&amp;controller=cms&amp;id_lang=1" title="About us">
+                                            About us
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_cms=5&amp;controller=cms&amp;id_lang=1" title="Secure payment">
+                                            Secure payment
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=stores" title="Our stores">
+                                            Our stores
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+
+                        <!--<section id="new-products_block_right" class="block products_block">
+                            <h4 class="title_block">
+                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=new-products" title="New products">New products</a>
+                            </h4>
+                            <div class="block_content products-block" style="">
+                                <ul class="products">
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=26&amp;controller=product&amp;id_lang=1" title="Wicker and Resin Dining Table"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/4/4/144-tm_small_default.jpg" alt="Wicker and Resin Dining Table"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=26&amp;controller=product&amp;id_lang=1" title="Wicker and Resin Dining Table">Wicker and Resin Dining Table</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $80.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=27&amp;controller=product&amp;id_lang=1" title="Round 18-Inch Side Table"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/5/0/150-tm_small_default.jpg" alt="Round 18-Inch Side Table"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=27&amp;controller=product&amp;id_lang=1" title="Round 18-Inch Side Table">Round 18-Inch Side Table</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $100.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=24&amp;controller=product&amp;id_lang=1" title="Outdoor Rattan Lounge Chair"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/3/2/132-tm_small_default.jpg" alt="Outdoor Rattan Lounge Chair"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=24&amp;controller=product&amp;id_lang=1" title="Outdoor Rattan Lounge Chair">Outdoor Rattan Lounge Chair</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $200.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=25&amp;controller=product&amp;id_lang=1" title="Catalina Adirondack Chair"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/3/8/138-tm_small_default.jpg" alt="Catalina Adirondack Chair"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=25&amp;controller=product&amp;id_lang=1" title="Catalina Adirondack Chair">Catalina Adirondack Chair</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $120.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=21&amp;controller=product&amp;id_lang=1" title="Oval Sofa Sectional Furniture Set"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/1/8/118-tm_small_default.jpg" alt="Oval Sofa Sectional Furniture Set"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=21&amp;controller=product&amp;id_lang=1" title="Oval Sofa Sectional Furniture Set">Oval Sofa Sectional Furniture Set</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $1,300.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=22&amp;controller=product&amp;id_lang=1" title=" Sofa Sectional Furniture Set"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/2/0/120-tm_small_default.jpg" alt=" Sofa Sectional Furniture Set"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=22&amp;controller=product&amp;id_lang=1" title=" Sofa Sectional Furniture Set"> Sofa Sectional Furniture Set</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $1,200.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=23&amp;controller=product&amp;id_lang=1" title="Patio Sofa Chair Set"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/1/2/6/126-tm_small_default.jpg" alt="Patio Sofa Chair Set"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=23&amp;controller=product&amp;id_lang=1" title="Patio Sofa Chair Set">Patio Sofa Chair Set</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $1,500.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=18&amp;controller=product&amp;id_lang=1" title=" Chaise Lounge Bed with Umbrella"><img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/9/6/96-tm_small_default.jpg" alt=" Chaise Lounge Bed with Umbrella"></a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=18&amp;controller=product&amp;id_lang=1" title=" Chaise Lounge Bed with Umbrella"> Chaise Lounge Bed with Umbrella</a>
+                                            </h5>
+                                            <p class="product-description">Fashion in this case is really interesting phenomenon - we often like...</p>
+                                            <div class="price-box">
+                                                <span class="price">
+                                                    $400.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=new-products" title="All new products" class="btn btn-default btn-sm icon-right">
+                                        <span>
+                                            All new products
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>-->
+                        <!--<section id="special_block_right" class="block">
+                            <h4 class="title_block">
+                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=prices-drop" title="Specials">
+                                    Specials
+                                </a>
+                            </h4>
+                            <div class="block_content products-block" style="">
+                                <ul>
+                                    <li class="clearfix">
+                                        <a class="products-block-image" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=18&amp;controller=product&amp;id_lang=1">
+                                            <img class="replace-2x img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/img/p/9/6/96-tm_small_default.jpg" alt=" Chaise Lounge Bed with Umbrella" title=" Chaise Lounge Bed with Umbrella">
+                                        </a>
+                                        <div class="product-content">
+                                            <h5>
+                                                <a class="product-name" href="https://livedemo00.template-help.com/prestashop_58023/index.php?id_product=18&amp;controller=product&amp;id_lang=1" title=" Chaise Lounge Bed with Umbrella">
+                                                    Chaise Lounge Bed with Umbrella
+                                                </a>
+                                            </h5>
+                                            <p class="product-description">
+                                                Fashion in this case is really...
+                                            </p>
+                                            <div class="price-box">
+                                                <span class="price special-price">
+                                                    $400.00
+                                                </span>
+                                                <span class="price-percent-reduction">-20%</span>
+                                                <span class="old-price">
+                                                    $500.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <a class="btn btn-default btn-sm icon-right" href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=prices-drop" title="All specials">
+                                        <span>
+                                            All specials
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>-->
+
+                        <section id="stores_block_left" class="block">
+                            <h4 class="title_block">
+                                <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=stores" title="Our stores">
+                                    Our stores
+                                </a>
+                            </h4>
+                            <div class="block_content blockstore" style="">
+                                <p class="store_image">
+                                    <a href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=stores" title="Our stores">
+                                        <img class="img-responsive" src="https://livedemo00.template-help.com/prestashop_58023/modules/blockstore/store.jpg" alt="Our stores">
+                                    </a>
+                                </p>
+                                <div>
+                                    <a class="btn btn-default btn-sm icon-right" href="https://livedemo00.template-help.com/prestashop_58023/index.php?controller=stores" title="Our stores">
+                                        <span>
+                                            Discover our stores
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div><!-- filter panel -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
