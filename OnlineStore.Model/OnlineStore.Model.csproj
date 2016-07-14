@@ -53,18 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\AspNetRole.cs">
-      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\AspNetUser.cs">
-      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\AspNetUserClaim.cs">
-      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\AspNetUserLogin.cs">
-      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Context\cms_Categories.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
@@ -105,9 +93,6 @@
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\share_Images.cs">
-      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\sysdiagram.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\system_Config.cs">

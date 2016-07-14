@@ -25,10 +25,6 @@ namespace OnlineStore.Model.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<cms_Categories> cms_Categories { get; set; }
         public virtual DbSet<ecom_Brands> ecom_Brands { get; set; }
         public virtual DbSet<ecom_Categories> ecom_Categories { get; set; }
@@ -37,7 +33,6 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<ecom_Products> ecom_Products { get; set; }
         public virtual DbSet<share_Categories> share_Categories { get; set; }
         public virtual DbSet<share_Images> share_Images { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<system_Config> system_Config { get; set; }
         public virtual DbSet<system_Profiles> system_Profiles { get; set; }
         public virtual DbSet<system_Menu> system_Menu { get; set; }
