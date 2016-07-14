@@ -13,10 +13,10 @@ using OnlineStore.Model.ViewModel;
 using PagedList;
 using OnlineStore.Model.Repository;
 using OnlineStore.Model.MessageModel;
-using OnlineStoreMVC.Utility;
 using System.IO;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.Mapper;
+using OnlineStoreMVC.Models.ImageModels;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
