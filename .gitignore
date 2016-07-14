@@ -6,7 +6,6 @@
 *-symdir/
 [Ee]xternal[Ff]iles/
 /src/Plugins/*-sym
-/src/Presentation/Sapphire.Web/Themes/*-sym
 
 ###########################################################
 ## Ignore Visual Studio temporary files, build results, and
@@ -173,19 +172,3 @@ Kopie von*
 /packages
 /src/packages
 /build
-/src/Presentation/Sapphire.Web/Plugins
-/src/Presentation/Sapphire.Web/App_Data/_temp/
-/src/Presentation/Sapphire.Web/App_Data/Settings.txt
-/src/Presentation/Sapphire.Web/App_Data/InstalledPlugins.txt
-/src/Presentation/Sapphire.Web/App_Data/Licenses.lic
-/src/Presentation/Sapphire.Web/Media
-
-# Import/Export
-/src/Presentation/Sapphire.Web/Content/files/[Ee]xport[Ii]mport/*.*
-
-# Media
-/src/Presentation/Sapphire.Web/Media/[Tt]humbs
-/src/Presentation/Sapphire.Web/Media/[Uu]ploaded
-
-src/Sapphire.Packager.sln
-Log.txt

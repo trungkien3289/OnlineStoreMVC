@@ -145,9 +145,7 @@
       <Name>OnlineStore.Infractructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="Context\OnlineStoreMVCEntities.edmx">
