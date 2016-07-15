@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="cms_Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -213,6 +230,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="200" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <Association Name="FK_cms_News_cms_Categories">
           <End Role="cms_Categories" Type="Self.cms_Categories" Multiplicity="1" />
@@ -298,18 +316,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ecom_Products_share_Images">
-          <End Role="share_Images" Type="Self.share_Images" Multiplicity="0..1" />
-          <End Role="ecom_Products" Type="Self.ecom_Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="share_Images">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ecom_Products">
-              <PropertyRef Name="CoverImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_product_OrderDetails_product_Orders">
           <End Role="ecom_Orders" Type="Self.ecom_Orders" Multiplicity="1" />
           <End Role="ecom_OrderDetails" Type="Self.ecom_OrderDetails" Multiplicity="*" />
@@ -323,6 +329,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OnlineStoreMVCModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cms_Categories" EntityType="Self.cms_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cms_News" EntityType="Self.cms_News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ecom_Brands" EntityType="Self.ecom_Brands" Schema="dbo" store:Type="Tables" />
@@ -364,10 +371,6 @@
           <AssociationSet Name="FK_ecom_Products_Images_share_Images" Association="Self.FK_ecom_Products_Images_share_Images">
             <End Role="share_Images" EntitySet="share_Images" />
             <End Role="ecom_Products_Images" EntitySet="ecom_Products_Images" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ecom_Products_share_Images" Association="Self.FK_ecom_Products_share_Images">
-            <End Role="share_Images" EntitySet="share_Images" />
-            <End Role="ecom_Products" EntitySet="ecom_Products" />
           </AssociationSet>
           <AssociationSet Name="FK_product_OrderDetails_product_Orders" Association="Self.FK_product_OrderDetails_product_Orders">
             <End Role="ecom_Orders" EntitySet="ecom_Orders" />
@@ -537,17 +540,6 @@
           <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" />
         </EntityType>
-        <EntityType Name="system_Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Emaill" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_ecom_Products_ecom_Brands">
           <End Role="ecom_Brands" Type="Self.ecom_Brands" Multiplicity="0..1" />
           <End Role="ecom_Products" Type="Self.ecom_Products" Multiplicity="*" />
@@ -602,7 +594,6 @@
           <EntitySet Name="share_Categories" EntityType="Self.share_Categories" />
           <EntitySet Name="share_Images" EntityType="Self.share_Images" />
           <EntitySet Name="system_Config" EntityType="Self.system_Config" />
-          <EntitySet Name="system_Profiles" EntityType="Self.system_Profiles" />
           <AssociationSet Name="FK_ecom_Products_ecom_Brands" Association="Self.FK_ecom_Products_ecom_Brands">
             <End Role="ecom_Brands" EntitySet="ecom_Brands" />
             <End Role="ecom_Products" EntitySet="ecom_Products" />
@@ -633,6 +624,8 @@
             <End Role="share_Images" EntitySet="share_Images" />
             <End Role="ecom_Products" EntitySet="ecom_Products" />
           </AssociationSet>
+          <EntitySet Name="system_Profiles" EntityType="OnlineStoreMVCModel.system_Profiles" />
+          <EntitySet Name="AspNetUsers" EntityType="OnlineStoreMVCModel.AspNetUser" />
         </EntityContainer>
         <EntityType Name="system_Menu">
           <Key>
@@ -695,6 +688,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="system_Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Emaill" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -856,18 +878,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="system_Profiles">
-            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Profiles">
-              <MappingFragment StoreEntitySet="system_Profiles">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Emaill" ColumnName="Emaill" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="ecom_Products_Categories" TypeName="OnlineStoreMVCModel.ecom_Products_Categories" StoreEntitySet="ecom_Products_Categories">
             <EndProperty Name="ecom_Categories">
               <ScalarProperty Name="Id" ColumnName="CategoryId" />
@@ -918,6 +928,37 @@
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_Profiles">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Profiles">
+              <MappingFragment StoreEntitySet="system_Profiles">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Emaill" ColumnName="Emaill" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

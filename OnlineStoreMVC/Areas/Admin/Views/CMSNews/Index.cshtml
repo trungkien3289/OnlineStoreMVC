@@ -24,7 +24,7 @@
 <section class="content">
     <div class="row">
         <div class="box-tools pull-right" style="padding-right: 15px; padding-bottom: 10px;">
-            @Html.ActionLink("Tạo mới bài viết", "Create", "CMSNews", null, new { @class = "btn btn-default btn-sm" })
+            @Html.ActionLink("Tạo mới bài viết", "Create", "CMSNews", null, new { @class = "btn btn-primary btn-sm" })
         </div>
     </div>
     <div class="row">
@@ -52,7 +52,7 @@
                             <th style="width: 100px;">
                                 Tình trạng
                             </th>
-                            <th></th>
+                            <th style="width: 100px;"></th>
                         </tr>
 
                         @foreach (var item in Model)
@@ -74,13 +74,13 @@
                                     <span class="glyphicon @(item.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active ? "glyphicon-ok" : "glyphicon-remove")"></span>
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                    @Ajax.ActionLink("Xoá", "Delete", new { @id = item.Id }, new AjaxOptions
+                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                                    @Ajax.ActionLink(" ", "Delete", new { @id = item.Id }, new AjaxOptions
                                    {
                                        Confirm = "Bạn có muốn xoá bản ghi này?",
                                        OnComplete = "$('#row_" + @item.Id + "').remove()",
                                        HttpMethod = "Delete"
-                                   })
+                                   }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
                                 </td>
                             </tr>
                         }

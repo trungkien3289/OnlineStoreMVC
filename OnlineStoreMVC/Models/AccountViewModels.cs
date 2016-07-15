@@ -79,6 +79,12 @@ namespace OnlineStoreMVC.Models
         [Display(Name = "Nhập lại mật khẩu")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Số điện thoại")]
+        public string Phone { get; set; }
+        
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
     }
 
     public class ResetPasswordViewModel

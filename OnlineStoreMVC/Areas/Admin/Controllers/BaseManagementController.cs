@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class BaseManagementController : Controller
     {
         protected virtual void PopulateStatusDropDownList(Define.Status status = Define.Status.Active)
