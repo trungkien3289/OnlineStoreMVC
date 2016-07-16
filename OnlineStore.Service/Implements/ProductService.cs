@@ -203,6 +203,7 @@ namespace OnlineStore.Service.Implements
                 return true;
             }
         }
+
         public ecom_Products GetProductById(int id)
         {
             return db.GetProductById(id);

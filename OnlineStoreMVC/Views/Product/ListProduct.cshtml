@@ -7,7 +7,7 @@
             <div class="product-container" itemscope="" itemtype="https://schema.org/Product">
                 <div class="left-block">
                     <div class="product-image-container">
-                        <a class="product_img_link" itemprop="url">
+                        <a class="product_img_link" itemprop="url" href="/Product/ProductDetails/@product.Id">
                             <img class="replace-2x img-responsive" src=@product.CoverImageUrl alt=@product.Name title=@product.Name itemprop="image">
                         </a>
                         @if (product.IsNew)

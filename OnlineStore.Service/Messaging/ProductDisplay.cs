@@ -41,4 +41,10 @@ namespace OnlineStore.Service.Messaging
         public IEnumerable<ProductSummaryView> Products { get; set; }
         public IEnumerable<BrandSummaryView> Brands { get; set; }
     }
+    public class GetProductsByAjaxResponse
+    {
+        public bool Success { get; set; }
+        public object ListProductView { get; set; }
+        public GetProductsByCategoryResponse Model { get; set; }
+    }
 }

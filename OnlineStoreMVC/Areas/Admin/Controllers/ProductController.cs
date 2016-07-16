@@ -16,7 +16,7 @@ using OnlineStore.Model.MessageModel;
 using System.IO;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.Mapper;
-using OnlineStoreMVC.Models.ImageModels;
+using OnlineStoreMVC.Utility;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {

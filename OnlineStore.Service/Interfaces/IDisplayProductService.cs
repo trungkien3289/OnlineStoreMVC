@@ -1,4 +1,5 @@
-﻿using OnlineStore.Service.Messaging;
+﻿using OnlineStore.Model.ViewModel;
+using OnlineStore.Service.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace OnlineStore.Service.Interfaces
     public interface IDisplayProductService
     {
         GetProductsByCategoryResponse GetProductsByCategory(GetProductsByCategoryRequest request);
+        ProductDetailsView GetProductDetails(int id);
     }
 }

@@ -74,7 +74,30 @@ namespace OnlineStore.Service.Implements
                     .OrderByDescending(p => p.Name);
                     break;
             }
+
             return productsMatchingRefinement.ToList();
+
+        }
+
+        /// <summary>
+        /// Crop list product result to satisfy current page
+        /// </summary>
+        /// <param name="productsFound"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="numberOfResultsPerPage"></param>
+        /// <returns></returns>
+        private IEnumerable<ecom_Products> CropProductListToSatisfyGivenIndex(IEnumerable<ecom_Products> productsFound, int pageIndex, int numberOfResultsPerPage)
+        {
+            if (pageIndex > 1)
+            {
+                int numToSkip = (pageIndex - 1) * numberOfResultsPerPage;
+                return productsFound.Skip(numToSkip)
+                .Take(numberOfResultsPerPage).ToList();
+            }
+            else
+            {
+                return productsFound.Take(numberOfResultsPerPage).ToList();
+            }
         }
 
         /// <summary>
@@ -98,13 +121,48 @@ namespace OnlineStore.Service.Implements
                 SearchString = request.SearchString,
                 SortBy = (int)request.SortBy,
                 BrandIds = request.BrandIds,
-                Products = foundProducts.ConvertToProductSummaryViews(),
+                Products = CropProductListToSatisfyGivenIndex(foundProducts, request.Index, request.NumberOfResultsPerPage).ConvertToProductSummaryViews(),
                 Brands = foundProducts.Select(p => p.ecom_Brands).Where(b => b!=null).Distinct().ToList().ConvertToBrandSummaryViews()// return list Brand exist in group product belong to selected category
             };
 
             return reponse;
         }
 
+        /// <summary>
+        /// Get details product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ProductDetailsView GetProductDetails(int id)
+        {
+            ecom_Products product = db.GetProductById(id);
+            if (product == null)
+            {
+                return null;
+            }
+            else
+            {
+                ProductDetailsView productViewModel = new ProductDetailsView()
+                {
+                    Id = product.Id,
+                    ProductCode = product.ProductCode,
+                    Name = product.Name,
+                    Price = product.Price,
+                    BrandName = product.ecom_Brands.Name,
+                    CoverImageUrl = product.CoverImage.ImagePath,
+                    Description = product.Description,
+                    Description2 = product.Description2,
+                    Tags = product.Tags,
+                    IsNewProduct = product.IsNewProduct,
+                    IsBestSellProduct = product.IsBestSellProduct,
+                    share_Images = product.share_Images.Select(i => i.ImagePath).ToArray()
+                };
+
+                return productViewModel;
+            }
+        }
+
         #endregion
     }
 }
+

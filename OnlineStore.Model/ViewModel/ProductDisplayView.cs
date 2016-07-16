@@ -22,4 +22,21 @@ namespace OnlineStore.Model.ViewModel
         public int Id { get; set; }
         public string Name { get; set; }
     }
+
+    public class ProductDetailsView
+    {
+        public int Id { get; set; }
+        public string ProductCode { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string BrandName { get; set; }
+        public string CoverImageUrl { get; set; }
+        public string Description { get; set; }
+        public string Description2 { get; set; }
+        public string Tags { get; set; }
+        public bool IsNewProduct { get; set; }
+        public bool IsBestSellProduct { get; set; }
+
+        public string[] share_Images { get; set; }
+    }
 }
