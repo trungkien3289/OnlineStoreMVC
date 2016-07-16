@@ -11,6 +11,8 @@ using OnlineStore.Service.Interfaces;
 using OnlineStore.Service.Implements;
 using PagedList;
 using OnlineStore.Model.ViewModel;
+using OnlineStoreMVC.Models.ImageModels;
+using System.IO;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -18,7 +20,8 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         private ICMSNewsService _cmsNewsService = new CMSNewsService();
         private ICMSCategoryService _cmsCategoryService = new CMSCategoryService();
-
+        private IProductService _productService = new ProductService();
+        
         [NonAction]
         protected virtual List<SelectListItem> PrepareAllCategoriesModel(int selectedItemId = 0)
         {
@@ -60,15 +63,40 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // POST: /Admin/CMSNews/Create
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CMSNewsView model)
+        public ActionResult Create(CMSNewsView model, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _cmsNewsService.AddCMSNews(model);
+                    if (uploadFile != null && uploadFile.ContentLength > 0)
+                    {
+                        ImageUpload imageUpload = new ImageUpload { IsScale = false, SavePath = ImageUpload.LoadPathCMSNews };
+                        ImageResult imageResult = imageUpload.RenameUploadFile(uploadFile);
 
-                    return RedirectToAction("Index");
+                        if (imageResult.Success)
+                        {
+                            // Add new image to database
+                            var photo = new share_Images
+                            {
+                                ImageName = imageResult.ImageName,
+                                ImagePath = imageResult.ImagePath
+                            };
+                            var imageId = _productService.AddImage(photo);
+                            if (imageId != null)
+                            {
+                                // Add banner
+                                model.CoverImageId = imageId.Value;
+                                _cmsNewsService.AddCMSNews(model);
+
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.Error = imageResult.ErrorMessage;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -101,12 +129,38 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         // POST: /Admin/CMSNews/Edit/5
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CMSNewsView model)
+        public ActionResult Edit(CMSNewsView model, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (uploadFile != null && uploadFile.ContentLength > 0)
+                    {
+                        ImageUpload imageUpload = new ImageUpload { IsScale = false, SavePath = ImageUpload.LoadPathCMSNews };
+                        ImageResult imageResult = imageUpload.RenameUploadFile(uploadFile);
+
+                        if (imageResult.Success)
+                        {
+                            // Add new image to database
+                            var photo = new share_Images
+                            {
+                                ImageName = imageResult.ImageName,
+                                ImagePath = imageResult.ImagePath
+                            };
+                            var imageId = _productService.AddImage(photo);
+                            if (imageId != null)
+                            {
+                                // Add banner
+                                model.CoverImageId = imageId.Value;
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.Error = imageResult.ErrorMessage;
+                        }
+                    }
+
                     _cmsNewsService.EditCMSNews(model);
 
                     return RedirectToAction("Index");

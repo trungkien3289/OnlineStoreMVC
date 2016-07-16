@@ -34,8 +34,10 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<share_Categories> share_Categories { get; set; }
         public virtual DbSet<share_Images> share_Images { get; set; }
         public virtual DbSet<system_Config> system_Config { get; set; }
-        public virtual DbSet<system_Profiles> system_Profiles { get; set; }
         public virtual DbSet<system_Menu> system_Menu { get; set; }
+        public virtual DbSet<system_Profiles> system_Profiles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<system_Banners> system_Banners { get; set; }
         public virtual DbSet<cms_News> cms_News { get; set; }
     }
 }

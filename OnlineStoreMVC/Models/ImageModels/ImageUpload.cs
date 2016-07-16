@@ -11,28 +11,35 @@ namespace OnlineStoreMVC.Models.ImageModels
 {
     public class ImageUpload
     {
+        public static readonly string LoadPath = "/Content/Images/ProductImages/";
+        public static readonly string LoadPathCMSNews = "/Content/Images/CMSNewsImages/";
+        public static readonly string LoadPathBanners = "/Content/Images/Banners/";
+
         // set default size here
         public int Width { get; set; }
-
         public int Height { get; set; }
+        public string SavePath { get; set; }
+        // default = true
+        public bool? IsScale { get; set; }
 
-        // folder for the upload, you can put this in the web.config
-        public static readonly string LoadPath = "/Content/Images/ProductImages/";
-        public static readonly string UploadPath = "~" + LoadPath;
+        public ImageUpload()
+        {
+            // Default path
+            if (string.IsNullOrEmpty(SavePath))
+            {
+                SavePath = LoadPath;
+            }
+        }
 
         public ImageResult RenameUploadFile(HttpPostedFileBase file, Int32 counter = 0)
         {
             var fileName = Path.GetFileName(file.FileName);
-
             string prepend = "item_";
             string finalFileName = prepend + ((counter).ToString()) + "_" + fileName;
-            if (System.IO.File.Exists
-                (HttpContext.Current.Request.MapPath(UploadPath + finalFileName)))
+            if (System.IO.File.Exists(HttpContext.Current.Request.MapPath("~" + SavePath + finalFileName)))
             {
-                //file exists => add country try again
                 return RenameUploadFile(file, ++counter);
             }
-            //file doesn't exist, upload item but validate first
             return UploadFile(file, finalFileName);
         }
 
@@ -40,8 +47,7 @@ namespace OnlineStoreMVC.Models.ImageModels
         {
             ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
 
-            var path =
-          Path.Combine(HttpContext.Current.Request.MapPath(UploadPath), fileName);
+            var path = Path.Combine(HttpContext.Current.Request.MapPath("~" + SavePath), fileName);
             string extension = Path.GetExtension(file.FileName);
 
             //make sure the file is valid
@@ -51,28 +57,28 @@ namespace OnlineStoreMVC.Models.ImageModels
                 imageResult.ErrorMessage = "Invalid Extension";
                 return imageResult;
             }
-
             try
             {
                 file.SaveAs(path);
 
                 Image imgOriginal = Image.FromFile(path);
-
                 //pass in whatever value you want
-                Image imgActual = Scale(imgOriginal);
-                imgOriginal.Dispose();
-                imgActual.Save(path);
-                imgActual.Dispose();
+                if (IsScale == true || IsScale == null)
+                {
+                    Image imgActual = Scale(imgOriginal);
+                    imgOriginal.Dispose();
+                    imgActual.Save(path);
+                    imgActual.Dispose();
+                }
 
                 imageResult.ImageName = fileName;
-
+                imageResult.ImagePath = Path.Combine(SavePath, fileName);
                 return imageResult;
             }
             catch (Exception ex)
             {
                 // you might NOT want to show the exception error for the user
                 // this is generally logging or testing
-
                 imageResult.Success = false;
                 imageResult.ErrorMessage = ex.Message;
                 return imageResult;

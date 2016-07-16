@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="cms_Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,6 +44,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CoverImageId" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="SubTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ContentNews" Type="nvarchar(max)" Nullable="false" />
@@ -177,6 +195,21 @@
           <Property Name="ModifiedBy" Type="uniqueidentifier" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="system_Banners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Type" Type="int" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="system_Config">
           <Key>
             <PropertyRef Name="Id" />
@@ -213,6 +246,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="200" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <Association Name="FK_cms_News_cms_Categories">
           <End Role="cms_Categories" Type="Self.cms_Categories" Multiplicity="1" />
@@ -223,6 +257,18 @@
             </Principal>
             <Dependent Role="cms_News">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cms_News_share_Images">
+          <End Role="share_Images" Type="Self.share_Images" Multiplicity="0..1" />
+          <End Role="cms_News" Type="Self.cms_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cms_News">
+              <PropertyRef Name="CoverImageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,18 +344,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ecom_Products_share_Images">
-          <End Role="share_Images" Type="Self.share_Images" Multiplicity="0..1" />
-          <End Role="ecom_Products" Type="Self.ecom_Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="share_Images">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ecom_Products">
-              <PropertyRef Name="CoverImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_product_OrderDetails_product_Orders">
           <End Role="ecom_Orders" Type="Self.ecom_Orders" Multiplicity="1" />
           <End Role="ecom_OrderDetails" Type="Self.ecom_OrderDetails" Multiplicity="*" />
@@ -322,7 +356,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_system_Banners_share_Images">
+          <End Role="share_Images" Type="Self.share_Images" Multiplicity="1" />
+          <End Role="system_Banners" Type="Self.system_Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="system_Banners">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OnlineStoreMVCModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cms_Categories" EntityType="Self.cms_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cms_News" EntityType="Self.cms_News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ecom_Brands" EntityType="Self.ecom_Brands" Schema="dbo" store:Type="Tables" />
@@ -334,11 +381,16 @@
           <EntitySet Name="ecom_Products_Images" EntityType="Self.ecom_Products_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="share_Categories" EntityType="Self.share_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="share_Images" EntityType="Self.share_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="system_Banners" EntityType="Self.system_Banners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Config" EntityType="Self.system_Config" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Menu" EntityType="Self.system_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Profiles" EntityType="Self.system_Profiles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_cms_News_cms_Categories" Association="Self.FK_cms_News_cms_Categories">
             <End Role="cms_Categories" EntitySet="cms_Categories" />
+            <End Role="cms_News" EntitySet="cms_News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cms_News_share_Images" Association="Self.FK_cms_News_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
             <End Role="cms_News" EntitySet="cms_News" />
           </AssociationSet>
           <AssociationSet Name="FK_ecom_OrderDetails_ecom_Products" Association="Self.FK_ecom_OrderDetails_ecom_Products">
@@ -365,13 +417,13 @@
             <End Role="share_Images" EntitySet="share_Images" />
             <End Role="ecom_Products_Images" EntitySet="ecom_Products_Images" />
           </AssociationSet>
-          <AssociationSet Name="FK_ecom_Products_share_Images" Association="Self.FK_ecom_Products_share_Images">
-            <End Role="share_Images" EntitySet="share_Images" />
-            <End Role="ecom_Products" EntitySet="ecom_Products" />
-          </AssociationSet>
           <AssociationSet Name="FK_product_OrderDetails_product_Orders" Association="Self.FK_product_OrderDetails_product_Orders">
             <End Role="ecom_Orders" EntitySet="ecom_Orders" />
             <End Role="ecom_OrderDetails" EntitySet="ecom_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_system_Banners_share_Images" Association="Self.FK_system_Banners_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="system_Banners" EntitySet="system_Banners" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -527,6 +579,8 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ecom_Products" Relationship="Self.ecom_Products_Images" FromRole="share_Images" ToRole="ecom_Products" />
           <NavigationProperty Name="ecom_Products1" Relationship="OnlineStoreMVCModel.FK_ecom_Products_share_Images" FromRole="share_Images" ToRole="ecom_Products" />
+          <NavigationProperty Name="system_Banners" Relationship="OnlineStoreMVCModel.FK_system_Banners_share_Images" FromRole="share_Images" ToRole="system_Banners" />
+          <NavigationProperty Name="cms_News" Relationship="OnlineStoreMVCModel.FK_cms_News_share_Images" FromRole="share_Images" ToRole="cms_News" />
         </EntityType>
         <EntityType Name="system_Config">
           <Key>
@@ -536,17 +590,6 @@
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" />
-        </EntityType>
-        <EntityType Name="system_Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Emaill" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ecom_Products_ecom_Brands">
           <End Role="ecom_Brands" Type="Self.ecom_Brands" Multiplicity="0..1" />
@@ -602,7 +645,6 @@
           <EntitySet Name="share_Categories" EntityType="Self.share_Categories" />
           <EntitySet Name="share_Images" EntityType="Self.share_Images" />
           <EntitySet Name="system_Config" EntityType="Self.system_Config" />
-          <EntitySet Name="system_Profiles" EntityType="Self.system_Profiles" />
           <AssociationSet Name="FK_ecom_Products_ecom_Brands" Association="Self.FK_ecom_Products_ecom_Brands">
             <End Role="ecom_Brands" EntitySet="ecom_Brands" />
             <End Role="ecom_Products" EntitySet="ecom_Products" />
@@ -624,14 +666,25 @@
             <End Role="share_Images" EntitySet="share_Images" />
           </AssociationSet>
           <EntitySet Name="system_Menu" EntityType="OnlineStoreMVCModel.system_Menu" />
+          <AssociationSet Name="FK_ecom_Products_share_Images" Association="OnlineStoreMVCModel.FK_ecom_Products_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="ecom_Products" EntitySet="ecom_Products" />
+          </AssociationSet>
+          <EntitySet Name="system_Profiles" EntityType="OnlineStoreMVCModel.system_Profiles" />
+          <EntitySet Name="AspNetUsers" EntityType="OnlineStoreMVCModel.AspNetUser" />
+          <EntitySet Name="system_Banners" EntityType="OnlineStoreMVCModel.system_Banners" />
+          <AssociationSet Name="FK_system_Banners_share_Images" Association="OnlineStoreMVCModel.FK_system_Banners_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="system_Banners" EntitySet="system_Banners" />
+          </AssociationSet>
           <EntitySet Name="cms_News" EntityType="OnlineStoreMVCModel.cms_News" />
           <AssociationSet Name="FK_cms_News_cms_Categories" Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories">
             <End Role="cms_Categories" EntitySet="cms_Categories" />
             <End Role="cms_News" EntitySet="cms_News" />
           </AssociationSet>
-          <AssociationSet Name="FK_ecom_Products_share_Images" Association="OnlineStoreMVCModel.FK_ecom_Products_share_Images">
+          <AssociationSet Name="FK_cms_News_share_Images" Association="OnlineStoreMVCModel.FK_cms_News_share_Images">
             <End Role="share_Images" EntitySet="share_Images" />
-            <End Role="ecom_Products" EntitySet="ecom_Products" />
+            <End Role="cms_News" EntitySet="cms_News" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="system_Menu">
@@ -651,12 +704,82 @@
           <Property Name="ModifiedBy" Type="Guid" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <Association Name="FK_ecom_Products_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
+          <End Type="OnlineStoreMVCModel.ecom_Products" Role="ecom_Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ecom_Products">
+              <PropertyRef Name="CoverImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="system_Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Emaill" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="system_Banners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_system_Banners_share_Images" FromRole="system_Banners" ToRole="share_Images" />
+        </EntityType>
+        <Association Name="FK_system_Banners_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="1" />
+          <End Type="OnlineStoreMVCModel.system_Banners" Role="system_Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="system_Banners">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="cms_News">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CoverImageId" Type="Int32" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="SubTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ContentNews" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -670,6 +793,7 @@
           <Property Name="ModifiedBy" Type="Guid" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="cms_Categories" Relationship="OnlineStoreMVCModel.FK_cms_News_cms_Categories" FromRole="cms_News" ToRole="cms_Categories" />
+          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_cms_News_share_Images" FromRole="cms_News" ToRole="share_Images" />
         </EntityType>
         <Association Name="FK_cms_News_cms_Categories">
           <End Type="OnlineStoreMVCModel.cms_Categories" Role="cms_Categories" Multiplicity="1" />
@@ -683,14 +807,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ecom_Products_share_Images">
+        <Association Name="FK_cms_News_share_Images">
           <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
-          <End Type="OnlineStoreMVCModel.ecom_Products" Role="ecom_Products" Multiplicity="*" />
+          <End Type="OnlineStoreMVCModel.cms_News" Role="cms_News" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="share_Images">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ecom_Products">
+            <Dependent Role="cms_News">
               <PropertyRef Name="CoverImageId" />
             </Dependent>
           </ReferentialConstraint>
@@ -856,18 +980,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="system_Profiles">
-            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Profiles">
-              <MappingFragment StoreEntitySet="system_Profiles">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Emaill" ColumnName="Emaill" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="ecom_Products_Categories" TypeName="OnlineStoreMVCModel.ecom_Products_Categories" StoreEntitySet="ecom_Products_Categories">
             <EndProperty Name="ecom_Categories">
               <ScalarProperty Name="Id" ColumnName="CategoryId" />
@@ -902,6 +1014,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="system_Profiles">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Profiles">
+              <MappingFragment StoreEntitySet="system_Profiles">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Emaill" ColumnName="Emaill" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_Banners">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Banners">
+              <MappingFragment StoreEntitySet="system_Banners">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cms_News">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.cms_News">
               <MappingFragment StoreEntitySet="cms_News">
@@ -917,6 +1076,7 @@
                 <ScalarProperty Name="ContentNews" ColumnName="ContentNews" />
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CoverImageId" ColumnName="CoverImageId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

@@ -155,9 +155,9 @@
                                     {
                                         @Html.AntiForgeryToken()
 
-                                        <ul class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right" style="margin-right: 0px !important;">
                                             <li>
-                                                @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                                @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + ", ", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                                             </li>
                                             <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="glyphicon glyphicon-log-out"></i> Thoát</a></li>
                                         </ul>
@@ -165,6 +165,8 @@
                                 }
                                 else
                                 {
+                                    <a href="/Account/Register">Đăng ký</a>
+                                    <span>|</span>
                                     <a href="/Account/Login">Đăng nhập</a>
                                 }
                             </div>

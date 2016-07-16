@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineStore.Service.Implements;
+using OnlineStore.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +27,12 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult BannerPartial()
+        {
+            IBannerService _bannerService = new BannerService();
+            return PartialView(_bannerService.GetBannersForHomePage());
         }
     }
 }

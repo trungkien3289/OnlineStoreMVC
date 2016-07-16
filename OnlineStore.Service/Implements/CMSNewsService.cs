@@ -47,6 +47,7 @@ namespace OnlineStore.Service.Implements
                     var cmsNews = new cms_News
                     {
                         CategoryId = cmsNewsView.CategoryId,
+                        CoverImageId = cmsNewsView.CoverImageId,
                         Title = cmsNewsView.Title,
                         SubTitle = cmsNewsView.SubTitle,
                         ContentNews = cmsNewsView.ContentNews,
@@ -78,6 +79,7 @@ namespace OnlineStore.Service.Implements
                 {
                     var news = db.cms_News.Find(cmsNewsView.Id);
                     news.CategoryId = cmsNewsView.CategoryId;
+                    news.CoverImageId = cmsNewsView.CoverImageId;
                     news.Title = cmsNewsView.Title;
                     news.SubTitle = cmsNewsView.SubTitle;
                     news.ContentNews = cmsNewsView.ContentNews;
@@ -110,6 +112,9 @@ namespace OnlineStore.Service.Implements
                 {
                     Id = news.Id,
                     CategoryId = news.CategoryId,
+                    CoverImageId = news.CoverImageId,
+                    CoverImageName = news.share_Images.ImageName,
+                    CoverImagePath = news.share_Images.ImagePath,
                     Title = news.Title,
                     SubTitle = news.SubTitle,
                     ContentNews = news.ContentNews,

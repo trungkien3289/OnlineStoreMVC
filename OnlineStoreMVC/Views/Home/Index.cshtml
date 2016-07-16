@@ -2,44 +2,11 @@
     ViewBag.Title = "Trang chủ";
 }
 
-<script>
-    $(document).ready(function () {
-        $('#homeslider').bxSlider({
-            auto: true,
-            pager: false,
-            controls: false,
-            minSlides: 2
-        });
-    });
-</script>
-
 <div id="columns" class="container">
     <div id="slider_row" class="row">
         <div id="top_column" class="center_column col-xs-12 col-sm-12">
-            <div id="homepage-slider">
-                <ul id="homeslider">
-                    <li class="homeslider-container">
-                        <a href="#" title="sample-1">
-                            <img src="~/Content/template/images/3a5665a553a21342177dc39236c79ab1338d49f6_slide1.jpg" width="1770" height="721" alt="sample-1">
-                        </a>
-                    </li>
-                    <li class="homeslider-container">
-                        <a href="#" title="sample-2">
-                            <img src="~/Content/template/images/bea785a5af97581f4004230d1c05cb97f8c7b61b_slide2.jpg" width="1770" height="721" alt="sample-2">
-                        </a>
-                    </li>
-                    <li class="homeslider-container">
-                        <a href="#" title="sample-3">
-                            <img src="~/Content/template/images/20310f766be96a80b0b5cbe6c22e0b99881d361d_slide3.jpg" width="1770" height="721" alt="sample-3">
-                        </a>
-                    </li>
-                    <li class="homeslider-container">
-                        <a href="#" title="sample-4">
-                            <img src="~/Content/template/images/5bd3cda4c18514373015cd9a3ac73fef8ec938eb_slide4.jpg" width="1770" height="721" alt="sample-4">
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            
+            @Html.Action("BannerPartial")
 
             <div id="htmlcontent_top">
                 <ul class="htmlcontent-home clearfix row">
@@ -75,6 +42,7 @@
         </div>
     </div>
 </div>
+
 <div class="home-column">
 
 </div>

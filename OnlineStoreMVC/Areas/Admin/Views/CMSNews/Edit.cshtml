@@ -35,12 +35,22 @@
                 </div>
                 <div class="box-body">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Edit", "CMSNews", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.CoverImageId)
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="ImageBanner">Ảnh banner</label>
+                                <div class="col-md-10">
+                                    <img src="@(Model.CoverImagePath)" />
+                                    <input type="file" id="ImageBanner" name="uploadFile" />
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-2" for="CategoryId">Thể loại</label>

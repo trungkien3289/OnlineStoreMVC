@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseManagementController
     {
         private IMenuService _menuService = new MenuService();
 
