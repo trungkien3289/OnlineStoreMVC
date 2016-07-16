@@ -14,9 +14,8 @@ using OnlineStore.Model.ViewModel;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
-    public class ProfileController : Controller
+    public class ProfileController : BaseManagementController
     {
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
         private IProfileService _profileService = new ProfileService();
 
         // GET: /Admin/Profile/
@@ -29,21 +28,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             return View(pageProfiles);
         }
 
-        // GET: /Admin/Profile/Details/5
-        public ActionResult Details(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            system_Profiles system_profiles = db.system_Profiles.Find(id);
-            if (system_profiles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(system_profiles);
-        }
-
         // GET: /Admin/Profile/Create
         public ActionResult Create()
         {
@@ -51,17 +35,15 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         }
 
         // POST: /Admin/Profile/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="UserId,UserName,Emaill,Password,Phone,Address")] system_Profiles system_profiles)
         {
             if (ModelState.IsValid)
             {
-                system_profiles.UserId = Guid.NewGuid();
-                db.system_Profiles.Add(system_profiles);
-                db.SaveChanges();
+                //system_profiles.UserId = Guid.NewGuid();
+                //db.system_Profiles.Add(system_profiles);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -75,25 +57,25 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            system_Profiles system_profiles = db.system_Profiles.Find(id);
-            if (system_profiles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(system_profiles);
+            //system_Profiles system_profiles = db.system_Profiles.Find(id);
+            //if (system_profiles == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(system_profiles);
+
+            return View();
         }
 
         // POST: /Admin/Profile/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="UserId,UserName,Emaill,Password,Phone,Address")] system_Profiles system_profiles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(system_profiles).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(system_profiles).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(system_profiles);
@@ -104,15 +86,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             _profileService.DeleteProfile(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

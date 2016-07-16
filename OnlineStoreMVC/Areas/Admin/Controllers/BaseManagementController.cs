@@ -25,5 +25,19 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
             ViewBag.Status = items;
         }
+
+        protected virtual void PopulateBannerTypesDropDownList(Define.BannerTypes banner = Define.BannerTypes.SpringSeason)
+        {
+            IEnumerable<Define.BannerTypes> values = Enum.GetValues(typeof(Define.BannerTypes)).Cast<Define.BannerTypes>();
+            IEnumerable<SelectListItem> items = from value in values
+                                                select new SelectListItem
+                                                {
+                                                    Text = EnumHelper.GetDescriptionFromEnum((Define.BannerTypes)value),
+                                                    Value = ((int)value).ToString(),
+                                                    Selected = value == banner,
+                                                };
+
+            ViewBag.Type = items;
+        }
     }
 }

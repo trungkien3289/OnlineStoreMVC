@@ -1,17 +1,17 @@
 ﻿@using PagedList.Mvc
 @using PagedList;
 
-@model IPagedList<OnlineStore.Model.ViewModel.ProfileViewModel>
+@model IPagedList<OnlineStore.Model.ViewModel.BannerViewModel>
 
 @{
-    ViewBag.Title = "Quản trị người dùng";
+    ViewBag.Title = "Banner";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Danh sách người dùng
+        Danh sách banner
         <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
@@ -24,7 +24,7 @@
 <section class="content">
     <div class="row">
         <div class="box-tools pull-right" style="padding-right: 15px; padding-bottom: 10px;">
-            @*@Html.ActionLink("Tạo mới người dùng", "Create", "Profile", null, new { @class = "btn btn-primary btn-sm" })*@
+            @Html.ActionLink("Tạo mới banner", "Create", "Banner", null, new { @class = "btn btn-primary btn-sm" })
         </div>
     </div>
     <div class="row">
@@ -33,20 +33,15 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Danh sách</h3>
                 </div>
+
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
                             <th>
-                                Email
+                                Banner
                             </th>
                             <th>
-                                Mật khẩu
-                            </th>
-                            <th>
-                                Số điện thoại
-                            </th>
-                            <th>
-                                Địa chỉ
+                                Loại
                             </th>
                             <th style="width: 100px;">
                                 Tình trạng
@@ -56,35 +51,32 @@
 
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr id="row_@item.Id">
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Emaill)
+                                    @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Password)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Phone)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
+                                    <span>@OnlineStore.Infractructure.Helper.EnumHelper.GetDescriptionFromEnum((OnlineStore.Infractructure.Utility.Define.BannerTypes)item.Type)</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="glyphicon @(item.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active ? "glyphicon-ok" : "glyphicon-remove")"></span>
                                 </td>
                                 <td>
-                                    @*@Html.ActionLink(" ", "Edit", new { id = item.UserId }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) |*@
-                                    @Ajax.ActionLink(" ", "Delete", new { @id = item.UserId }, new AjaxOptions
+                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                                    @Ajax.ActionLink(" ", "Delete", new { @id = item.Id }, new AjaxOptions
                                    {
                                        Confirm = "Bạn có muốn xoá bản ghi này?",
-                                       OnComplete = "$('#row_" + @item.UserId + "').remove()",
+                                       OnComplete = "$('#row_" + @item.Id + "').remove()",
                                        HttpMethod = "Delete"
                                    }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+
                                 </td>
                             </tr>
                         }
+
                     </table>
                 </div>
+
                 <div class="box-footer clearfix">
                     @Html.PagedListPager(Model, page =>
                                 Url.Action("Index", new
@@ -97,3 +89,5 @@
         </div>
     </div>
 </section>
+
+

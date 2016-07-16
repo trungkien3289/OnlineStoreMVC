@@ -38,5 +38,6 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<cms_News> cms_News { get; set; }
         public virtual DbSet<system_Profiles> system_Profiles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<system_Banners> system_Banners { get; set; }
     }
 }

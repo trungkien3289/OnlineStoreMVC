@@ -194,6 +194,21 @@
           <Property Name="ModifiedBy" Type="uniqueidentifier" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="system_Banners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Type" Type="int" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="system_Config">
           <Key>
             <PropertyRef Name="Id" />
@@ -328,6 +343,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_system_Banners_share_Images">
+          <End Role="share_Images" Type="Self.share_Images" Multiplicity="1" />
+          <End Role="system_Banners" Type="Self.system_Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="system_Banners">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OnlineStoreMVCModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cms_Categories" EntityType="Self.cms_Categories" Schema="dbo" store:Type="Tables" />
@@ -341,6 +368,7 @@
           <EntitySet Name="ecom_Products_Images" EntityType="Self.ecom_Products_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="share_Categories" EntityType="Self.share_Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="share_Images" EntityType="Self.share_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="system_Banners" EntityType="Self.system_Banners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Config" EntityType="Self.system_Config" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Menu" EntityType="Self.system_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system_Profiles" EntityType="Self.system_Profiles" Schema="dbo" store:Type="Tables" />
@@ -375,6 +403,10 @@
           <AssociationSet Name="FK_product_OrderDetails_product_Orders" Association="Self.FK_product_OrderDetails_product_Orders">
             <End Role="ecom_Orders" EntitySet="ecom_Orders" />
             <End Role="ecom_OrderDetails" EntitySet="ecom_OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_system_Banners_share_Images" Association="Self.FK_system_Banners_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="system_Banners" EntitySet="system_Banners" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -530,6 +562,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ecom_Products" Relationship="Self.ecom_Products_Images" FromRole="share_Images" ToRole="ecom_Products" />
           <NavigationProperty Name="ecom_Products1" Relationship="OnlineStoreMVCModel.FK_ecom_Products_share_Images" FromRole="share_Images" ToRole="ecom_Products" />
+          <NavigationProperty Name="system_Banners" Relationship="OnlineStoreMVCModel.FK_system_Banners_share_Images" FromRole="share_Images" ToRole="system_Banners" />
         </EntityType>
         <EntityType Name="system_Config">
           <Key>
@@ -626,6 +659,11 @@
           </AssociationSet>
           <EntitySet Name="system_Profiles" EntityType="OnlineStoreMVCModel.system_Profiles" />
           <EntitySet Name="AspNetUsers" EntityType="OnlineStoreMVCModel.AspNetUser" />
+          <EntitySet Name="system_Banners" EntityType="OnlineStoreMVCModel.system_Banners" />
+          <AssociationSet Name="FK_system_Banners_share_Images" Association="OnlineStoreMVCModel.FK_system_Banners_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="system_Banners" EntitySet="system_Banners" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="system_Menu">
           <Key>
@@ -717,6 +755,34 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="system_Banners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_system_Banners_share_Images" FromRole="system_Banners" ToRole="share_Images" />
+        </EntityType>
+        <Association Name="FK_system_Banners_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="1" />
+          <End Type="OnlineStoreMVCModel.system_Banners" Role="system_Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="system_Banners">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -959,6 +1025,22 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_Banners">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.system_Banners">
+              <MappingFragment StoreEntitySet="system_Banners">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

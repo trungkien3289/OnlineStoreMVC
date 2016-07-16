@@ -98,6 +98,9 @@
     <Compile Include="Context\share_Images.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\system_Banners.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\system_Config.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
@@ -119,6 +122,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="ViewModel\BannerViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\CMSNewsView.cs" />
     <Compile Include="ViewModel\CMSCategoryView.cs" />
