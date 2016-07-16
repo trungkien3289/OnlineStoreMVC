@@ -47,7 +47,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             {
                 if (uploadFile != null && uploadFile.ContentLength > 0)
                 {
-                    ImageUpload imageUpload = new ImageUpload { };
+                    ImageUpload imageUpload = new ImageUpload { IsScale = false, SavePath = ImageUpload.LoadPathBanners };
                     ImageResult imageResult = imageUpload.RenameUploadFile(uploadFile);
 
                     if (imageResult.Success)
@@ -56,7 +56,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                         var photo = new share_Images
                         {
                             ImageName = imageResult.ImageName,
-                            ImagePath = Path.Combine(ImageUpload.LoadPath, imageResult.ImageName)
+                            ImagePath = imageResult.ImagePath
                         };
                         var imageId = _productService.AddImage(photo);
                         if (imageId != null)
@@ -105,7 +105,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             {
                 if (uploadFile != null && uploadFile.ContentLength > 0)
                 {
-                    ImageUpload imageUpload = new ImageUpload { };
+                    ImageUpload imageUpload = new ImageUpload { IsScale = false, SavePath = ImageUpload.LoadPathBanners };
                     ImageResult imageResult = imageUpload.RenameUploadFile(uploadFile);
 
                     if (imageResult.Success)
@@ -114,7 +114,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                         var photo = new share_Images
                         {
                             ImageName = imageResult.ImageName,
-                            ImagePath = Path.Combine(ImageUpload.LoadPath, imageResult.ImageName)
+                            ImagePath = imageResult.ImagePath
                         };
                         var imageId = _productService.AddImage(photo);
                         if (imageId != null)

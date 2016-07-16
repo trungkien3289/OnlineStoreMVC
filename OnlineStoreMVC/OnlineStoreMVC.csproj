@@ -2018,6 +2018,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Content\Images\Banners\" />
+    <Folder Include="Content\Images\CMSNewsImages\" />
     <Folder Include="Content\Images\ProductImages\" />
   </ItemGroup>
   <ItemGroup>

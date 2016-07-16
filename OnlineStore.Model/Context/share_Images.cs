@@ -20,6 +20,7 @@ namespace OnlineStore.Model.Context
             this.ecom_Products = new HashSet<ecom_Products>();
             this.ecom_Products1 = new HashSet<ecom_Products>();
             this.system_Banners = new HashSet<system_Banners>();
+            this.cms_News = new HashSet<cms_News>();
         }
     
         public int Id { get; set; }
@@ -37,5 +38,7 @@ namespace OnlineStore.Model.Context
         public virtual ICollection<ecom_Products> ecom_Products1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<system_Banners> system_Banners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cms_News> cms_News { get; set; }
     }
 }

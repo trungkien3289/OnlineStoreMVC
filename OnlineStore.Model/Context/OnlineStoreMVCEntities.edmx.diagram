@@ -20,13 +20,14 @@
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_Images" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Menu" Width="1.5" PointX="12.375" PointY="11.75" />
-        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_News" Width="1.5" PointX="10" PointY="8.625" />
-        <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_ecom_Products_share_Images" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Profiles" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.AspNetUser" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.system_Banners" Width="1.5" PointX="7.625" PointY="17.875" />
         <AssociationConnector Association="OnlineStoreMVCModel.FK_system_Banners_share_Images" />
+        <EntityTypeShape EntityType="OnlineStoreMVCModel.cms_News" Width="1.5" PointX="10" PointY="7.875" />
+        <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories" />
+        <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_share_Images" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
