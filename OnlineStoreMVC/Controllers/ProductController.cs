@@ -13,10 +13,16 @@ using OnlineStore.Infractructure.Helper;
 
 namespace OnlineStoreMVC.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
-        public IDisplayProductService service = new DisplayProductService();
+        #region properties
+
+        //public IDisplayProductService service = new DisplayProductService();
         private static int productPerPage = 10;
+
+        #endregion
+
+        #region private functions
 
         /// <summary>
         /// Genarate initial Request object to get list product after category
@@ -57,7 +63,33 @@ namespace OnlineStoreMVC.Controllers
             return productSeachRequest;
         }
 
-        // GET: Product
+        /// <summary>
+        /// Create SelectList sort product options using for dropdownlist
+        /// </summary>
+        /// <param name="option">selected option</param>
+        /// <returns></returns>
+        private void PopulateStatusDropDownList(ProductsSortBy option = ProductsSortBy.ProductNameAToZ)
+        {
+            IEnumerable<ProductsSortBy> values = Enum.GetValues(typeof(ProductsSortBy)).Cast<ProductsSortBy>();
+            IEnumerable<SelectListItem> items = from value in values
+                                                select new SelectListItem
+                                                {
+                                                    Text = EnumHelper.GetDescriptionFromEnum((ProductsSortBy)value),
+                                                    Value = ((int)value).ToString(),
+                                                    Selected = value == option,
+                                                };
+
+            ViewBag.SortProductOptionsSelectListItems = items;
+        }
+
+        #endregion
+
+        #region controller actions
+
+        /// <summary>
+        /// Display product index
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -77,6 +109,9 @@ namespace OnlineStoreMVC.Controllers
             GetProductsByCategoryRequest request = CreateInitialProductSearchRequest((int)id);
             GetProductsByCategoryResponse response = service.GetProductsByCategory(request);
             PopulateStatusDropDownList();
+            PopulateNewProductList();
+            PopulateBestSellProductList();
+            PopulateCategoryList();
             return View("DisplayProducts",response);
         }
 
@@ -91,14 +126,6 @@ namespace OnlineStoreMVC.Controllers
             GetProductsByCategoryRequest productSearchRequest = GenarateProductSeachRequest(request);
             GetProductsByCategoryResponse response = service.GetProductsByCategory(productSearchRequest);
             return Json(response);
-            //return new ActionResult()
-            
-            //new GetProductsByAjaxResponse()
-            //{
-            //    Success = true,
-            //    ListProductView = View("ListProduct", response.Products),
-            //    Model = response
-            //};
         }
 
         /// <summary>
@@ -113,27 +140,12 @@ namespace OnlineStoreMVC.Controllers
             }
 
             ProductDetailsView product = service.GetProductDetails((int)id);
+            PopulateNewProductList();
+            PopulateCategoryList();
 
             return View("ProductDetails", product);
         }
 
-        /// <summary>
-        /// Create SelectList sort product options using for dropdownlist
-        /// </summary>
-        /// <param name="option">selected option</param>
-        /// <returns></returns>
-        private void PopulateStatusDropDownList(ProductsSortBy option = ProductsSortBy.ProductNameAToZ)
-        {
-            IEnumerable<ProductsSortBy> values = Enum.GetValues(typeof(ProductsSortBy)).Cast<ProductsSortBy>();
-            IEnumerable<SelectListItem> items = from value in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = EnumHelper.GetDescriptionFromEnum((ProductsSortBy)value),
-                                                    Value = ((int)value).ToString(),
-                                                    Selected = value == option,
-                                                };
-
-            ViewBag.SortProductOptionsSelectListItems = items;
-        }
+        #endregion
     }
 }

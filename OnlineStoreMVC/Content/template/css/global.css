@@ -7029,7 +7029,9 @@ div.star.star_hover:after {
   .accessories-block .block_content .bx-wrapper img,
   #productscategory_list .bx-wrapper img {
     max-width: 100%;
-    display: block; }
+    display: block; 
+    height:150px;
+  }
   #crossselling_list .bx-wrapper .bx-pager,
   #crossselling_list .bx-wrapper .bx-controls-auto,
   .accessories-block .block_content .bx-wrapper .bx-pager,

@@ -53,13 +53,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\AspNetRole.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\AspNetUser.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AspNetUserClaim.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AspNetUserLogin.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\cms_Categories.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\cms_News.cs">
+      <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\C__MigrationHistory.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\ecom_Brands.cs">

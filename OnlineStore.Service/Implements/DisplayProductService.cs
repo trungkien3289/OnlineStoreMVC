@@ -147,7 +147,7 @@ namespace OnlineStore.Service.Implements
                     Id = product.Id,
                     ProductCode = product.ProductCode,
                     Name = product.Name,
-                    Price = product.Price,
+                    Price = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:c}", product.Price),
                     BrandName = product.ecom_Brands.Name,
                     CoverImageUrl = product.CoverImage.ImagePath,
                     Description = product.Description,
@@ -160,6 +160,48 @@ namespace OnlineStore.Service.Implements
 
                 return productViewModel;
             }
+        }
+
+        /// <summary>
+        /// Get list new product in system
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ProductSummaryView> GetAllNewProduct()
+        {
+            IEnumerable<ecom_Products> products = db.Get(filter: p => p.IsNewProduct == true && p.Status == (int)Define.Status.Active).Take(10);
+
+            return products.ConvertToProductSummaryViews();
+        }
+
+        /// <summary>
+        /// Get list best sell product
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ProductSummaryView> GetAllBestSellProduct()
+        {
+            IEnumerable<ecom_Products> products = db.Get(filter: p => p.IsBestSellProduct == true && p.Status == (int)Define.Status.Active).Take(10);
+
+            return products.ConvertToProductSummaryViews();
+        }
+
+        /// <summary>
+        /// Get list product have high priority order
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ProductSummaryView> GetListHighPriorityOrderProduct()
+        {
+            IEnumerable<ecom_Products> products = db.Get(filter: p => p.Status == (int)Define.Status.Active, orderBy:p => p.OrderBy(x =>x.SortOrder) ).Take(10);
+
+            return products.ConvertToProductSummaryViews();
+        }
+
+        /// <summary>
+        /// Get list summary category, which have status is Active or Deactive
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SummaryCategoryViewModel> GetTopCategories()
+        {
+            return categoryRepository.GetAllCategoriesWithoutDelete().ConvertToIndexCategoryViews();
         }
 
         #endregion

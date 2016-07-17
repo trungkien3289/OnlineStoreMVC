@@ -52,3 +52,15 @@
     margin-left:15px;
     font-style:italic;
 }
+
+/* css for vertical list product on the left panel */
+.productimage-verticallistproduct{
+    width:98px!important;
+    height:98px!important;
+}
+
+/* css for list product on main content panel */
+.productimage-listproduct-displayproductview{
+    width:250px!important;
+    height:250px!important;
+}

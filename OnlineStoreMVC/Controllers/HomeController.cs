@@ -8,10 +8,14 @@ using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+            PopulateNewProductList();
+            PopulateBestSellProductList();
+            PopulateCategoryList();
+            PopulateHighPriorityOrderProductList();
             return View();
         }
 

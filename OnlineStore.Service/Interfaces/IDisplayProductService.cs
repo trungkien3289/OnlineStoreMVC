@@ -12,5 +12,9 @@ namespace OnlineStore.Service.Interfaces
     {
         GetProductsByCategoryResponse GetProductsByCategory(GetProductsByCategoryRequest request);
         ProductDetailsView GetProductDetails(int id);
+        IEnumerable<ProductSummaryView> GetAllNewProduct();
+        IEnumerable<ProductSummaryView> GetAllBestSellProduct();
+        IEnumerable<ProductSummaryView> GetListHighPriorityOrderProduct();
+        IEnumerable<SummaryCategoryViewModel> GetTopCategories();
     }
 }
