@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using LinqKit;
 
 namespace OnlineStore.Model.Repository
 {
@@ -30,7 +31,7 @@ namespace OnlineStore.Model.Repository
 
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.AsExpandable().Where(filter);
             }
 
             foreach (var includeProperty in includeProperties.Split

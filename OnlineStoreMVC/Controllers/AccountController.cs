@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineStoreMVC.Models;
+using OnlineStore.Service.Implements;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -157,6 +158,18 @@ namespace OnlineStoreMVC.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+                    // Add new profile
+                    var _profileService = new ProfileService();
+                    _profileService.AddProfile(new OnlineStore.Model.ViewModel.ProfileViewModel
+                    {
+                        UserId = Guid.Parse(user.Id),
+                        UserName = model.Email,
+                        Emaill = model.Email,
+                        Password = model.Password,
+                        Phone = model.Phone,
+                        Address = model.Address
+                    });
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

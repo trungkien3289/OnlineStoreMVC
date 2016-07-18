@@ -44,7 +44,9 @@
     <Compile Include="Utility\Define.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\MailHelper.cs" />
+    <Compile Include="Utility\DisplayProductConstants.cs" />
     <Compile Include="Utility\OrderPriority.cs" />
+    <Compile Include="Utility\ProductSortBy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

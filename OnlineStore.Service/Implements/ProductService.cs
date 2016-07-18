@@ -26,6 +26,7 @@ namespace OnlineStore.Service.Implements
 
         #endregion
 
+        #region Functions
         public IEnumerable<ProductSummaryViewModel> GetListProducts()
         {
             IEnumerable<ProductSummaryViewModel> listProducts = db.GetAllProducts().Select(p => new ProductSummaryViewModel()
@@ -202,6 +203,7 @@ namespace OnlineStore.Service.Implements
                 return true;
             }
         }
+
         public ecom_Products GetProductById(int id)
         {
             return db.GetProductById(id);
@@ -331,5 +333,7 @@ namespace OnlineStore.Service.Implements
         {
             return categoryRepository.GetAllActiveCategory();
         }
+
+        #endregion
     }
 }

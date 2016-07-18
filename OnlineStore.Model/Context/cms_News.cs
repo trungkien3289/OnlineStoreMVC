@@ -16,6 +16,7 @@ namespace OnlineStore.Model.Context
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public Nullable<int> CoverImageId { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string ContentNews { get; set; }
@@ -30,5 +31,6 @@ namespace OnlineStore.Model.Context
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         public virtual cms_Categories cms_Categories { get; set; }
+        public virtual share_Images share_Images { get; set; }
     }
 }

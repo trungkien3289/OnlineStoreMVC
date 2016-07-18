@@ -22,7 +22,7 @@ namespace OnlineStore.Model.Context
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
-        public System.Guid Id { get; set; }
+        public string Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }

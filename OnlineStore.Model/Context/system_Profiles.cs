@@ -20,5 +20,6 @@ namespace OnlineStore.Model.Context
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

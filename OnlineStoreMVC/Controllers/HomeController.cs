@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineStore.Service.Implements;
+using OnlineStore.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,10 +8,13 @@ using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+            PopulateNewProductList();
+            PopulateBestSellProductList();            
+            PopulateHighPriorityOrderProductList();
             return View();
         }
 
@@ -25,6 +30,18 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult _HeaderPartial()
+        {
+            PopulateCategoryList();
+            return PartialView();
+        }
+
+        public ActionResult BannerPartial()
+        {
+            IBannerService _bannerService = new BannerService();
+            return PartialView(_bannerService.GetBannersForHomePage());
         }
     }
 }

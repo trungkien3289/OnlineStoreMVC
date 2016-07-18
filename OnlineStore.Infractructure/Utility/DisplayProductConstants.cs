@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Infractructure.Utility
 {
-    public enum Status
+    public static class DisplayProductConstants
     {
-        Active,
-        DeActive,
-        Delete
+        public const int NumberProductPerPage = 10;
+        public const string NoImagePath = @"~\Content\Images\no-image.png";
     }
 }

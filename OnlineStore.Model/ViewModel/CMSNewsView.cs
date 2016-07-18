@@ -11,6 +11,9 @@ namespace OnlineStore.Model.ViewModel
         public int Id { get; set; }
         public int CategoryId { get; set; }
         public string CategoryTitle { get; set; }
+        public int? CoverImageId { get; set; }
+        public string CoverImageName { get; set; }
+        public string CoverImagePath { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string ContentNews { get; set; }
