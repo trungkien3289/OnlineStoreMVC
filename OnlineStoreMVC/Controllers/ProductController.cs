@@ -40,7 +40,25 @@ namespace OnlineStoreMVC.Controllers
             };
 
             return request;
-        } 
+        }
+
+        /// <summary>
+        /// Genarate initial Request of Search product request
+        /// </summary>
+        /// <param name="categoryId">id of selected category</param>
+        /// <returns></returns>
+        private SearchProductRequest CreateInitialSearchRequest(string searchString)
+        {
+            SearchProductRequest request = new SearchProductRequest()
+            {
+                Index = 1,
+                NumberOfResultsPerPage = productPerPage,
+                SortBy = ProductsSortBy.ProductNameAToZ,
+                SearchString = searchString
+            };
+
+            return request;
+        }
 
         /// <summary>
         /// Genarate request object to get list matched products from service
@@ -55,6 +73,26 @@ namespace OnlineStoreMVC.Controllers
                 SortBy = request.SortBy,
                 BeginPrice = request.BeginPrice,
                 EndPrice = request.EndPrice,
+                Index = request.Index,
+                NumberOfResultsPerPage = productPerPage,
+                SearchString = request.SearchString
+            };
+
+            return productSeachRequest;
+        }
+
+        /// <summary>
+        /// Genarate request object to get list matched products from service
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private SearchProductRequest GenarateSeachRequest(SearchProductRequest request)
+        {
+            SearchProductRequest productSeachRequest = new SearchProductRequest()
+            {
+                CategoryIds = request.CategoryIds,
+                BrandIds = request.BrandIds,
+                SortBy = request.SortBy,
                 Index = request.Index,
                 NumberOfResultsPerPage = productPerPage,
                 SearchString = request.SearchString
@@ -144,6 +182,68 @@ namespace OnlineStoreMVC.Controllers
             PopulateCategoryList();
 
             return View("ProductDetails", product);
+        }
+
+        /// <summary>
+        /// Get ProductView contain list product of selected category
+        /// </summary>
+        /// <param name="id">id of category</param>
+        /// <returns></returns>
+        public ActionResult SearchProduct(string searchString, int? searchType)
+        {
+            SearchType type;
+            if (searchType == null)
+            {
+                type = SearchType.SearchString;
+            }
+            else
+            {
+                type = (SearchType)searchType;
+            }
+
+            SearchProductRequest request = CreateInitialSearchRequest(searchString);
+            SearchProductResponse response = service.SearchByProductName(request, type);
+            PopulateStatusDropDownList();
+            PopulateCategoryList();
+
+            switch (type)
+            {
+                case SearchType.AllProduct:
+                    {
+                        @ViewBag.SearchTitle = "Tất cả các sản phẩm";
+                        break;
+                    }
+                case SearchType.SearchString:
+                    {
+                        @ViewBag.SearchTitle = "Từ khóa : "+request.SearchString;
+                        break;
+                    }
+                case SearchType.NewProducts:
+                    {
+                        @ViewBag.SearchTitle = "Sản phẩm mới";
+                        break;
+                    }
+                case SearchType.BestSellProducts:
+                    {
+                        @ViewBag.SearchTitle = "Sản phẩm HOT";
+                        break;
+                    }
+            }
+
+            return View("SearchResult", response);
+        }
+
+        /// <summary>
+        /// Get list product matched conditions
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetSearchProductsByAjax(SearchProductRequest request)
+        {
+            SearchProductRequest productSearchRequest = GenarateSeachRequest(request);
+            SearchProductResponse response = service.SearchByProductName(productSearchRequest,SearchType.SearchString);
+            return Json(response);
         }
 
         #endregion

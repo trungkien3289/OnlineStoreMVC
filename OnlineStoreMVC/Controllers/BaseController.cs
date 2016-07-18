@@ -43,7 +43,7 @@ namespace OnlineStoreMVC.Controllers
         }
 
         /// <summary>
-        /// Create list category in system
+        /// Create list category using in top horizontal menu bar
         /// </summary>
         protected void PopulateCategoryList()
         {

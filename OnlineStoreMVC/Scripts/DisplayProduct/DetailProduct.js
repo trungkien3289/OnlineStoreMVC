@@ -9,6 +9,21 @@
             $("#CoverImage").attr("src", imagePath);
             //$(".zoom-image-area").css("background", "url('" + imagePath + "') no-repeat;")
         });
+
+        // search control
+        $("#SearchProduct_Btn").unbind("click").bind("click", function (e) {
+            searchProduct();
+        });
+        $("#tmsearch #tm_search_query").unbind("keypress").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                searchProduct();
+            }
+        });
+
+        function searchProduct() {
+            var searchString = $("#tmsearch #tm_search_query").val();
+            window.location.replace("/Product/SearchProduct?searchString=" + searchString);
+        }
     },
     initZoomImageControl: function () {
         var native_width = 0;

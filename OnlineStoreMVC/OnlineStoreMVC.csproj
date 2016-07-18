@@ -506,6 +506,7 @@
     <Content Include="Content\display-product\display-product-view.css" />
     <Content Include="Content\display-product\horizontal-list-product-bar.css" />
     <Content Include="Content\display-product\product.css" />
+    <Content Include="Content\display-product\search-result.css" />
     <Content Include="Content\dist\css\AdminLTE.addon.css" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
@@ -1604,6 +1605,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisplayProduct\DetailProduct.js" />
     <Content Include="Scripts\DisplayProduct\DisplayProduct.js" />
+    <Content Include="Scripts\DisplayProduct\SearchProductResult.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1803,6 +1805,7 @@
     <Content Include="Template\Frontend\Garden\js\wp-emoji-release.min.js" />
     <Content Include="Template\Frontend\Garden\product.html" />
     <Content Include="Content\display-product\detail-product.css" />
+    <Content Include="Template\Frontend\Garden\Search - Garden Furniture.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1858,6 +1861,7 @@
     <Content Include="Views\Product\HorizontalListProductBar.cshtml" />
     <Content Include="Views\Home\ListFeatureProducts.cshtml" />
     <Content Include="Views\Product\VerticalListProductBar.cshtml" />
+    <Content Include="Views\Product\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

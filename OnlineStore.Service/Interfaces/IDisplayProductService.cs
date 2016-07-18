@@ -1,4 +1,5 @@
-﻿using OnlineStore.Model.ViewModel;
+﻿using OnlineStore.Infractructure.Utility;
+using OnlineStore.Model.ViewModel;
 using OnlineStore.Service.Messaging;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace OnlineStore.Service.Interfaces
         IEnumerable<ProductSummaryView> GetAllBestSellProduct();
         IEnumerable<ProductSummaryView> GetListHighPriorityOrderProduct();
         IEnumerable<SummaryCategoryViewModel> GetTopCategories();
+        SearchProductResponse SearchByProductName(SearchProductRequest request, SearchType searchType);
     }
 }
