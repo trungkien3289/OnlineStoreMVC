@@ -116,7 +116,7 @@
 </head>
 <body id="index" class="index hide-left-column hide-right-column lang_en one-column">
     <div id="page" class="">
-        @RenderPage("_HeaderPartial.cshtml")
+        @Html.Action("_HeaderPartial", "Home")
 
         <div class="columns-container">
             @RenderBody()

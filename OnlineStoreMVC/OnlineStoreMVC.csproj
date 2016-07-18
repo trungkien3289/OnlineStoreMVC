@@ -1869,7 +1869,6 @@
     <Folder Include="Content\Images\Banners\" />
     <Folder Include="Content\Images\CMSNewsImages\" />
     <Folder Include="Content\Images\ProductImages\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

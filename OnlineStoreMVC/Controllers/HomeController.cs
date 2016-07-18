@@ -13,8 +13,7 @@ namespace OnlineStoreMVC.Controllers
         public ActionResult Index()
         {
             PopulateNewProductList();
-            PopulateBestSellProductList();
-            PopulateCategoryList();
+            PopulateBestSellProductList();            
             PopulateHighPriorityOrderProductList();
             return View();
         }
@@ -31,6 +30,12 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult _HeaderPartial()
+        {
+            PopulateCategoryList();
+            return PartialView();
         }
 
         public ActionResult BannerPartial()
