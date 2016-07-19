@@ -19,12 +19,12 @@
     float: right;
 }
 
-    #header-login .header_user_info.current a {
+    #header-login .header_user_info a {
         font: 300 14px/18px "Ubuntu",sans-serif;
         color: #2dcc70;
-        display: block;
+        /*display: block;*/
         cursor: pointer;
-        padding: 4px 22px 1px 8px;
+        padding: 3px;
     }
 
         #header-login .header_user_info.current a:after {

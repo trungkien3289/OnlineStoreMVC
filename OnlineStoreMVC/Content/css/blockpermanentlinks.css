@@ -1,9 +1,8 @@
 ul#header_links {
     list-style-type: none;
-    margin: 33px 30px 0 0;
+    margin: 33px 0 0 0;
     float: right;
-    border-right: 1px solid #e0e7ed;
-    padding: 2px 12px 3px;
+    /*border-right: 1px solid #e0e7ed;*/    
 }
 
 @media (max-width: 767px) {
@@ -26,7 +25,7 @@ ul#header_links {
 ul#header_links li {
     text-transform: capitalize;
     float: left;
-    padding: 0 8px 0;
+    padding: 0 15px 0;
 }
 
 @media (max-width: 479px) {
@@ -46,7 +45,7 @@ ul#header_links li a {
     -o-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    font: 300 14px/18px "Ubuntu",sans-serif;
+    /*font: 300 14px/18px "Ubuntu",sans-serif;*/
     margin-right: 10px;
     cursor: pointer;
     color: #8998a3;
