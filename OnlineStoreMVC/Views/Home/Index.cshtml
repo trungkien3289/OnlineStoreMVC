@@ -14,8 +14,7 @@
                         <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
                             <img src="~/Content/template/images/47f87d91a268e2f23b499c3cfc0dfc36a3c24f36_banner1.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                             <div class="item-html">
-                                <h3>Chairs</h3>
-                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                                <h3>@*Chairs*@</h3>
                             </div>
                         </a>
                     </li>
@@ -23,8 +22,7 @@
                         <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
                             <img src="~/Content/template/images/3dd8c7443cc774ec714eb69a49ffb01369b9be1c_banner2.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                             <div class="item-html">
-                                <h3>Sectionals</h3>
-                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                                <h3>@*Sectionals*@</h3>
                             </div>
                         </a>
                     </li>
@@ -32,8 +30,7 @@
                         <a href="#" class="item-link active_hover" title="" style="font-size: 43.1579px;">
                             <img src="~/Content/template/images/58a7f9e3eb536aac771af3579db25f9864bcc3db_banner3.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                             <div class="item-html">
-                                <h3>Tables</h3>
-                                <p><button type="button" class="btn btn-default">Shop now!</button></p>
+                                <h3>@*Tables*@</h3>
                             </div>
                         </a>
                     </li>
@@ -73,3 +70,20 @@
 <div class="home-column">
 
 </div>
+<script>
+    $(document).ready(function () {
+        $("#SearchProduct_Btn").unbind("click").bind("click", function (e) {
+            searchProduct();
+        });
+        $("#tmsearch #tm_search_query").unbind("keypress").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                searchProduct();
+            }
+        });
+
+        function searchProduct() {
+            var searchString = $("#tmsearch #tm_search_query").val();
+            window.location.replace("/Product/SearchProduct?searchString=" + searchString);
+        }
+    });
+</script>

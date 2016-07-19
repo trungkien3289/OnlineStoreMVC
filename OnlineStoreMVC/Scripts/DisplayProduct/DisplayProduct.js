@@ -67,6 +67,12 @@ var DisplayProductManagement = {
             onstatechange: function (value) { console.log(value) }
         });
         this.controls.priceRange = priceRangeElement.data("slider");
+
+        //Init layout
+        if (numberItems != null && numberItems == 0) {
+            $("ul.product_list.grid.row").append(this.getNoResultMessage());
+        }
+
         this.bindEvents();
     },
     initPagingControl: function (numberItems, itemsOnPage) {
@@ -193,7 +199,6 @@ var DisplayProductManagement = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-                debugger
                 DisplayProductManagement.updateGuiForListProducts(result.Products);
                 DisplayProductManagement.updateModelAndLayout(result);
                 DisplayProductManagement.hideSpin();
@@ -229,12 +234,12 @@ var DisplayProductManagement = {
         /// <returns>N/A</returns>
 
         var template = "";
-        template += " <li class=\"ajax_block_product col-xs-12 col-sm-6 col-md-4\" style=\"opacity: 1; transform: translate3d(0px, 0px, 0px);\">";
-        template += "            <div class=\"product-container\" itemscope=\"\" itemtype=\"https:\/\/schema.org\/Product\">";
-        template += "                <div class=\"left-block\">";
+        template += " <li class='ajax_block_product col-xs-12 col-sm-6 col-md-4' style='opacity: 1; transform: translate3d(0px, 0px, 0px);'>";
+        template += "            <div class='product-container' itemscope='' itemtype='https:\/\/schema.org\/Product'>";
+        template += "                <div class='left-block'>";
         template += "                    <div class=\"product-image-container\">";
-        template += "                        <a class=\"product_img_link\" itemprop=\"url\" href=\"\/Product\/ProductDetails\/" + product.Id + "\">";
-        template += "                            <img class=\"replace-2x img-responsive\" src="+product.CoverImageUrl+" alt="+product.Name+" title="+product.Name+" itemprop=\"image\">";
+        template += "                        <a class='product_img_link' itemprop='url' href=\"\/Product\/ProductDetails\/" + product.Id + "\">";
+        template += "                            <img class='replace-2x img-responsive productimage-listproduct-displayproductview' src=" + product.CoverImageUrl + " alt=" + product.Name + " title=" + product.Name + " itemprop=\"image\">";
         template += "                        <\/a>";
         if (product.IsNew)
         {

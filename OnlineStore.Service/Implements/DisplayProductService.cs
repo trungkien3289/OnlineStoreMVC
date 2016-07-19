@@ -79,6 +79,50 @@ namespace OnlineStore.Service.Implements
 
         }
 
+        private IEnumerable<ecom_Products> GetAllProductsMatchingSearchString(SearchProductRequest request, SearchType searchType = SearchType.SearchString)
+        {
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+
+            if (request.SearchString != null && request.SearchString != string.Empty && searchType != SearchType.AllProduct)
+            {
+                searchQuery = searchQuery.And(p => p.Name.Contains(request.SearchString));
+            }
+
+            if (searchType == SearchType.NewProducts)
+            {
+                searchQuery = searchQuery.And(p => p.IsNewProduct == true);
+            }
+
+            if (searchType == SearchType.BestSellProducts)
+            {
+                searchQuery = searchQuery.And(p => p.IsBestSellProduct == true);
+            }
+
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories");
+            switch (request.SortBy)
+            {
+                case ProductsSortBy.PriceLowToHigh:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderBy(p => p.Price);
+                    break;
+                case ProductsSortBy.PriceHighToLow:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderByDescending(p => p.Price);
+                    break;
+                case ProductsSortBy.ProductNameAToZ:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderBy(p => p.Name);
+                    break;
+                case ProductsSortBy.ProductNameZToA:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderByDescending(p => p.Name);
+                    break;
+            }
+
+            return productsMatchingRefinement.ToList();
+        }
+
         /// <summary>
         /// Crop list product result to satisfy current page
         /// </summary>
@@ -148,8 +192,8 @@ namespace OnlineStore.Service.Implements
                     ProductCode = product.ProductCode,
                     Name = product.Name,
                     Price = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:c}", product.Price),
-                    BrandName = product.ecom_Brands.Name,
-                    CoverImageUrl = product.CoverImage.ImagePath,
+                    BrandName = product.ecom_Brands!=null? product.ecom_Brands.Name:"",
+                    CoverImageUrl = product.CoverImage!=null?product.CoverImage.ImagePath:"/Content/Images/no-image.png",
                     Description = product.Description,
                     Description2 = product.Description2,
                     Tags = product.Tags,
@@ -202,6 +246,29 @@ namespace OnlineStore.Service.Implements
         public IEnumerable<SummaryCategoryViewModel> GetTopCategories()
         {
             return categoryRepository.GetAllCategoriesWithoutDelete().ConvertToIndexCategoryViews();
+        }
+
+        /// <summary>
+        /// Search product by name
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public SearchProductResponse SearchByProductName(SearchProductRequest request, SearchType searchType)
+        {
+            IEnumerable<ecom_Products> foundProducts = GetAllProductsMatchingSearchString(request, searchType);
+            SearchProductResponse response = new SearchProductResponse()
+            {
+                CategoryIds = request.CategoryIds,
+                NumberOfTitlesFound = foundProducts.Count(),
+                TotalNumberOfPages = (int)Math.Ceiling((double)foundProducts.Count() / request.NumberOfResultsPerPage),
+                CurrentPage = request.Index,
+                SearchString = request.SearchString,
+                SortBy = (int)request.SortBy,
+                BrandIds = request.BrandIds,
+                Products = CropProductListToSatisfyGivenIndex(foundProducts, request.Index, request.NumberOfResultsPerPage).ConvertToProductSummaryViews(),
+                Brands = foundProducts.Select(p => p.ecom_Brands).Where(b => b != null).Distinct().ToList().ConvertToBrandSummaryViews()// return list Brand exist in group product belong to selected category
+            };
+            return response;
         }
 
         #endregion
