@@ -23,6 +23,7 @@ namespace OnlineStore.Model.Context
         public string Authors { get; set; }
         public string Tags { get; set; }
         public Nullable<int> TotalView { get; set; }
+        public Nullable<bool> DisplayHomePage { get; set; }
         public Nullable<int> SortOrder { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -95,6 +95,7 @@
           <Property Name="Authors" Type="nvarchar" MaxLength="200" />
           <Property Name="Tags" Type="nvarchar" MaxLength="200" />
           <Property Name="TotalView" Type="int" />
+          <Property Name="DisplayHomePage" Type="bit" />
           <Property Name="SortOrder" Type="int" />
           <Property Name="Status" Type="int" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
@@ -798,15 +799,6 @@
             <End Role="share_Images" EntitySet="share_Images" />
             <End Role="system_Banners" EntitySet="system_Banners" />
           </AssociationSet>
-          <EntitySet Name="cms_News" EntityType="OnlineStoreMVCModel.cms_News" />
-          <AssociationSet Name="FK_cms_News_cms_Categories" Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories">
-            <End Role="cms_Categories" EntitySet="cms_Categories" />
-            <End Role="cms_News" EntitySet="cms_News" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cms_News_share_Images" Association="OnlineStoreMVCModel.FK_cms_News_share_Images">
-            <End Role="share_Images" EntitySet="share_Images" />
-            <End Role="cms_News" EntitySet="cms_News" />
-          </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="OnlineStoreMVCModel.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="OnlineStoreMVCModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="OnlineStoreMVCModel.AspNetUserClaim" />
@@ -822,6 +814,15 @@
           <AssociationSet Name="AspNetUserRoles" Association="OnlineStoreMVCModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="cms_News" EntityType="OnlineStoreMVCModel.cms_News" />
+          <AssociationSet Name="FK_cms_News_cms_Categories" Association="OnlineStoreMVCModel.FK_cms_News_cms_Categories">
+            <End Role="cms_Categories" EntitySet="cms_Categories" />
+            <End Role="cms_News" EntitySet="cms_News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cms_News_share_Images" Association="OnlineStoreMVCModel.FK_cms_News_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="cms_News" EntitySet="cms_News" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="system_Menu">
@@ -913,52 +914,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="cms_News">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="CoverImageId" Type="Int32" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SubTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ContentNews" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Authors" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Tags" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TotalView" Type="Int32" />
-          <Property Name="SortOrder" Type="Int32" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="CreatedBy" Type="Guid" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Guid" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="cms_Categories" Relationship="OnlineStoreMVCModel.FK_cms_News_cms_Categories" FromRole="cms_News" ToRole="cms_Categories" />
-          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_cms_News_share_Images" FromRole="cms_News" ToRole="share_Images" />
-        </EntityType>
-        <Association Name="FK_cms_News_cms_Categories">
-          <End Type="OnlineStoreMVCModel.cms_Categories" Role="cms_Categories" Multiplicity="1" />
-          <End Type="OnlineStoreMVCModel.cms_News" Role="cms_News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cms_Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="cms_News">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cms_News_share_Images">
-          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
-          <End Type="OnlineStoreMVCModel.cms_News" Role="cms_News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="share_Images">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="cms_News">
-              <PropertyRef Name="CoverImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1029,6 +984,53 @@
         <Association Name="AspNetUserRoles">
           <End Type="OnlineStoreMVCModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="OnlineStoreMVCModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="cms_News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CoverImageId" Type="Int32" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContentNews" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Authors" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TotalView" Type="Int32" />
+          <Property Name="DisplayHomePage" Type="Boolean" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="cms_Categories" Relationship="OnlineStoreMVCModel.FK_cms_News_cms_Categories" FromRole="cms_News" ToRole="cms_Categories" />
+          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_cms_News_share_Images" FromRole="cms_News" ToRole="share_Images" />
+        </EntityType>
+        <Association Name="FK_cms_News_cms_Categories">
+          <End Type="OnlineStoreMVCModel.cms_Categories" Role="cms_Categories" Multiplicity="1" />
+          <End Type="OnlineStoreMVCModel.cms_News" Role="cms_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cms_Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cms_News">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cms_News_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
+          <End Type="OnlineStoreMVCModel.cms_News" Role="cms_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cms_News">
+              <PropertyRef Name="CoverImageId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1272,27 +1274,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="cms_News">
-            <EntityTypeMapping TypeName="OnlineStoreMVCModel.cms_News">
-              <MappingFragment StoreEntitySet="cms_News">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="TotalView" ColumnName="TotalView" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="Authors" ColumnName="Authors" />
-                <ScalarProperty Name="ContentNews" ColumnName="ContentNews" />
-                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="CoverImageId" ColumnName="CoverImageId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1338,6 +1319,28 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="cms_News">
+            <EntityTypeMapping TypeName="OnlineStoreMVCModel.cms_News">
+              <MappingFragment StoreEntitySet="cms_News">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="DisplayHomePage" ColumnName="DisplayHomePage" />
+                <ScalarProperty Name="TotalView" ColumnName="TotalView" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Authors" ColumnName="Authors" />
+                <ScalarProperty Name="ContentNews" ColumnName="ContentNews" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CoverImageId" ColumnName="CoverImageId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

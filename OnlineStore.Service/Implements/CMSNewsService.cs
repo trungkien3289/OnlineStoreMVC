@@ -54,6 +54,7 @@ namespace OnlineStore.Service.Implements
                         Authors = cmsNewsView.Authors,
                         Tags = cmsNewsView.Tags,
                         TotalView = cmsNewsView.TotalView,
+                        DisplayHomePage = cmsNewsView.DisplayHomePage,
                         Status = (int)OnlineStore.Infractructure.Utility.Define.Status.Active,
                         SortOrder = cmsNewsView.SortOrder,
                         CreatedDate = DateTime.Now,
@@ -86,6 +87,7 @@ namespace OnlineStore.Service.Implements
                     news.Authors = cmsNewsView.Authors;
                     news.Tags = cmsNewsView.Tags;
                     news.TotalView = cmsNewsView.TotalView;
+                    news.DisplayHomePage = cmsNewsView.DisplayHomePage;
                     news.SortOrder = cmsNewsView.SortOrder;
                     news.Status = cmsNewsView.Status;
                     news.ModifiedDate = DateTime.Now;
@@ -120,6 +122,7 @@ namespace OnlineStore.Service.Implements
                     ContentNews = news.ContentNews,
                     Authors = news.Authors,
                     Tags = news.Tags,
+                    DisplayHomePage = news.DisplayHomePage,
                     TotalView = news.TotalView,
                     Status = news.Status,
                     SortOrder = news.SortOrder

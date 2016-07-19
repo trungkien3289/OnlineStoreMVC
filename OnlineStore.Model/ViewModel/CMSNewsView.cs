@@ -20,6 +20,7 @@ namespace OnlineStore.Model.ViewModel
         public string Authors { get; set; }
         public string Tags { get; set; }
         public Nullable<int> TotalView { get; set; }
+        public Nullable<Boolean> DisplayHomePage { get; set; }
         public Nullable<int> SortOrder { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<DateTime> CreatedDate { get; set; }

@@ -38,10 +38,10 @@ namespace OnlineStore.Model.Context
         public virtual DbSet<system_Profiles> system_Profiles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<system_Banners> system_Banners { get; set; }
-        public virtual DbSet<cms_News> cms_News { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<cms_News> cms_News { get; set; }
     }
 }
