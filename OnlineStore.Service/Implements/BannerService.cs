@@ -15,9 +15,35 @@ namespace OnlineStore.Service.Implements
     {
         public IList<BannerViewModel> GetBannersForHomePage()
         {
+            int month = DateTime.Now.Month;
+            int brandType = 1;
+            switch (month)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    brandType = 1;//Spring
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    brandType = 2;//Summer
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    brandType = 3;//Autumn
+                    break;
+                case 10:
+                case 11:
+                case 12:
+                    brandType = 4;//Winter
+                    break;
+            }
+
             using (var db = new OnlineStoreMVCEntities())
             {
-                return db.system_Banners.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active)
+                return db.system_Banners.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active && x.Type == brandType)
                     .Select(x => new BannerViewModel
                     {
                         ImageName = x.share_Images.ImageName,
