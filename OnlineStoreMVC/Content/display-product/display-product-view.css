@@ -61,6 +61,12 @@
 
 /* css for list product on main content panel */
 .productimage-listproduct-displayproductview{
-    width:250px!important;
-    height:250px!important;
+    /*width:250px!important;
+    height:250px!important;*/
+    max-width: 100%!important;
+    max-height: 250px!important;
+}
+
+ul.product_list.grid > li .product-container .product-image-container.image-container-displayproductview {
+    height:250px;
 }

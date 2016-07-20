@@ -32,7 +32,9 @@
 }
 .primary_block .pb-left-column img {
     max-width: 100%;
-    height: auto;
+    max-height: 500px;
+    margin: auto;
+    display: block;
 }
 .pb-left-column {
     margin-bottom: 15px;
@@ -92,7 +94,6 @@
 }
 .pb-left-column #image-block img {
     background: #fbfbfb;
-    width: 100%;
 }
 .pb-left-column #image-block #view_full_size {
     display: block;

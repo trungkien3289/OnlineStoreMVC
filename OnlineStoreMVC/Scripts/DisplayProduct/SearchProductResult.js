@@ -206,7 +206,7 @@ var SearchProductManagement = {
         template += " <li class=\"ajax_block_product col-xs-12 col-sm-6 col-md-4\" style=\"opacity: 1; transform: translate3d(0px, 0px, 0px);\">";
         template += "            <div class=\"product-container\" itemscope=\"\" itemtype=\"https:\/\/schema.org\/Product\">";
         template += "                <div class=\"left-block\">";
-        template += "                    <div class=\"product-image-container\">";
+        template += "                    <div class='product-image-container image-container-displayproductview'>";
         template += "                        <a class=\"product_img_link\" itemprop=\"url\" href=\"\/Product\/ProductDetails\/" + product.Id + "\">";
         template += "                            <img class=\"replace-2x img-responsive\" src=" + product.CoverImageUrl + " alt=" + product.Name + " title=" + product.Name + " itemprop=\"image\">";
         template += "                        <\/a>";

@@ -5,7 +5,7 @@
 
 /* Frame */
 .frame {
-	height: 220px;
+	height: 270px;
 	/*line-height: 250px;*/
 	overflow: hidden;
 }
@@ -95,5 +95,16 @@
 li.product-box.item img{
     max-width: 100%;
     display: block;
-    height: 150px;
+    /*height: 150px;*/
+}
+.product-image-horizontal-list-product-bar{
+    height:220px;
+}
+
+.product-image-horizontal-list-product-bar img{
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    max-height: 200px;
+    width:initial!important;
 }
