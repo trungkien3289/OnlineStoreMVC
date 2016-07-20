@@ -7,18 +7,50 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineStore.Model.Context;
+using OnlineStore.Service.Interfaces;
+using OnlineStore.Service.Implements;
+using PagedList;
+using OnlineStore.Model.ViewModel;
 
 namespace OnlineStoreMVC.Controllers
 {
     public class NewsController : Controller
     {
         private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
+        private ICMSNewsService _cmsNewsService = new CMSNewsService();
+        private ICMSCategoryService _cmsCategoryService = new CMSCategoryService();
+
+        private void PopulateCMSChildCategoriesByParentId(int parentId)
+        {
+            ViewBag.ChildCategories = _cmsCategoryService.GetChildCategoriesByParentId(parentId);
+        }
+
+        private void PopulateRecentNews()
+        {
+            ViewBag.RecentNews = _cmsNewsService.GetRecentCMSNews();
+        }
+
+        private void PopulateRelatedNews(int id)
+        {
+            ViewBag.RelatedNews = _cmsNewsService.GetRelatedCMSNews(id);
+        }
 
         // GET: /News/
-        public ActionResult Index()
+        public ActionResult Index(int? id, int page = 1)
         {
-            var cms_news = db.cms_News.Include(c => c.cms_Categories).Include(c => c.share_Images);
-            return View(cms_news.ToList());
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            PopulateCMSChildCategoriesByParentId(id.Value);
+            PopulateRecentNews();
+
+            int totalItems = 0;
+            var news = _cmsNewsService.GetCMSNewsByCategoryId(id.Value, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
+            IPagedList<CMSNewsView> pageNews = new StaticPagedList<CMSNewsView>(news, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+
+            return View(pageNews);
         }
 
         // GET: /News/Details/5
@@ -28,12 +60,17 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cms_News cms_news = db.cms_News.Find(id);
-            if (cms_news == null)
+            var news = _cmsNewsService.GetCMSNewsById(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(cms_news);
+
+            PopulateCMSChildCategoriesByParentId(news.CategoryId);
+            PopulateRecentNews();
+            PopulateRelatedNews(id.Value);
+
+            return View(news);
         }
 
         protected override void Dispose(bool disposing)

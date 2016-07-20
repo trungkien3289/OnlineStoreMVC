@@ -504,6 +504,9 @@
     <Content Include="Content\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\site1.css" />
+    <Content Include="Content\css\site2.css" />
     <Content Include="Content\display-product\display-product-view.css" />
     <Content Include="Content\display-product\horizontal-list-product-bar.css" />
     <Content Include="Content\display-product\product.css" />
