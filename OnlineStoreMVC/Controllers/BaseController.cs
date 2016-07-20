@@ -47,7 +47,7 @@ namespace OnlineStoreMVC.Controllers
         /// </summary>
         protected void PopulateCategoryList()
         {
-            ViewBag.TopCategoryList = service.GetTopCategories();
+            ViewBag.TopCategoryList = service.GetTopCategories().Take(7);
         }
 
         #endregion

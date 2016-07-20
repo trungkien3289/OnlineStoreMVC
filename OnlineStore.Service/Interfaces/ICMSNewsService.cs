@@ -13,6 +13,7 @@ namespace OnlineStore.Service.Interfaces
         IList<CMSNewsView> GetCMSNews(int pageNumber, int pageSize, out int totalItems);
         IList<CMSNewsView> GetCMSNewsByCategoryId(int categoryId, int pageNumber, int pageSize, out int totalItems);
         IList<CMSNewsView> GetRecentCMSNews();
+        IList<CMSNewsView> GetCMSNewsForHomePage();
         IList<CMSNewsView> GetRelatedCMSNews(int id);
         bool AddCMSNews(CMSNewsView cmsNewsView);
         bool EditCMSNews(CMSNewsView cmsNewsView);

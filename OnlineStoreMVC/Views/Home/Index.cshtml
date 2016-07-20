@@ -61,6 +61,7 @@
                             @Html.Partial("ListFeatureProducts", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.BestSellProductList)
                         </ul>
                     </div>
+                    @Html.Action("BlogPartial")
                 </div>
             </div>
         </div>
@@ -68,8 +69,8 @@
 </div>
 
 <div class="home-column">
-
 </div>
+
 <script>
     $(document).ready(function () {
         $("#SearchProduct_Btn").unbind("click").bind("click", function (e) {

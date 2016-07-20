@@ -12,10 +12,10 @@
     <div id="columns" class="container">
 
         <div class="breadcrumb clearfix">
-            <a class="home" href="/" title="Return to Home">
+            <a class="home" href="/" title="Trở về Trang chủ">
                 <i class="fa fa-home"></i>
             </a>
-            <span class="navigation-pipe">&gt;</span>
+            <span class="">&gt;</span>
             <span class="navigation_page">
                 <span class="navigation-page">
                     <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="#">All Blog News</a></span>
@@ -36,7 +36,7 @@
                                 <div class="sdsarticleCat clearfix">
                                     <div id="smartblogpost-4">
                                         <h2 class="title_block_exclusive">
-                                            <a title="@item.Title" href="">@item.Title</a>
+                                            <a title="@item.Title" href="@Url.Action("Details", "News", new { id = item.Id })">@item.Title</a>
                                         </h2>
                                         <div class="articleContent">
                                             <a href="@Url.Action("Details", "News", new { id = item.Id })" title="@item.Title" class="imageFeaturedLink post-image">

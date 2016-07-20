@@ -43,5 +43,11 @@ namespace OnlineStoreMVC.Controllers
             IBannerService _bannerService = new BannerService();
             return PartialView(_bannerService.GetBannersForHomePage());
         }
+
+        public ActionResult BlogPartial()
+        {
+            ICMSNewsService _cmsNewsService = new CMSNewsService();
+            return PartialView(_cmsNewsService.GetCMSNewsForHomePage());
+        }
     }
 }

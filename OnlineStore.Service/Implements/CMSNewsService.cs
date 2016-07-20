@@ -33,7 +33,8 @@ namespace OnlineStore.Service.Implements
                         Authors = x.Authors,
                         Tags = x.Tags,
                         TotalView = x.TotalView,
-                        Status = x.Status
+                        Status = x.Status,
+                        CreatedDate = x.CreatedDate
                     }).ToList();
             }
         }
@@ -157,6 +158,31 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        public IList<CMSNewsView> GetCMSNewsForHomePage()
+        {
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                return db.cms_News.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active && x.DisplayHomePage == true)
+                    .OrderByDescending(x => x.CreatedDate)
+                    .Take(3)
+                    .Select(x => new CMSNewsView
+                    {
+                        Id = x.Id,
+                        CategoryId = x.CategoryId,
+                        CategoryTitle = x.cms_Categories.Title,
+                        CoverImageId = x.CoverImageId,
+                        CoverImagePath = x.share_Images.ImagePath,
+                        Title = x.Title,
+                        SubTitle = x.SubTitle,
+                        ContentNews = x.ContentNews,
+                        Authors = x.Authors,
+                        Tags = x.Tags,
+                        TotalView = x.TotalView,
+                        Status = x.Status,
+                        CreatedDate = x.CreatedDate
+                    }).ToList();
+            }
+        }
         public bool AddCMSNews(CMSNewsView cmsNewsView)
         {
             try
