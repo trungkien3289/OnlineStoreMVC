@@ -573,6 +573,7 @@
     <Content Include="Content\font-awesome\4.3.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\html5shiv\3.7.2\html5shiv.min.js" />
+    <Content Include="Content\Images\Banners\XaviaLogo.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\ProductImages\dokim loại\72.jpg" />
     <Content Include="Content\Images\ProductImages\dokim loại\DSC_9393.jpg" />
@@ -2015,7 +2016,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\custom-file-input\" />
-    <Folder Include="Content\Images\Banners\" />
     <Folder Include="Content\Images\CMSNewsImages\" />
     <Folder Include="Template\" />
   </ItemGroup>
