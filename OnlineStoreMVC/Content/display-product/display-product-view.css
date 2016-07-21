@@ -70,3 +70,11 @@
 ul.product_list.grid > li .product-container .product-image-container.image-container-displayproductview {
     height:250px;
 }
+
+.left-category-link-displayproduct{
+    margin-left:10px;
+}
+
+.left-category-link-displayproduct:hover{
+    color:#2dcc70;
+}

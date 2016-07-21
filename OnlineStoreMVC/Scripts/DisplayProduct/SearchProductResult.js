@@ -208,7 +208,7 @@ var SearchProductManagement = {
         template += "                <div class=\"left-block\">";
         template += "                    <div class='product-image-container image-container-displayproductview'>";
         template += "                        <a class=\"product_img_link\" itemprop=\"url\" href=\"\/Product\/ProductDetails\/" + product.Id + "\">";
-        template += "                            <img class=\"replace-2x img-responsive\" src=" + product.CoverImageUrl + " alt=" + product.Name + " title=" + product.Name + " itemprop=\"image\">";
+        template += "                            <img class='replace-2x img-responsive productimage-listproduct-displayproductview' src=" + product.CoverImageUrl + " alt=" + product.Name + " title=" + product.Name + " itemprop=\"image\">";
         template += "                        <\/a>";
         if (product.IsNew) {
             template += "                            <a class=\"new-box\">";
