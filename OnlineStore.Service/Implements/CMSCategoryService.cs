@@ -109,6 +109,46 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        public IList<CMSCategoryView> GetChildCategoriesByParentId(int? parentId)
+        {
+            if (parentId == null)
+                return null;
+
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                var categories = db.cms_Categories.Where(x => x.ParentId == parentId.Value)
+                    .Select(x => new CMSCategoryView
+                    {
+                        Id = x.Id,
+                        ParentId = x.ParentId,
+                        Title = x.Title,
+                        Url = x.Url,
+                        Description = x.Description,
+                        Status = x.Status,
+                        SortOrder = x.SortOrder
+                    });
+
+                if (categories.Count() == 0)
+                {
+                    var category = db.cms_Categories.Find(parentId);
+                    return db.cms_Categories.Where(x => x.ParentId == category.ParentId)
+                    .Select(x => new CMSCategoryView
+                    {
+                        Id = x.Id,
+                        ParentId = x.ParentId,
+                        Title = x.Title,
+                        Url = x.Url,
+                        Description = x.Description,
+                        Status = x.Status,
+                        SortOrder = x.SortOrder
+                    }).ToList();
+                }
+                else {
+                    return categories.ToList();
+                }
+            }
+        }
+
         public bool DeleteCMSCategory(int id)
         {
             try

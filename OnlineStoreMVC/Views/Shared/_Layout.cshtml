@@ -19,7 +19,7 @@
     <meta name="googlebot" content="index, follow">
     <link rel="icon" type="image/ico" href="~/favicon.ico">
     @Styles.Render("~/Content/bootstrap");
-     
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
@@ -70,7 +70,7 @@
     <link id="habla_style_div" type="text/css" rel="stylesheet" href="~/Content/css/cbb092d6554938a9549cb716ffcb1f94.css">
     <link href="~/Content/css/contact-form.css" rel="stylesheet" />
 
-     <script type="text/javascript" src="~/Scripts/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/jquery.easing.js"></script>
     <script type="text/javascript" src="~/Scripts/js/tools.js"></script>
@@ -78,7 +78,6 @@
     <script type="text/javascript" src="~/Scripts/js/10-bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/14-device.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/15-jquery.total-storage.min.js"></script>
-    <!--<script type="text/javascript" src="~/Scripts/js/15-jquery.uniform-modified.js"></script>-->
     <script type="text/javascript" src="~/Scripts/js/16-jquery.scrollmagic.min.js"></script>
     <script type="text/javascript" src="~/Scripts/js/17-jquery.scrollmagic.debug.js"></script>
     <script type="text/javascript" src="~/Scripts/js/18-TimelineMax.min.js"></script>
@@ -100,13 +99,12 @@
     <script type="text/javascript" src="~/Scripts/js/superfish.js"></script>
     <script type="text/javascript" src="~/Scripts/js/tmmegamenu.js"></script>
     <script type="text/javascript" src="~/Scripts/js/js.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/tmnewsletter.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/js/tmnewsletter.js"></script>*@
     <script type="text/javascript" src="~/Scripts/js/tmrelatedproducts.js"></script>
     <script type="text/javascript" src="~/Scripts/js/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="~/Scripts/js/tmsearch.js"></script>
     <script type="text/javascript" src="~/Scripts/js/front(3).js"></script>
     <script type="text/javascript" src="~/Scripts/js/front(4).js"></script>
-    <!--<script type="text/javascript" src="~/Scripts/js/themeconfiglink.js"></script>-->
     <script type="text/javascript" src="~/Scripts/js/index.js"></script>
     <script type="text/javascript" charset="UTF-8" src="~/Scripts/js/common.js"></script>
     <script type="text/javascript" charset="UTF-8" src="~/Scripts/js/util.js"></script>
@@ -116,6 +114,7 @@
     <link rel="stylesheet" href="~/Content/template/css/site.css" type="text/css" media="all">
     <link href="~/Content/template/css/site1.css" rel="stylesheet" type="text/css">
     <link href="~/Content/template/css/site2.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css">
     <!--[if IE 8]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -138,6 +137,10 @@
             type = "text/javascript"; e.parentNode.insertBefore($, e)
         })(document, "script");
 
+        $(document).ready(function () {
+            $("#to_top").click(function () { $("body,html").animate({ scrollTop: 0 }, "normal") })
+        });
+
     </script>
 </head>
 <body id="index" class="index hide-left-column hide-right-column lang_en one-column">
@@ -150,5 +153,9 @@
 
         @RenderPage("_FooterPartial.cshtml")
     </div>
+
+    <a href="javascript:;" id="to_top">
+        <img src="/Content/Images/icon_gototop.png" alt="">
+    </a>
 </body>
 </html>

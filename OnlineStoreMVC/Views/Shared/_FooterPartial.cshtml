@@ -55,8 +55,6 @@
                     </div>
                 </div>
             </section>
-
-
             <section class="footer-block col-xs-12 col-sm-2" id="block_various_links_footer">
                 <h4>Thông tin</h4>
                 <ul class="toggle-footer" style="">
@@ -76,12 +74,12 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#" title="Giới thiệu cửa hàng">
+                        <a href="@Url.Action("About", "Home")" title="Giới thiệu cửa hàng">
                             Giới thiệu cửa hàng
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#" title="Liên hệ">
+                        <a href="@Url.Action("Contact", "Home")" title="Liên hệ">
                             Liên hệ
                         </a>
                     </li>
@@ -97,9 +95,10 @@
                     </li>
                 </ul>
             </section>
+
             <div class="bottom-footer col-xs-12">
                 <div>
-                    © <span class="current-year">Xavia - New option for you</a>
+                    © <span class="current-year">@DateTime.Now.Year.ToString()</span> <a class="_blank" title="prestashop" href="/" target="_blank">Copyright by XAVIADECOR™</a>
                 </div>
             </div>
 
@@ -144,21 +143,19 @@
                 </div>
             </section>
 
-            <div id="newsletter_block_left" class="footer-block col-xs-12 col-sm-4">
-                <h4>Bản tin</h4>
+            <div id="newsletter_block_left" class="footer-block col-xs-12 col-sm-3">
+                <h4>Nhận thông báo</h4>
                 <div class="block_content">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" value="Nhập địa chỉ email của bạn">
+                            <input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" value="Nhập email của bạn">
                             <button type="submit" name="submitNewsletter" class="btn btn-default btn-sm">
-                                <span>Subscribe</span>
+                                <span>Đăng ký</span>
                             </button>
                             <input type="hidden" name="action" value="0">
                         </div>
                     </form>
                 </div>
-            </div>
-
             <section id="social_block" class="col-xs-12 col-sm-4">
                 <ul>
                     <li class="facebook">

@@ -15,5 +15,6 @@ namespace OnlineStore.Service.Interfaces
         bool EditCMSCategory(CMSCategoryView categoryView);
         bool DeleteCMSCategory(int id);
         CMSCategoryView GetCategoryById(int? categoryId);
+        IList<CMSCategoryView> GetChildCategoriesByParentId(int? parentId);
     }
 }

@@ -504,6 +504,9 @@
     <Content Include="Content\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\site1.css" />
+    <Content Include="Content\css\site2.css" />
     <Content Include="Content\display-product\display-product-view.css" />
     <Content Include="Content\display-product\horizontal-list-product-bar.css" />
     <Content Include="Content\display-product\product.css" />
@@ -574,6 +577,7 @@
     <Content Include="Content\font-awesome\4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\html5shiv\3.7.2\html5shiv.min.js" />
     <Content Include="Content\Images\Banners\XaviaLogo.png" />
+    <Content Include="Content\Images\icon_gototop.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\ProductImages\dokim loại\72.jpg" />
     <Content Include="Content\Images\ProductImages\dokim loại\DSC_9393.jpg" />
@@ -2011,6 +2015,7 @@
     <Content Include="Content\fonts\MaterialIcons-Regular.woff2" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Home\BlogPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
