@@ -136,7 +136,7 @@ namespace OnlineStore.Service.Implements
             using (var db = new OnlineStoreMVCEntities())
             {
                 var news = db.cms_News.Find(id);
-                return db.cms_News.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active && x.CategoryId == news.CategoryId)
+                return db.cms_News.Where(x => x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active && x.CategoryId == news.CategoryId && x.Id != news.Id)
                     .OrderByDescending(x => x.CreatedDate)
                     .Take(3)
                     .Select(x => new CMSNewsView
